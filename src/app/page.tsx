@@ -6,7 +6,7 @@ import ManualArticleList from "@/features/show-poem-list/components/ManualArticl
 
 export const metadata = {
   openGraph: {
-    title: "Tフォックスのホームページ",
+    title: "T2フォックスのホームページ",
     description: "これはT2フォックスの制作物をまとめたホームページです。",
     images: [
       {
