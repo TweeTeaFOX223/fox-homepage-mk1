@@ -4,6 +4,20 @@ import ArticleList from "@/features/show-article-list/components/ArticleList";
 import RepositoryList from "@/features/show-github-repository/components/RepositoryList";
 import ManualArticleList from "@/features/show-poem-list/components/ManualArticleList";
 
+export const metadata = {
+  openGraph: {
+    title: "Tフォックスのホームページ",
+    description: "これはT2フォックスの制作物をまとめたホームページです。",
+    images: [
+      {
+        url: "/ogp/OGP2.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+};
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-background">
