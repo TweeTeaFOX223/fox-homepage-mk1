@@ -10,7 +10,7 @@ import {
 // import { Badge } from "@/components/ui/badge";
 // import { Star } from "lucide-react";
 
-import { RepoCardItem } from "../types/github-repo-type";
+import { RepoCardItem } from "../schemas/github-repo-schema";
 
 export const RepositoryCard = ({ repo }: { repo: RepoCardItem }) => {
   return (

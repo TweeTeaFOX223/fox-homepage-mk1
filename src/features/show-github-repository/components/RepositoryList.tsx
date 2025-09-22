@@ -1,6 +1,6 @@
 import { getGithubRepos } from "../api/github";
 import { RepositoryCard } from "./RepositoryCard";
-import { RepoCardItem } from "../types/github-repo-type";
+import { RepoCardItem } from "../schemas/github-repo-schema";
 
 export default async function RepositoryList() {
   const repos = await getGithubRepos();
