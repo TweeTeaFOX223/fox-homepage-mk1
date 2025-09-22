@@ -5,12 +5,15 @@
 // https://zenn.dev/api/articles?username=tweeteafox300&order=latest
 // https://zenn.dev/api/scraps?username=tweeteafox300&order=latest
 
+import { z } from "zod";
+
 import { ZENN_USERNAME } from "../../../../config";
+
 import {
   CommonArticleItem,
-  ZennArticleItem,
-  ZennScrapsItem,
-} from "../types/article-item-type";
+  zennArticlesApiResponseSchema,
+  zennScrapsApiResponseSchema,
+} from "../schemas/article-schemas";
 
 export async function getZennArticles() {
   const username = ZENN_USERNAME;
@@ -19,65 +22,81 @@ export async function getZennArticles() {
     throw new Error("ZennのユーザーIDが環境変数にないです");
   }
 
-  const articleResponse = await fetch(
-    `https://zenn.dev/api/articles?username=${username}&order=latest`,
-    {
-      next: {
-        revalidate: 3600, // 1時間ごとに再検証
-      },
+  try {
+    const articleResponse = await fetch(
+      `https://zenn.dev/api/articles?username=${username}&order=latest`,
+      {
+        next: {
+          revalidate: 3600, // 1時間ごとに再検証
+        },
+      }
+    );
+
+    if (!articleResponse.ok) {
+      throw new Error(
+        `Zennからの記事フェッチに失敗: ${articleResponse.status}`
+      );
     }
-  );
 
-  if (!articleResponse.ok) {
-    throw new Error("Zennからの記事フェッチに失敗");
-  }
+    const scrapsResponse = await fetch(
+      `https://zenn.dev/api/scraps?username=${username}&order=latest`,
+      {
+        next: {
+          revalidate: 7200, // 2時間ごとに再検証
+        },
+      }
+    );
 
-  const scrapsResponse = await fetch(
-    `https://zenn.dev/api/scraps?username=${username}&order=latest`,
-    {
-      next: {
-        revalidate: 7200, // 2時間ごとに再検証
-      },
+    if (!scrapsResponse.ok) {
+      throw new Error(
+        `Zennからのスクラップフェッチに失敗: ${scrapsResponse.status}`
+      );
     }
-  );
 
-  if (!scrapsResponse.ok) {
-    throw new Error("Zennからのスクラップフェッチに失敗");
+    const articlesJson = await articleResponse.json();
+    const scrapsJson = await scrapsResponse.json();
+
+    // Zodでバリデーション
+    const validatedArticles = zennArticlesApiResponseSchema.parse(articlesJson);
+    const validatedScraps = zennScrapsApiResponseSchema.parse(scrapsJson);
+
+    // Qiitaのタイプに統一
+    const articlesArray: CommonArticleItem[] = validatedArticles.articles.map(
+      (article) => ({
+        url: `https://zenn.dev${article.path}`,
+        title: article.title,
+        article_type: "Zenn記事" as const,
+        tags: null,
+        created_at: article.published_at,
+        updated_at: article.body_updated_at,
+      })
+    );
+
+    // Qiitaのタイプに統一
+    // レスポンスのjsonの中にあるarticlesにマップ関数を使う
+    const scrapsArray: CommonArticleItem[] = validatedScraps.scraps.map(
+      (scrap) => ({
+        url: `https://zenn.dev${scrap.path}`,
+        title: scrap.title,
+        article_type: "Zennスクラップ" as const,
+        tags: scrap.topics,
+        created_at: scrap.created_at,
+        updated_at: scrap.last_comment_created_at,
+      })
+    );
+
+    // console.log(articles_array);
+    // console.log(scrapsArray);
+
+    // 記事とスクラップの一覧を結合した配列を返す
+    return [...articlesArray, ...scrapsArray];
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      console.error("Zenn API レスポンスの形式が不正:", error.issues);
+      throw new Error(
+        "Zenn APIのレスポンス形式が変更されている可能性があります"
+      );
+    }
+    throw error;
   }
-
-  const articlesJson = await articleResponse.json();
-  const scrapsJson = await scrapsResponse.json();
-
-  // Qiitaのタイプに統一
-  const articles_array: CommonArticleItem[] = articlesJson.articles.map(
-    (article: ZennArticleItem) => ({
-      url: "https://zenn.dev" + article.path,
-      title: article.title,
-      article_type: "Zenn記事",
-      tags: null,
-      created_at: article.published_at,
-      updated_at: article.body_updated_at,
-    })
-  );
-
-  // Qiitaのタイプに統一
-  // レスポンスのjsonの中にあるarticlesにマップ関数を使う
-  const scrapsArray: CommonArticleItem[] = scrapsJson.scraps.map(
-    (scraps: ZennScrapsItem) => ({
-      url: "https://zenn.dev" + scraps.path,
-      title: scraps.title,
-      article_type: "Zennスクラップ",
-      tags: scraps.topics?.map((tag) => ({
-        name: tag.name,
-      })),
-      created_at: scraps.created_at,
-      updated_at: scraps.last_comment_created_at,
-    })
-  );
-
-  // console.log(articles_array);
-  // console.log(scrapsArray);
-
-  // 記事とスクラップの一覧を結合した配列を返す
-  return [...articles_array, ...scrapsArray];
 }

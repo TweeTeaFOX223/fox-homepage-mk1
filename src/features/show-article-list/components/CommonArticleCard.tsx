@@ -7,14 +7,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { QiitaArticleItem } from "../types/article-item-type";
+import { CommonArticleItem } from "..//schemas/article-schemas";
 // import { Badge } from "@/components/ui/badge";
 // import { Star } from "lucide-react";
 
 export default function CommonArticleCard({
   article,
 }: {
-  article: QiitaArticleItem;
+  article: CommonArticleItem;
 }) {
   return (
     <Card className="flex flex-col h-full p-2 bg-white border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden">

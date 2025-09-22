@@ -1,6 +1,6 @@
 import { getQiitaArticles } from "../api/get-qiita-articles";
 import { getZennArticles } from "../api/get-zenn-articles";
-import { CommonArticleItem } from "../types/article-item-type";
+import { CommonArticleItem } from "../schemas/article-schemas";
 import CommonArticleCard from "./CommonArticleCard";
 
 export default async function ArticleList() {
