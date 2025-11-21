@@ -22,6 +22,7 @@ export async function getGithubRepos(): Promise<RepoCardItem[]> {
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: "application/vnd.github.v3+json",
+          "User-Agent": "NextApp",
         },
         next: {
           revalidate: 3600, // 1時間ごとに再検証
@@ -54,7 +55,7 @@ export async function getGithubRepos(): Promise<RepoCardItem[]> {
     if (error instanceof z.ZodError) {
       console.error("GitHub API レスポンスの形式が不正:", error.issues);
       throw new Error(
-        "Qiita APIのレスポンス形式が変更されている可能性があります"
+        "GitHub APIのレスポンス形式が変更されている可能性があります"
       );
     }
     throw error;
