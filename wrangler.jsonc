@@ -9,6 +9,9 @@
 		"directory": ".open-next/assets",
 		"binding": "ASSETS"
 	},
+	"vars": {
+      "NEXT_PUBLIC_BASE_URL": "https://home.t2fox.workers.dev"
+  },
 	// KV binding（環境変数ではない）
 	"kv_namespaces": [
 		{
