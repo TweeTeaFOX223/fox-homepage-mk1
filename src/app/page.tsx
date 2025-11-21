@@ -3,8 +3,10 @@ import TechInterests from "@/features/interested-technology/components/TechInter
 import ArticleList from "@/features/show-article-list/components/ArticleList";
 import RepositoryList from "@/features/show-github-repository/components/RepositoryList";
 import ManualArticleList from "@/features/show-poem-list/components/ManualArticleList";
+import { NEXT_PUBLIC_BASE_URL } from "../../config";
 
 export const metadata = {
+  metadataBase: new URL(NEXT_PUBLIC_BASE_URL || "http://localhost:3000"),
   openGraph: {
     title: "T2フォックスのホームページ",
     description: "これはT2フォックスの制作物をまとめたホームページです。",
