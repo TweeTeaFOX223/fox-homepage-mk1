@@ -12,10 +12,13 @@ export default function BaseProfile() {
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Card className="flex items-center justify-center p-6 aspect-square ">
-          {/* アイコンのサイズ */}
-          <Avatar className="w-72 h-72">
-            <AvatarImage src="/icon/my-icon.png" alt="t2fox-icon" />
+        <Card className="aspect-square overflow-hidden p-0">
+          <Avatar className="w-full h-full rounded-none">
+            <AvatarImage
+              src="/icon/my-icon.png"
+              alt="t2fox-icon"
+              className="object-cover"
+            />
             <AvatarFallback>t2fox-icon</AvatarFallback>
           </Avatar>
         </Card>
