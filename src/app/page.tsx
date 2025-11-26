@@ -6,7 +6,7 @@ import ManualArticleList from "@/features/show-poem-list/components/ManualArticl
 import { NEXT_PUBLIC_BASE_URL } from "../../config";
 
 export const metadata = {
-  metadataBase: new URL(NEXT_PUBLIC_BASE_URL || "http://localhost:3000"),
+  metadataBase: new URL(NEXT_PUBLIC_BASE_URL),
   openGraph: {
     title: "T2フォックスのホームページ",
     description: "これはT2フォックスの制作物をまとめたホームページです。",
