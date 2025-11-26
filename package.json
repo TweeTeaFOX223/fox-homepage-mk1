@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "build-cloudflare": "opennextjs-cloudflare build",
-    "init-d1": "wrangler d1 execute NEXT_CACHE_D1 --file .open-next/cloudflare/cache-assets-manifest.sql",
-    "deploy-cloudflare": "npm run build-cloudflare && npm run init-d1 && opennextjs-cloudflare deploy",
+    "deploy-cloudflare": "npm run build-cloudflare && opennextjs-cloudflare deploy",
     "preview-cloudflare": "opennextjs-cloudflare build && opennextjs-cloudflare preview"
   },
   "dependencies": {
