@@ -10,38 +10,30 @@
 		"binding": "ASSETS"
 	},
 	"vars": {
-      "NEXT_PUBLIC_BASE_URL": "https://home.t2fox.workers.dev"
-  },
-	// KV binding（環境変数ではない）
-	"kv_namespaces": [
+		"NEXT_PUBLIC_BASE_URL": "https://home.t2fox.workers.dev"
+	},
+	"observability": {
+		"enabled": false,
+		"head_sampling_rate": 1,
+		"logs": {
+			"enabled": true,
+			"head_sampling_rate": 1,
+			"persist": true,
+			"invocation_logs": true
+		},
+		"traces": {
+			"enabled": false,
+			"persist": true,
+			"head_sampling_rate": 1
+		}
+	},
+		// R2 binding（環境変数ではない）。ISRのキャッシュの保存先
+		// https://opennext.js.org/cloudflare/caching
+	"r2_buckets": [
 		{
-			"binding": "NEXT_CACHE_KV",
-			"id": "a39e401414694745a581509ffbab9620",
+			"bucket_name": "next-cache-bucket",
+			"binding": "next_cache_bucket",
 			"remote": true
 		}
-	],
-	// D1 binding（環境変数ではない）
-	"d1_databases": [
-		{
-			"binding": "NEXT_CACHE_D1",
-			"database_name": "next-cache-db",
-			"database_id": "3b186892-cc79-4ce1-8e33-221c1cc67c28",
-			"remote": true
-		}
-	],
-  "observability": {
-    "enabled": false,
-    "head_sampling_rate": 1,
-    "logs": {
-      "enabled": true,
-      "head_sampling_rate": 1,
-      "persist": true,
-      "invocation_logs": true
-    },
-    "traces": {
-      "enabled": false,
-      "persist": true,
-      "head_sampling_rate": 1
-    }
-  }
+	]
 }
