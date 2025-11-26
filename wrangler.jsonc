@@ -29,10 +29,12 @@
 	},
 		// R2 binding（環境変数ではない）。ISRのキャッシュの保存先
 		// https://opennext.js.org/cloudflare/caching
+		// bindingの名前"NEXT_INC_CACHE_R2_BUCKET"は下に書いてある
+		// https://opennext.js.org/cloudflare/get-started
 	"r2_buckets": [
 		{
 			"bucket_name": "next-cache-bucket",
-			"binding": "next_cache_bucket",
+			"binding": "NEXT_INC_CACHE_R2_BUCKET",  // ← ここを変更
 			"remote": true
 		}
 	]
