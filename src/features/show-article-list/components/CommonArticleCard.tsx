@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { CommonArticleItem } from "..//schemas/article-schemas";
+import { formatDateJP } from "@/lib/data-utils";
 // import { Badge } from "@/components/ui/badge";
 // import { Star } from "lucide-react";
 
@@ -48,11 +49,11 @@ export default function CommonArticleCard({
           </div>
 
           <div className="text-xs text-muted-foreground">
-            作成: {new Date(article.created_at).toLocaleDateString()}
+            作成: {formatDateJP(article.created_at)}
           </div>
 
           <div className="text-xs text-muted-foreground">
-            最終更新: {new Date(article.updated_at).toLocaleDateString()}
+            最終更新: {formatDateJP(article.updated_at)}
           </div>
         </div>
       </CardContent>

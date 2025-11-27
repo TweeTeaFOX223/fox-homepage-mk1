@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ManualArticleItem } from "../types/manual-article-type";
+import { formatDateJP } from "@/lib/data-utils";
 
 type ManualArticleCardProps = {
   article: ManualArticleItem;
@@ -37,7 +38,7 @@ export default function ManualArticleCard({ article }: ManualArticleCardProps) {
       <CardContent className="flex-grow space-x-4 space-y-4">
         <div className="flex flex-nowrap items-center gap-3 text-sm text-muted-foreground">
           <div className="text-xs text-muted-foreground">
-            作成: {new Date(article.created_at).toLocaleDateString()}
+            作成: {formatDateJP(article.created_at)}
           </div>
         </div>
       </CardContent>

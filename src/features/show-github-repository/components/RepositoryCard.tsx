@@ -11,6 +11,7 @@ import {
 // import { Star } from "lucide-react";
 
 import { RepoCardItem } from "../schemas/github-repo-schema";
+import { formatDateJP } from "@/lib/data-utils";
 
 export const RepositoryCard = ({ repo }: { repo: RepoCardItem }) => {
   return (
@@ -41,11 +42,11 @@ export const RepositoryCard = ({ repo }: { repo: RepoCardItem }) => {
           )}
 
           <div className="text-xs text-muted-foreground">
-            作成: {new Date(repo.created_at).toLocaleDateString()}
+            作成: {formatDateJP(repo.created_at)}
           </div>
 
           <div className="text-xs text-muted-foreground">
-            最終更新: {new Date(repo.updated_at).toLocaleDateString()}
+            最終更新: {formatDateJP(repo.created_at)}
           </div>
 
           {/* <div className="flex items-center gap-1">
