@@ -5,12 +5,12 @@ export const serviceLinks: ServiceLink[] = [
   {
     name: "X",
     icon: <Twitter className="w-5 h-5" />,
-    link: "https://x.com/TweeTea277",
+    link: "https://x.com/TweeTeaFOX223",
   },
   {
     name: "Twilog",
     icon: <Search className="w-5 h-5" />,
-    link: "https://twilog.togetter.com/TweeTea277",
+    link: "https://twilog.togetter.com/TweeTeaFOX223",
   },
   {
     name: "GitHub",
