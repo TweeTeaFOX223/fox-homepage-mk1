@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "type": "module",
-  "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "wrangler dev -c wrangler.toml",
     "build": "tsc",

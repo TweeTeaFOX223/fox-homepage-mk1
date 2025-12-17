@@ -8,6 +8,7 @@ on:
 jobs:
   deploy-backend:
     runs-on: ubuntu-latest
+    name: Deploy Backend Worker
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -25,35 +26,21 @@ jobs:
         working-directory: ./packages/shared
         run: npx tsc
 
-      - name: Build Backend Worker
+      - name: Build Backend Worker types
         working-directory: ./apps/api
         run: npm run build
 
       - name: Deploy Backend Worker
-        run: |
-          # Temporarily rename Next.js config files to prevent OpenNext detection
-          if [ -f apps/web/open-next.config.ts ]; then
-            mv apps/web/open-next.config.ts apps/web/open-next.config.ts.bak
-          fi
-          if [ -f apps/web/next.config.ts ]; then
-            mv apps/web/next.config.ts apps/web/next.config.ts.bak
-          fi
-          cd apps/api
-          npx wrangler deploy --config wrangler.toml --minify
-          cd ../..
-          # Restore config files
-          if [ -f apps/web/open-next.config.ts.bak ]; then
-            mv apps/web/open-next.config.ts.bak apps/web/open-next.config.ts
-          fi
-          if [ -f apps/web/next.config.ts.bak ]; then
-            mv apps/web/next.config.ts.bak apps/web/next.config.ts
-          fi
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: 'apps/api'
+          command: deploy --minify
 
   deploy-web:
     runs-on: ubuntu-latest
+    name: Deploy BFF Worker
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -84,21 +71,14 @@ jobs:
         working-directory: ./apps/api
         run: npm run build
 
-      - name: Verify API types
-        run: |
-          if [ ! -f apps/api/dist/index.d.ts ]; then
-            echo "Error: apps/api/dist/index.d.ts not found"
-            ls -la apps/api/dist/
-            exit 1
-          fi
-          echo "API types generated successfully"
-          ls -la apps/api/dist/
-
-      - name: Build and Deploy BFF Worker
+      - name: Build BFF Worker
         working-directory: ./apps/web
-        run: |
-          npm run build:worker
-          npm run deploy
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npm run build:worker
+
+      - name: Deploy BFF Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: 'apps/web'
+          command: deploy

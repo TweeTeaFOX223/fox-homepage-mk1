@@ -1,19 +1,12 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "composite": true,
     "outDir": "./dist",
-    "rootDir": "./src",
-    "emitDeclarationOnly": true,
     "types": ["@cloudflare/workers-types"],
-    "moduleResolution": "node",
     "paths": {
       "@my-portfolio/shared/*": ["../../packages/shared/src/*"]
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"],
-  "references": [
-    { "path": "../../packages/shared" }
-  ]
+  "exclude": ["node_modules", "dist"]
 }
