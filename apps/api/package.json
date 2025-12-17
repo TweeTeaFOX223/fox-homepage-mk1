@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "build": "echo 'Skip build - Wrangler handles compilation'",
-    "deploy": "wrangler deploy",
+    "deploy": "wrangler deploy --minify src/index.ts",
     "lint": "eslint src",
     "type-check": "tsc --noEmit"
   },

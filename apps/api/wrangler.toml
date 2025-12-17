@@ -1,10 +1,14 @@
 name = "portfolio-api"
 main = "src/index.ts"
 compatibility_date = "2025-04-01"
+compatibility_flags = ["nodejs_compat"]
 
 # Build configuration - このWorkerはOpenNextではない
 [build]
 command = ""
+
+# OpenNext検出を無効化
+[env.production]
 
 # routesを設定しない = 外部から到達不可
 
