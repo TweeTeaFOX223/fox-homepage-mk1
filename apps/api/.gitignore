@@ -1,0 +1,9 @@
+# Wrangler
+.wrangler/
+.dev.vars
+
+# Build
+dist/
+
+# TypeScript
+*.tsbuildinfo
