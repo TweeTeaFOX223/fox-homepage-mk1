@@ -1,5 +1,6 @@
 import { hc } from "hono/client";
 import type { AppType } from "@my-portfolio/api";
+import type { ClientResponse } from "hono/client";
 
 type Env = {
   API?: Fetcher;
@@ -7,7 +8,7 @@ type Env = {
 };
 
 // 共通APIクライアントの作成
-export function createApiClient(env: Env) {
+export function createApiClient(env: Env): ReturnType<typeof hc<AppType>> {
   // ローカル開発環境の判定
   const isDevelopment = !env.API;
   const baseUrl = isDevelopment ? "http://localhost:8787" : "http://dummy";
