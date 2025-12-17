@@ -21,6 +21,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build shared types
+        working-directory: ./packages/shared
+        run: npx tsc
+
       - name: Build Backend Worker
         working-directory: ./apps/api
         run: npm run build
@@ -56,6 +60,10 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Build shared types
+        working-directory: ./packages/shared
+        run: npx tsc
 
       - name: Build API types
         working-directory: ./apps/api
