@@ -21,7 +21,7 @@ const notoSansJP = Noto_Sans_JP({
 // });
 
 export const metadata: Metadata = {
-  title: "T2フォックス・HP",
+  title: "T2フォックスのHP",
   description: "T2フォックス(開発者)の活動内容をまとめたホームページです。",
 };
 
