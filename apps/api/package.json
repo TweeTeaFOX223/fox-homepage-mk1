@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "wrangler dev",
-    "build": "tsc --noEmit",
+    "build": "echo 'Skip build - Wrangler handles compilation'",
     "deploy": "wrangler deploy",
     "lint": "eslint src",
     "type-check": "tsc --noEmit"
