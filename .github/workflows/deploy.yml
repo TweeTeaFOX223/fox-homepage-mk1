@@ -30,6 +30,12 @@ jobs:
         working-directory: ./apps/api
         run: npm run build
 
+      - name: Temporarily hide OpenNext config
+        run: |
+          if [ -f apps/web/open-next.config.ts ]; then
+            mv apps/web/open-next.config.ts apps/web/open-next.config.ts.bak
+          fi
+
       - name: Deploy Backend Worker
         uses: cloudflare/wrangler-action@v3
         with:
@@ -37,6 +43,13 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: 'apps/api'
           command: deploy --minify
+
+      - name: Restore OpenNext config
+        if: always()
+        run: |
+          if [ -f apps/web/open-next.config.ts.bak ]; then
+            mv apps/web/open-next.config.ts.bak apps/web/open-next.config.ts
+          fi
 
   deploy-web:
     runs-on: ubuntu-latest
