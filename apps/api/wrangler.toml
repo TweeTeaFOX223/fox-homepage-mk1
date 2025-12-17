@@ -2,6 +2,10 @@ name = "portfolio-api"
 main = "src/index.ts"
 compatibility_date = "2025-04-01"
 
+# Build configuration - このWorkerはOpenNextではない
+[build]
+command = ""
+
 # routesを設定しない = 外部から到達不可
 
 # 開発用の環境変数(実際の値は.dev.varsに記載)
