@@ -6,7 +6,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "wrangler dev -c wrangler.toml",
-    "build": "tsc --emitDeclarationOnly --declaration",
+    "build": "tsc",
     "deploy": "wrangler deploy -c wrangler.toml --minify",
     "lint": "eslint src",
     "type-check": "tsc --noEmit"

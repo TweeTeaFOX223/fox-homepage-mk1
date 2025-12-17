@@ -31,16 +31,22 @@ jobs:
 
       - name: Deploy Backend Worker
         run: |
-          # Temporarily rename open-next.config.ts to prevent OpenNext detection
+          # Temporarily rename Next.js config files to prevent OpenNext detection
           if [ -f apps/web/open-next.config.ts ]; then
             mv apps/web/open-next.config.ts apps/web/open-next.config.ts.bak
+          fi
+          if [ -f apps/web/next.config.ts ]; then
+            mv apps/web/next.config.ts apps/web/next.config.ts.bak
           fi
           cd apps/api
           npx wrangler deploy --config wrangler.toml --minify
           cd ../..
-          # Restore open-next.config.ts
+          # Restore config files
           if [ -f apps/web/open-next.config.ts.bak ]; then
             mv apps/web/open-next.config.ts.bak apps/web/open-next.config.ts
+          fi
+          if [ -f apps/web/next.config.ts.bak ]; then
+            mv apps/web/next.config.ts.bak apps/web/next.config.ts
           fi
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
