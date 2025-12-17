@@ -1,6 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "composite": true,
+    "outDir": "./dist",
     "types": ["@cloudflare/workers-types"],
     "moduleResolution": "node",
     "paths": {
@@ -8,5 +10,5 @@
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }

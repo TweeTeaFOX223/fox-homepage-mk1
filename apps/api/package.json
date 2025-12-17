@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev",
+    "dev": "wrangler dev -c wrangler.toml",
     "build": "echo 'Skip build - Wrangler handles compilation'",
-    "deploy": "wrangler deploy --minify src/index.ts",
+    "deploy": "wrangler deploy -c wrangler.toml --minify src/index.ts",
     "lint": "eslint src",
     "type-check": "tsc --noEmit"
   },
