@@ -21,11 +21,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build and Deploy Backend Worker
+      - name: Build Backend Worker
         working-directory: ./apps/api
+        run: npm run build
+
+      - name: Deploy Backend Worker
         run: |
-          npm run build
-          npm run deploy
+          cd apps/api
+          npx wrangler deploy --config wrangler.toml --minify
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -53,6 +56,10 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Build API types
+        working-directory: ./apps/api
+        run: npm run build
 
       - name: Build and Deploy BFF Worker
         working-directory: ./apps/web

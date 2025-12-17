@@ -1,0 +1,2 @@
+# Disable OpenNext auto-detection for this Worker
+# This is a Hono API worker, not a Next.js project
