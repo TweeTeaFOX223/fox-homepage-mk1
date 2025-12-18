@@ -52,8 +52,10 @@ export function getApiEnv(): Env {
   try {
     // Cloudflare context からバインディングを取得
     const { env } = getCloudflareContext();
+    // Service Bindingを型アサーションで取得
+    const cloudflareEnv = env as any;
     return {
-      API: env.API as unknown as Fetcher | undefined,
+      API: cloudflareEnv.API as Fetcher | undefined,
       INTERNAL_API_KEY: process.env.INTERNAL_API_KEY || '',
     };
   } catch (error) {
