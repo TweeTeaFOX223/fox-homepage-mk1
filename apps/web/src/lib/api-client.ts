@@ -32,7 +32,7 @@ export function createApiClient(env: Env): ReturnType<typeof hc<AppType>> {
 
   // ローカル開発環境の判定
   const isDevelopment = !env.API;
-  const baseUrl = isDevelopment ? "http://localhost:8787" : "http://dummy";
+  const baseUrl = isDevelopment ? "http://localhost:8787" : "http://localhost";
 
   console.log('[createApiClient] Creating client:', {
     isDevelopment,
@@ -40,8 +40,18 @@ export function createApiClient(env: Env): ReturnType<typeof hc<AppType>> {
     hasCustomFetch: !isDevelopment,
   });
 
+  // Service Bindingを使う場合のカスタムfetch関数
+  const customFetch = isDevelopment
+    ? undefined
+    : (input: RequestInfo | URL, init?: RequestInit) => {
+        console.log('[customFetch] Calling Service Binding with:', input);
+        // Service BindingのfetchメソッドにRequestオブジェクトを渡す
+        const request = new Request(input, init);
+        return env.API!.fetch(request);
+      };
+
   const client = hc<AppType>(baseUrl, {
-    fetch: isDevelopment ? undefined : env.API!.fetch.bind(env.API),
+    fetch: customFetch,
     headers: {
       "X-Internal-API-Key": env.INTERNAL_API_KEY,
     },

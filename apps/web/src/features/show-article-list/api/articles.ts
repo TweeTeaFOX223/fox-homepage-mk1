@@ -31,10 +31,12 @@ const getUnifiedArticlesInternal = async (
       },
     });
 
-    console.log('[getUnifiedArticlesInternal] API response status:', res.status);
+    console.log('[getUnifiedArticlesInternal] API response received, status:', res.status);
 
     if (!res.ok) {
-      throw new Error(`API error: ${res.status}`);
+      const errorText = await res.text();
+      console.error('[getUnifiedArticlesInternal] API error response:', errorText);
+      throw new Error(`API error: ${res.status} - ${errorText}`);
     }
 
     const data = await res.json();
@@ -42,6 +44,11 @@ const getUnifiedArticlesInternal = async (
     return data.articles;
   } catch (error) {
     console.error("[getUnifiedArticlesInternal] Error fetching unified articles:", error);
+    console.error("[getUnifiedArticlesInternal] Error details:", {
+      name: error instanceof Error ? error.name : 'Unknown',
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+    });
     // エラー時も空配列を返してビルドを継続
     return [];
   }
