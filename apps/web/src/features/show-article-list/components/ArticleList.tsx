@@ -3,6 +3,8 @@ import type { UnifiedArticle } from "@my-portfolio/shared/types/article";
 import CommonArticleCard from "./CommonArticleCard";
 import { ZENN_USERNAME } from "../../../../config";
 
+// unstable_cacheの設定を継承（このコンポーネント自体は設定不要）
+
 export default async function ArticleList() {
   // 新しい統合APIを使用
   const allArticles = await getUnifiedArticles(ZENN_USERNAME, 30);

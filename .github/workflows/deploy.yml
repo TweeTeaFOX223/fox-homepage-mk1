@@ -22,19 +22,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build shared types
-        working-directory: ./packages/shared
-        run: npx tsc
-
-      - name: Build Backend Worker types
+      - name: Type check API
         working-directory: ./apps/api
         run: npm run build
-
-      - name: Temporarily hide OpenNext config
-        run: |
-          if [ -f apps/web/open-next.config.ts ]; then
-            mv apps/web/open-next.config.ts apps/web/open-next.config.ts.bak
-          fi
 
       - name: Deploy Backend Worker
         uses: cloudflare/wrangler-action@v3
@@ -43,17 +33,12 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: 'apps/api'
           command: deploy --minify
-
-      - name: Restore OpenNext config
-        if: always()
-        run: |
-          if [ -f apps/web/open-next.config.ts.bak ]; then
-            mv apps/web/open-next.config.ts.bak apps/web/open-next.config.ts
-          fi
+        env:
+          NODE_ENV: production
 
   deploy-web:
     runs-on: ubuntu-latest
-    name: Deploy BFF Worker
+    name: Deploy Web Worker
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -76,22 +61,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build shared types
-        working-directory: ./packages/shared
-        run: npx tsc
-
-      - name: Build API types
-        working-directory: ./apps/api
-        run: npm run build
-
-      - name: Build BFF Worker
+      - name: Build Web Worker
         working-directory: ./apps/web
         run: npm run build:worker
+        env:
+          NODE_ENV: production
 
-      - name: Deploy BFF Worker
+      - name: Deploy Web Worker
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: 'apps/web'
           command: deploy
+        env:
+          NODE_ENV: production

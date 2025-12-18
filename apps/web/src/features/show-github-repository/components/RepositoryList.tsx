@@ -3,6 +3,8 @@ import { RepositoryCard } from "./RepositoryCard";
 import type { GitHubRepository } from "@my-portfolio/shared/types/github";
 import { GITHUB_USERNAME } from "../../../../config";
 
+// unstable_cacheの設定を継承（このコンポーネント自体は設定不要）
+
 export default async function RepositoryList() {
   const repos = await getGitHubRepositories(GITHUB_USERNAME, 30);
 

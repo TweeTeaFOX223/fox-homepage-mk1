@@ -7,10 +7,8 @@ type Bindings = {
   QIITA_TOKEN?: string;
 };
 
-const qiita = new Hono<{ Bindings: Bindings }>();
-
 // 認証されたユーザーのQiita記事一覧取得
-qiita.get(
+const qiita = new Hono<{ Bindings: Bindings }>().get(
   "/articles",
   zValidator(
     "query",

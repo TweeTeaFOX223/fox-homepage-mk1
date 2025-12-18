@@ -1,10 +1,6 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "noEmit": false,
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "outDir": "./dist",
     "types": ["@cloudflare/workers-types"],
     "paths": {
       "@my-portfolio/shared/*": ["../../packages/shared/src/*"]

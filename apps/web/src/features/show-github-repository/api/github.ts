@@ -10,13 +10,19 @@ const getGitHubRepositoriesInternal = async (
   username: string,
   perPage?: number
 ): Promise<GitHubRepository[]> => {
+  // ビルド時はダミーデータを返す
+  if (process.env.NODE_ENV !== 'production' && !process.env.API) {
+    console.log('Build time: Returning empty repositories array');
+    return [];
+  }
+
   const env = getApiEnv();
   const client = createApiClient(env);
 
   try {
     const res = await client.github.repositories[":username"].$get({
       param: { username },
-      query: perPage ? { per_page: perPage.toString() } : undefined,
+      query: perPage ? { per_page: perPage.toString() } : {},
     });
 
     if (!res.ok) {
@@ -27,7 +33,8 @@ const getGitHubRepositoriesInternal = async (
     return data.repositories;
   } catch (error) {
     console.error("Error fetching GitHub repositories:", error);
-    throw error;
+    // エラー時も空配列を返してビルドを継続
+    return [];
   }
 };
 

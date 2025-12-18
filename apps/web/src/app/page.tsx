@@ -20,6 +20,9 @@ export const metadata = {
   },
 };
 
+// ISR: 3600秒(1時間)ごとに再生成
+export const revalidate = 3600;
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-background">

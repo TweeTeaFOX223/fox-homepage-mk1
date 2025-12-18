@@ -9,10 +9,8 @@ type Bindings = {
   QIITA_TOKEN?: string;
 };
 
-const articles = new Hono<{ Bindings: Bindings }>();
-
 // Qiita + Zenn 統合エンドポイント
-articles.get(
+const articles = new Hono<{ Bindings: Bindings }>().get(
   "/unified",
   zValidator(
     "query",

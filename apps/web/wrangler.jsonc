@@ -1,0 +1,44 @@
+{
+  "name": "portfolio-web",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "NEXT_PUBLIC_BASE_URL": "https://home.t2fox.workers.dev"
+  },
+  "observability": {
+    "enabled": false,
+    "head_sampling_rate": 1,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": false,
+      "persist": true,
+      "head_sampling_rate": 1
+    }
+  },
+  // R2 binding for ISR cache
+  // https://opennext.js.org/cloudflare/caching
+  "r2_buckets": [
+    {
+      "bucket_name": "next-cache-bucket",
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "remote": true
+    }
+  ],
+  // Service Binding to Backend Worker
+  "services": [
+    {
+      "binding": "API",
+      "service": "portfolio-api"
+    }
+  ]
+}

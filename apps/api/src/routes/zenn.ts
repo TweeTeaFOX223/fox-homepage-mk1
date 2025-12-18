@@ -3,42 +3,39 @@ import { zValidator } from "@hono/zod-validator";
 import { z } from "zod";
 import { ZennService } from "../services/zenn-service";
 
-const zenn = new Hono();
+// Zenn記事一覧取得とスクラップ一覧取得
+const zenn = new Hono()
+  .get(
+    "/articles/:username",
+    zValidator(
+      "param",
+      z.object({
+        username: z.string().min(1),
+      })
+    ),
+    async (c) => {
+      const { username } = c.req.valid("param");
 
-// Zenn記事一覧取得
-zenn.get(
-  "/articles/:username",
-  zValidator(
-    "param",
-    z.object({
-      username: z.string().min(1),
-    })
-  ),
-  async (c) => {
-    const { username } = c.req.valid("param");
+      try {
+        const service = new ZennService();
+        const articles = await service.getUserArticles(username);
 
-    try {
-      const service = new ZennService();
-      const articles = await service.getUserArticles(username);
-
-      return c.json({ articles });
-    } catch (error) {
-      console.error("Zenn articles route error:", error);
-      return c.json({ error: "Failed to fetch Zenn articles" }, 500);
+        return c.json({ articles });
+      } catch (error) {
+        console.error("Zenn articles route error:", error);
+        return c.json({ error: "Failed to fetch Zenn articles" }, 500);
+      }
     }
-  }
-);
-
-// Zennスクラップ一覧取得
-zenn.get(
-  "/scraps/:username",
-  zValidator(
-    "param",
-    z.object({
-      username: z.string().min(1),
-    })
-  ),
-  async (c) => {
+  )
+  .get(
+    "/scraps/:username",
+    zValidator(
+      "param",
+      z.object({
+        username: z.string().min(1),
+      })
+    ),
+    async (c) => {
     const { username } = c.req.valid("param");
 
     try {

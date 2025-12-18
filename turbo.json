@@ -3,12 +3,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", ".open-next/**", "dist/**"],
-      "env": ["NODE_ENV"]
-    },
-    "@my-portfolio/api#build": {
-      "outputs": [],
-      "cache": false
+      "outputs": [".next/**", ".open-next/**", "dist/**"]
     },
     "dev": {
       "cache": false,

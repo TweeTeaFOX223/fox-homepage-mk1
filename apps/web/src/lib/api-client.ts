@@ -2,6 +2,11 @@ import { hc } from "hono/client";
 import type { AppType } from "@my-portfolio/api";
 import type { ClientResponse } from "hono/client";
 
+// Cloudflare Service Binding の Fetcher 型定義
+interface Fetcher {
+  fetch: typeof fetch;
+}
+
 type Env = {
   API?: Fetcher;
   INTERNAL_API_KEY: string;

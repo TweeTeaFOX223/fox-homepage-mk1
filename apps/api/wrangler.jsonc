@@ -1,0 +1,15 @@
+{
+  "name": "portfolio-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  // routesを設定しない = 外部から到達不可
+  "vars": {
+    // 開発用の環境変数(実際の値は.dev.varsに記載)
+    "NODE_ENV": "development"
+  }
+  // 本番用の環境変数はCloudflareダッシュボードで設定
+  // GITHUB_TOKEN (Secret)
+  // QIITA_TOKEN (Secret)
+  // INTERNAL_API_KEY (Secret)
+}

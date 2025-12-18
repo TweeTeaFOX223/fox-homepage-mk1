@@ -10,6 +10,12 @@ const getUnifiedArticlesInternal = async (
   zennUsername: string,
   limit?: number
 ): Promise<UnifiedArticle[]> => {
+  // ビルド時はダミーデータを返す
+  if (process.env.NODE_ENV !== 'production' && !process.env.API) {
+    console.log('Build time: Returning empty articles array');
+    return [];
+  }
+
   const env = getApiEnv();
   const client = createApiClient(env);
 
@@ -29,7 +35,8 @@ const getUnifiedArticlesInternal = async (
     return data.articles;
   } catch (error) {
     console.error("Error fetching unified articles:", error);
-    throw error;
+    // エラー時も空配列を返してビルドを継続
+    return [];
   }
 };
 
@@ -55,7 +62,7 @@ export async function getQiitaArticles(perPage?: number) {
 
   try {
     const res = await client.qiita.articles.$get({
-      query: perPage ? { per_page: perPage.toString() } : undefined,
+      query: perPage ? { per_page: perPage.toString() } : {},
     });
 
     if (!res.ok) {

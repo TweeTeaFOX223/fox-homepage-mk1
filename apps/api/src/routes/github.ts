@@ -7,10 +7,8 @@ type Bindings = {
   GITHUB_TOKEN?: string;
 };
 
-const github = new Hono<{ Bindings: Bindings }>();
-
 // GitHubリポジトリ一覧取得
-github.get(
+const github = new Hono<{ Bindings: Bindings }>().get(
   "/repositories/:username",
   zValidator(
     "param",

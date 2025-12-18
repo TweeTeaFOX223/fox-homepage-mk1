@@ -10,27 +10,25 @@ type Bindings = {
   INTERNAL_API_KEY: string;
 };
 
-const app = new Hono<{ Bindings: Bindings }>();
-
-// 内部認証ミドルウェア
-app.use('*', async (c, next) => {
-  const apiKey = c.req.header('X-Internal-API-Key');
-  if (apiKey !== c.env.INTERNAL_API_KEY) {
-    return c.json({ error: 'Unauthorized' }, 401);
-  }
-  await next();
-});
-
-// ヘルスチェック
-app.get('/health', (c) => {
-  return c.json({ status: 'ok', timestamp: Date.now() });
-});
-
-// ルートをマウント
-app.route('/qiita', qiita);
-app.route('/zenn', zenn);
-app.route('/github', github);
-app.route('/articles', articles);
+// Hono RPCの型推論のために、すべてのルートを1つの式でチェーンする
+const app = new Hono<{ Bindings: Bindings }>()
+  // 内部認証ミドルウェア
+  .use('*', async (c, next) => {
+    const apiKey = c.req.header('X-Internal-API-Key');
+    if (apiKey !== c.env.INTERNAL_API_KEY) {
+      return c.json({ error: 'Unauthorized' }, 401);
+    }
+    await next();
+  })
+  // ヘルスチェック
+  .get('/health', (c) => {
+    return c.json({ status: 'ok', timestamp: Date.now() });
+  })
+  // ルートをマウント
+  .route('/qiita', qiita)
+  .route('/zenn', zenn)
+  .route('/github', github)
+  .route('/articles', articles);
 
 // 型エクスポート(Hono RPC用)
 export type AppType = typeof app;

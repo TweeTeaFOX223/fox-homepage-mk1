@@ -10,8 +10,8 @@ export const GitHubRepositorySchema = z.object({
   html_url: z.string().url(),
   stargazers_count: z.number().min(0),
   language: z.string().nullable(),
+  created_at: z.string().datetime(),
   updated_at: z.string().datetime(),
-  created_at: z.string().datetime().optional(),
   topics: z.array(z.string()).nullable().optional(),
 });
 

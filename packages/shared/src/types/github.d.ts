@@ -1,0 +1,71 @@
+import { z } from "zod";
+export declare const GitHubRepositorySchema: z.ZodObject<{
+    id: z.ZodNumber;
+    name: z.ZodString;
+    full_name: z.ZodOptional<z.ZodString>;
+    description: z.ZodNullable<z.ZodString>;
+    html_url: z.ZodString;
+    stargazers_count: z.ZodNumber;
+    language: z.ZodNullable<z.ZodString>;
+    created_at: z.ZodString;
+    updated_at: z.ZodString;
+    topics: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString, "many">>>;
+}, "strip", z.ZodTypeAny, {
+    id: number;
+    name: string;
+    created_at: string;
+    updated_at: string;
+    description: string | null;
+    html_url: string;
+    stargazers_count: number;
+    language: string | null;
+    topics?: string[] | null | undefined;
+    full_name?: string | undefined;
+}, {
+    id: number;
+    name: string;
+    created_at: string;
+    updated_at: string;
+    description: string | null;
+    html_url: string;
+    stargazers_count: number;
+    language: string | null;
+    topics?: string[] | null | undefined;
+    full_name?: string | undefined;
+}>;
+export declare const GitHubRepositoryListSchema: z.ZodArray<z.ZodObject<{
+    id: z.ZodNumber;
+    name: z.ZodString;
+    full_name: z.ZodOptional<z.ZodString>;
+    description: z.ZodNullable<z.ZodString>;
+    html_url: z.ZodString;
+    stargazers_count: z.ZodNumber;
+    language: z.ZodNullable<z.ZodString>;
+    created_at: z.ZodString;
+    updated_at: z.ZodString;
+    topics: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString, "many">>>;
+}, "strip", z.ZodTypeAny, {
+    id: number;
+    name: string;
+    created_at: string;
+    updated_at: string;
+    description: string | null;
+    html_url: string;
+    stargazers_count: number;
+    language: string | null;
+    topics?: string[] | null | undefined;
+    full_name?: string | undefined;
+}, {
+    id: number;
+    name: string;
+    created_at: string;
+    updated_at: string;
+    description: string | null;
+    html_url: string;
+    stargazers_count: number;
+    language: string | null;
+    topics?: string[] | null | undefined;
+    full_name?: string | undefined;
+}>, "many">;
+export type GitHubRepository = z.infer<typeof GitHubRepositorySchema>;
+export type GitHubRepositoryList = z.infer<typeof GitHubRepositoryListSchema>;
