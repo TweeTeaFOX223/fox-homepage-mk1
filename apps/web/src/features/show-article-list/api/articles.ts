@@ -10,16 +10,20 @@ const getUnifiedArticlesInternal = async (
   zennUsername: string,
   limit?: number
 ): Promise<UnifiedArticle[]> => {
+  console.log('[getUnifiedArticlesInternal] Called with:', { zennUsername, limit });
+
   // ビルド時はダミーデータを返す（INTERNAL_API_KEYがない = ビルド時）
   if (!process.env.INTERNAL_API_KEY) {
-    console.log('Build time: Returning empty articles array');
+    console.log('[getUnifiedArticlesInternal] Build time: Returning empty articles array');
     return [];
   }
 
+  console.log('[getUnifiedArticlesInternal] Runtime: Fetching from API');
   const env = getApiEnv();
   const client = createApiClient(env);
 
   try {
+    console.log('[getUnifiedArticlesInternal] Making API request to /articles/unified');
     const res = await client.articles.unified.$get({
       query: {
         zenn_username: zennUsername,
@@ -27,14 +31,17 @@ const getUnifiedArticlesInternal = async (
       },
     });
 
+    console.log('[getUnifiedArticlesInternal] API response status:', res.status);
+
     if (!res.ok) {
       throw new Error(`API error: ${res.status}`);
     }
 
     const data = await res.json();
+    console.log('[getUnifiedArticlesInternal] Received articles count:', data.articles.length);
     return data.articles;
   } catch (error) {
-    console.error("Error fetching unified articles:", error);
+    console.error("[getUnifiedArticlesInternal] Error fetching unified articles:", error);
     // エラー時も空配列を返してビルドを継続
     return [];
   }
