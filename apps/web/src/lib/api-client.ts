@@ -1,6 +1,7 @@
 import { hc } from "hono/client";
 import type { AppType } from "@my-portfolio/api";
 import type { ClientResponse } from "hono/client";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 // Cloudflare Service Binding の Fetcher 型定義
 interface Fetcher {
@@ -40,8 +41,27 @@ export function createApiClient(env: Env): ReturnType<typeof hc<AppType>> {
 
 // Server Component用のヘルパー
 export function getApiEnv(): Env {
-  return {
-    API: process.env.API as unknown as Fetcher | undefined,
-    INTERNAL_API_KEY: process.env.INTERNAL_API_KEY || '',
-  };
+  // ビルド時の判定
+  if (!process.env.INTERNAL_API_KEY) {
+    return {
+      API: undefined,
+      INTERNAL_API_KEY: '',
+    };
+  }
+
+  try {
+    // Cloudflare context からバインディングを取得
+    const { env } = getCloudflareContext();
+    return {
+      API: env.API as unknown as Fetcher | undefined,
+      INTERNAL_API_KEY: process.env.INTERNAL_API_KEY || '',
+    };
+  } catch (error) {
+    // ローカル開発環境の場合（getCloudflareContext が使えない）
+    console.log('Development environment detected, using localhost');
+    return {
+      API: undefined,
+      INTERNAL_API_KEY: process.env.INTERNAL_API_KEY || '',
+    };
+  }
 }
