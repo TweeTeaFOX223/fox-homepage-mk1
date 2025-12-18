@@ -26,10 +26,11 @@ jobs:
         working-directory: ./apps/api
         run: npm run build
 
-      - name: Temporarily hide OpenNext config from API
+      - name: Temporarily hide OpenNext package from API
         run: |
-          if [ -f apps/web/open-next.config.ts ]; then
-            mv apps/web/open-next.config.ts apps/web/open-next.config.ts.bak
+          # Rename @opennextjs directory to prevent Wrangler detection
+          if [ -d "node_modules/@opennextjs" ]; then
+            mv node_modules/@opennextjs node_modules/@opennextjs-hidden
           fi
 
       - name: Deploy Backend Worker
@@ -42,11 +43,11 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Restore OpenNext config
+      - name: Restore OpenNext package
         if: always()
         run: |
-          if [ -f apps/web/open-next.config.ts.bak ]; then
-            mv apps/web/open-next.config.ts.bak apps/web/open-next.config.ts
+          if [ -d "node_modules/@opennextjs-hidden" ]; then
+            mv node_modules/@opennextjs-hidden node_modules/@opennextjs
           fi
 
   deploy-web:
