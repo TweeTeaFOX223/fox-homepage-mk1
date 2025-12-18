@@ -42,12 +42,12 @@ export default function Home() {
 
         <section id="tech-articles" className="mt-8 scroll-my-16">
           {/* ここに最新の記事 */}
-          <ArticleList />
+          <ArticleList limit={5} />
         </section>
 
         <section id="products" className="mt-8 scroll-my-16">
           {/* ここに最新にリポジトリ */}
-          <RepositoryList />
+          <RepositoryList limit={5} />
         </section>
       </div>
     </main>

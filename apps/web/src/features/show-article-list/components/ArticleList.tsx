@@ -2,12 +2,17 @@ import { getUnifiedArticles } from "../api/articles";
 import type { UnifiedArticle } from "@my-portfolio/shared/types/article";
 import CommonArticleCard from "./CommonArticleCard";
 import { ZENN_USERNAME } from "../../../../config";
+import ViewAllButton from "@/components/ViewAllButton";
 
 // unstable_cacheの設定を継承（このコンポーネント自体は設定不要）
 
-export default async function ArticleList() {
+export default async function ArticleList({ limit }: { limit?: number } = {}) {
   // 新しい統合APIを使用
   const allArticles = await getUnifiedArticles(ZENN_USERNAME, 30);
+
+  // limit が指定されている場合は制限する
+  const displayArticles = limit ? allArticles.slice(0, limit) : allArticles;
+  const showViewAllButton = limit && allArticles.length > limit;
 
   return (
     <div className="w-full space-y-4 p-4">
@@ -18,10 +23,13 @@ export default async function ArticleList() {
         ZennとQiitaに投稿している、開発技術に関係する記事です。
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        {allArticles.map((article: UnifiedArticle) => (
+        {displayArticles.map((article: UnifiedArticle) => (
           <CommonArticleCard key={article.url} article={article} />
         ))}
       </div>
+      {showViewAllButton && (
+        <ViewAllButton href="/articles" label="全ての記事を見る" />
+      )}
     </div>
   );
 }
