@@ -32,6 +32,6 @@ export function createApiClient(env: Env): ReturnType<typeof hc<AppType>> {
 export function getApiEnv(): Env {
   return {
     API: process.env.API as unknown as Fetcher | undefined,
-    INTERNAL_API_KEY: process.env.INTERNAL_API_KEY!,
+    INTERNAL_API_KEY: process.env.INTERNAL_API_KEY || '',
   };
 }
