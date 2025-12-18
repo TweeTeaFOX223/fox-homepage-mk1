@@ -10,8 +10,8 @@ const getUnifiedArticlesInternal = async (
   zennUsername: string,
   limit?: number
 ): Promise<UnifiedArticle[]> => {
-  // ビルド時はダミーデータを返す
-  if (process.env.NODE_ENV !== 'production' && !process.env.API) {
+  // ビルド時はダミーデータを返す（INTERNAL_API_KEYがない = ビルド時）
+  if (!process.env.INTERNAL_API_KEY) {
     console.log('Build time: Returning empty articles array');
     return [];
   }
