@@ -8,10 +8,12 @@
     "binding": "ASSETS"
   },
   "vars": {
-    "NEXT_PUBLIC_BASE_URL": "https://home.t2fox.workers.dev"
+    "NEXT_PUBLIC_BASE_URL": "https://home.t2fox.workers.dev",
+    "GITHUB_USERNAME": "TweeTeaFOX223",
+    "ZENN_USERNAME": "tweeteafox300"
   },
   "observability": {
-    "enabled": false,
+    "enabled": true,
     "head_sampling_rate": 1,
     "logs": {
       "enabled": true,

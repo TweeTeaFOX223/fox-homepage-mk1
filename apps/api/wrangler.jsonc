@@ -7,6 +7,16 @@
   "vars": {
     // 開発用の環境変数(実際の値は.dev.varsに記載)
     "NODE_ENV": "development"
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+      "invocation_logs": true
+    }
   }
   // 本番用の環境変数はCloudflareダッシュボードで設定
   // GITHUB_TOKEN (Secret)
