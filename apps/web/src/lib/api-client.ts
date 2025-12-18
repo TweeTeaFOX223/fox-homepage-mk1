@@ -14,6 +14,16 @@ type Env = {
 
 // 共通APIクライアントの作成
 export function createApiClient(env: Env): ReturnType<typeof hc<AppType>> {
+  // ビルド時: INTERNAL_API_KEYが空の場合はダミークライアントを返す
+  if (!env.INTERNAL_API_KEY) {
+    // ビルド時用のダミークライアント（実際には呼ばれない）
+    return hc<AppType>("http://localhost:8787", {
+      headers: {
+        "X-Internal-API-Key": "",
+      },
+    });
+  }
+
   // ローカル開発環境の判定
   const isDevelopment = !env.API;
   const baseUrl = isDevelopment ? "http://localhost:8787" : "http://dummy";
