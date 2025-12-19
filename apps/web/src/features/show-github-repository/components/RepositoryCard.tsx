@@ -32,13 +32,12 @@ export const RepositoryCard = ({ repo }: { repo: RepoCardItem }) => {
         )}
       </CardHeader>
 
-      <CardContent className="flex-grow space-x-4 space-y-4">
-        <div className="flex flex-nowrap items-center gap-3 text-sm text-muted-foreground">
+      <CardContent className="flex-grow space-y-3">
+        <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
           {repo.language && (
-            <div className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-primary"></span>
-              <span style={{ color: "red" }}>{repo.language}</span>
-            </div>
+            <span className="px-2 py-0.5 text-xs font-bold rounded bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 text-foreground border border-purple-300/30">
+              {repo.language}
+            </span>
           )}
 
           <div className="text-xs text-muted-foreground">

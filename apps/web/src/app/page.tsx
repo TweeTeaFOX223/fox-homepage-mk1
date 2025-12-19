@@ -3,6 +3,7 @@ import TechInterests from "@/features/interested-technology/components/TechInter
 import ArticleList from "@/features/show-article-list/components/ArticleList";
 import RepositoryList from "@/features/show-github-repository/components/RepositoryList";
 import ManualArticleList from "@/features/show-poem-list/components/ManualArticleList";
+import AppList from "@/features/show-apps/components/AppList";
 import { NEXT_PUBLIC_BASE_URL } from "../../config";
 
 export const metadata = {
@@ -29,6 +30,10 @@ export default function Home() {
       <div className="container mx-auto px-4 py-8">
         <section id="profile" className="mt-8 scroll-my-16">
           <BaseProfile />
+        </section>
+
+        <section id="apps" className="mt-8 scroll-my-16">
+          <AppList />
         </section>
 
         <section id="interest-tech" className="mt-8 scroll-my-16">

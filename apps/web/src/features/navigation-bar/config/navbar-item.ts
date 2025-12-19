@@ -1,6 +1,7 @@
 import { NavBarItemConfig } from "../types/navbar-type";
 
 import { CircleUserRound } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { Swords } from "lucide-react";
 import { Apple } from "lucide-react";
 import { BookText } from "lucide-react";
@@ -14,6 +15,11 @@ export const navBarItems: NavBarItemConfig = {
       name: "プロフィール",
       href: "/#profile",
       icon: CircleUserRound,
+    },
+    {
+      name: "公開中のアプリ",
+      href: "/#apps",
+      icon: Sparkles,
     },
     {
       name: "興味ある技術",

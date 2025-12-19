@@ -30,7 +30,8 @@ export default function CommonArticleCard({
             {article.title}
           </a>
         </CardTitle>
-        {article.tags && (
+        {/* タグ表示（現在は非表示） */}
+        {/* {article.tags && (
           <CardDescription>
             <div className="flex flex-row justify-start space-x-2">
               {article.tags &&
@@ -39,7 +40,7 @@ export default function CommonArticleCard({
                 ))}
             </div>
           </CardDescription>
-        )}
+        )} */}
       </CardHeader>
 
       <CardContent className="flex-grow space-x-4 space-y-4">

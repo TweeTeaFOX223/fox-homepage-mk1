@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "composite": true,
     "types": ["@cloudflare/workers-types"],
     "paths": {
       "@my-portfolio/shared/*": ["../../packages/shared/src/*"]

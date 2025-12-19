@@ -2,7 +2,7 @@ import { getGitHubRepositories } from "../api/github";
 import { RepositoryCard } from "./RepositoryCard";
 import type { GitHubRepository } from "@my-portfolio/shared/types/github";
 import { GITHUB_USERNAME } from "../../../../config";
-import ViewAllButton from "@/components/ViewAllButton";
+import ViewAllCard from "@/components/ViewAllCard";
 
 // unstable_cacheの設定を継承（このコンポーネント自体は設定不要）
 
@@ -11,7 +11,21 @@ export default async function RepositoryList({ limit }: { limit?: number } = {})
 
   // limit が指定されている場合は制限する
   const displayRepos = limit ? repos.slice(0, limit) : repos;
-  const showViewAllButton = limit && repos.length > limit;
+  const showViewAllCard = limit && repos.length > limit;
+
+  // 言語ごとの統計を計算
+  const languageCounts = repos.reduce((acc, repo) => {
+    if (repo.language) {
+      acc[repo.language] = (acc[repo.language] || 0) + 1;
+    }
+    return acc;
+  }, {} as Record<string, number>);
+
+  // 言語を個数でソートし、上位5つを取得
+  const repoStats = Object.entries(languageCounts)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, 5)
+    .map(([label, count]) => ({ label, count }));
 
   return (
     <div className="w-full space-y-4 p-4">
@@ -25,10 +39,15 @@ export default async function RepositoryList({ limit }: { limit?: number } = {})
         {displayRepos.map((repo: GitHubRepository) => (
           <RepositoryCard key={repo.id} repo={repo} />
         ))}
+        {showViewAllCard && (
+          <ViewAllCard
+            href="/repositories"
+            title="全ての制作物を見る"
+            totalCount={repos.length}
+            stats={repoStats}
+          />
+        )}
       </div>
-      {showViewAllButton && (
-        <ViewAllButton href="/repositories" label="全ての制作物を見る" />
-      )}
     </div>
   );
 }

@@ -19,27 +19,24 @@ interface HamburgerNavProps {
 export default function HamburgerNavButton({ config }: HamburgerNavProps) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
-        <Menu />
+      <DropdownMenuTrigger className="p-2 rounded-lg hover:bg-white/25 transition-all duration-300">
+        <Menu className="w-6 h-6 text-white drop-shadow-md" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        {/* <DropdownMenuLabel>ジャンプ！</DropdownMenuLabel> */}
-        {/* <DropdownMenuSeparator /> */}
+      <DropdownMenuContent className="w-56 bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-200 shadow-xl">
         {config.navBarItem.map((item: NavBarItem) => {
           const Icon = item.icon;
 
           return (
-            <DropdownMenuItem key={item.href}>
+            <DropdownMenuItem
+              key={item.href}
+              className="focus:bg-emerald-100 hover:bg-emerald-100"
+            >
               <Link
-                key={item.href}
                 href={item.href}
-                className={cn(
-                  "flex items-center space-x-2 py-2 rounded-md",
-                  "hover:bg-gray-50 transition-colors duration-200"
-                )}
+                className="flex items-center w-full py-2 px-1 rounded-md transition-colors duration-200"
               >
-                <Icon className="w-5 h-5 mr-2" />
-                {item.name}
+                <Icon className="w-5 h-5 mr-3 text-emerald-600" />
+                <span className="font-bold text-emerald-900">{item.name}</span>
               </Link>
             </DropdownMenuItem>
           );
