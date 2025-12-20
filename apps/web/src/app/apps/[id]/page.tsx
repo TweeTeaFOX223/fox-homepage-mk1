@@ -20,6 +20,8 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
     };
   }
 
+  const ogImage = app.imageUrls[0] ?? "/ogp/OGP2.png";
+
   return {
     metadataBase: new URL(NEXT_PUBLIC_BASE_URL),
     title: `${app.name} - T2フォックスのホームページ`,
@@ -29,7 +31,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
       description: app.description,
       images: [
         {
-          url: app.imageUrl,
+          url: ogImage,
           width: 1200,
           height: 630,
         },
@@ -45,17 +47,7 @@ export default function AppDetailPage({ params }: { params: { id: string } }) {
     notFound();
   }
 
-  const statusColors = {
-    運用中: "from-emerald-500/20 via-green-500/20 to-teal-500/20 border-emerald-500/30",
-    開発中: "from-blue-500/20 via-cyan-500/20 to-sky-500/20 border-blue-500/30",
-    停止中: "from-gray-500/20 via-slate-500/20 to-zinc-500/20 border-gray-500/30",
-  };
-
-  const statusTextColors = {
-    運用中: "text-emerald-600",
-    開発中: "text-blue-600",
-    停止中: "text-gray-600",
-  };
+  const mainImage = app.imageUrls[0] ?? "/ogp/OGP2.png";
 
   return (
     <main className="min-h-screen bg-background">
@@ -77,18 +69,13 @@ export default function AppDetailPage({ params }: { params: { id: string } }) {
             <h1 className="text-3xl md:text-4xl font-black bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
               {app.name}
             </h1>
-            <span
-              className={`px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap bg-gradient-to-r ${statusColors[app.status]}`}
-            >
-              <span className={statusTextColors[app.status]}>{app.status}</span>
-            </span>
           </div>
         </div>
 
         {/* メイン画像 */}
         <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 mb-8 shadow-2xl">
           <Image
-            src={app.imageUrl}
+            src={mainImage}
             alt={app.name}
             fill
             className="object-cover"
@@ -124,24 +111,6 @@ export default function AppDetailPage({ params }: { params: { id: string } }) {
             </div>
           </div>
 
-          {/* メタ情報 */}
-          <div className="bg-white p-6 rounded-xl border-2 border-foreground/10 shadow-sm">
-            <h2 className="text-xl font-bold mb-4 text-foreground">情報</h2>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <p className="text-sm text-muted-foreground mb-1">作成日</p>
-                <p className="font-semibold text-foreground">
-                  {new Date(app.createdAt).toLocaleDateString("ja-JP")}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground mb-1">最終更新日</p>
-                <p className="font-semibold text-foreground">
-                  {new Date(app.updatedAt).toLocaleDateString("ja-JP")}
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </main>
