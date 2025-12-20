@@ -14,16 +14,29 @@ import { RepoCardItem } from "../schemas/github-repo-schema";
 import { formatDateJP } from "@/lib/data-utils";
 
 export const RepositoryCard = ({ repo }: { repo: RepoCardItem }) => {
+  const isFork = repo.fork;
+
   return (
-    <Card className="flex flex-col h-full p-2 bg-white border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden">
+    <Card
+      className={`flex flex-col h-full p-2 border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden ${
+        isFork
+          ? "bg-orange-50/50 border-orange-200/60"
+          : "bg-white"
+      }`}
+    >
       <CardHeader>
         <CardTitle className="text-base sm:text-lg">
           <a
             href={repo.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:underline"
+            className="hover:underline inline-flex items-center gap-2"
           >
+            {isFork && (
+              <span className="inline-flex items-center justify-center h-5 px-1.5 rounded-sm bg-orange-500 border border-orange-700 text-[10px] font-bold text-white leading-none">
+                Fork
+              </span>
+            )}
             {repo.name}
           </a>
         </CardTitle>

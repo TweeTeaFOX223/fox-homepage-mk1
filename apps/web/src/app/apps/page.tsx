@@ -1,4 +1,5 @@
-import AppList from "@/features/show-apps/components/AppList";
+import AppListWithControls from "@/features/show-apps/components/AppListWithControls";
+import { apps } from "@/features/show-apps/config/apps";
 import { NEXT_PUBLIC_BASE_URL } from "../../../config";
 
 export const metadata = {
@@ -26,7 +27,13 @@ export default function AppsPage() {
     <main className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="w-full space-y-4 p-4">
-          <AppList />
+          <h1 className="text-3xl font-bold mb-6 flex items-center justify-center">
+            公開中のアプリ
+          </h1>
+          <p className="text-muted-foreground flex items-center justify-center mb-6">
+            公開中のアプリ一覧です。
+          </p>
+          <AppListWithControls apps={apps} />
         </div>
       </div>
     </main>

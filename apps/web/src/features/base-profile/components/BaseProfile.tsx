@@ -22,7 +22,7 @@ export default function BaseProfile() {
             プロフィール
           </h1>
           <p className="text-muted-foreground flex items-center justify-center mt-4">
-            簡易的な自己紹介です。詳細な情報は他セクションを見てください。
+            名刺的な簡易自己紹介です。活動場所のリンクが集結。
           </p>
         </div>
 
@@ -34,10 +34,10 @@ export default function BaseProfile() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.1),transparent_50%)]"></div>
             <div className="relative grid grid-cols-2 gap-3 content-start h-full">
               {/* アイコン - 2行2列 */}
-              <div className="col-span-1 row-span-2 border-2 border-emerald-500/30 rounded-lg p-4 bg-white flex items-center justify-center">
-                <div className="relative w-36 h-36">
+              <div className="col-span-1 row-span-2 border-2 border-transparent rounded-lg p-2 bg-transparent flex items-center justify-center overflow-visible">
+                <div className="relative w-40 h-40 md:w-44 md:h-44 flex-shrink-0">
                   <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 rounded-full blur-xl opacity-30"></div>
-                  <Avatar className="relative w-full h-full border-4 border-white shadow-xl">
+                  <Avatar className="relative w-full h-full border-4 border-amber-200/70 ring-2 ring-amber-400/50 shadow-[0_0_0_rgba(0,0,0,0)] transition-shadow duration-300 hover:shadow-[0_0_24px_rgba(251,191,36,0.55)]">
                     <AvatarImage
                       src="/icon/my-icon.png"
                       alt="T2フォックスのアイコン"
@@ -51,22 +51,25 @@ export default function BaseProfile() {
               </div>
 
               {/* 名前 */}
-              <div className="col-span-1 border-2 border-emerald-500/30 rounded-lg p-3 bg-gradient-to-r from-emerald-50/50 to-teal-50/50">
-                <p className="text-xs text-emerald-700 font-bold mb-1">
-                  略式の名前：
-                </p>
-                <p className="text-sm font-bold text-foreground">
-                  T2フォックス
-                </p>
-              </div>
-
-              {/* 個人開発活動の開始年 */}
-              <div className="col-span-1 border-2 border-teal-500/30 rounded-lg p-3 bg-gradient-to-r from-teal-50/50 to-cyan-50/50">
-                <p className="text-xs text-teal-700 font-bold mb-1">
+              <div className="col-span-1 row-span-2 border-2 border-emerald-500/30 rounded-lg p-3 mb-2 bg-gradient-to-r from-emerald-50/50 to-teal-50/50 flex flex-col gap-0">
+                <p className="text-xs text-emerald-700 font-bold mb-0 leading-tight">
                   正式の名前：
                 </p>
-                <p className="text-xs font-bold text-foreground">
+                <p className="text-[10px] font-bold text-foreground mt-0 leading-tight">
                   ツイーティ・ザ・フォックス
+                </p>
+                <p className="text-xs text-teal-700 font-bold mt-6 mb-0 leading-tight">
+                  略式の名前：
+                </p>
+                <p className="text-xs font-bold text-foreground mt-0 leading-tight">
+                  T2フォックス／T2-FOX
+                </p>
+                <p className="text-xs text-teal-700 font-bold mt-6 mb-0 leading-tight">
+                  開発で重視すること：
+                </p>
+                <p className="text-xs font-bold text-foreground mt-0 leading-tight">
+                  <p>所属団体 or 自分自身の</p>
+                  <p> 「目標達成・任務完遂」</p>
                 </p>
               </div>
 
@@ -100,14 +103,14 @@ export default function BaseProfile() {
                 <p className="text-xs text-emerald-700 font-bold mb-2">
                   主な取り扱い技術：
                 </p>
-                <p className="block lg:hidden text-[11px] text-foreground font-bold">
+                <p className="block lg:hidden text-[11px] text-foreground font-bold break-all">
                   TypeScript・Python・C#(Unity)・Cloudflare(Workers・D1・R2)・GitHub
-                  Actions(ビルド・デプロイ)・
+                  Actions(ビルド・デプロイ)
                 </p>
                 <div className="space-y-1 text-[11px] text-foreground  font-bold hidden lg:block">
-                  <p>TypeScript・Python・C#(Unity)</p>
-                  <p>Cloudflare(Workers・D1・R2)</p>
-                  <p>GitHub Actions(ビルド・デプロイ)</p>
+                  <p className="break-all">TypeScript・Python・C#(Unity)</p>
+                  <p className="break-all">Cloudflare(Workers・D1・R2)</p>
+                  <p className="break-all">GitHub Actions(ビルド/デプロイ)</p>
                 </div>
               </div>
             </div>
@@ -116,7 +119,7 @@ export default function BaseProfile() {
           {/* 右側カラム - SNSリンク */}
           <div className="relative overflow-hidden rounded-xl border-2 border-emerald-500/20 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 p-4">
             <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl -translate-y-32 translate-x-32"></div>
-            <div className="relative grid grid-cols-10 gap-3 content-start h-full">
+            <div className="relative grid grid-cols-10 gap-[15px] content-start h-full">
               {/* X(Twitter) - 6列 */}
               <div className="col-span-6 border-2 border-[#1DA1F2]/30 rounded-lg bg-gradient-to-r from-[#1DA1F2]/5 to-[#1DA1F2]/10 hover:from-[#1DA1F2]/20 hover:to-[#1DA1F2]/30 hover:border-[#1DA1F2]/60 transition-all duration-300 hover:shadow-lg hover:shadow-[#1DA1F2]/20 hover:-translate-y-1">
                 <a
@@ -126,13 +129,17 @@ export default function BaseProfile() {
                   className="flex items-center h-full p-4"
                 >
                   <div className="flex items-center gap-2 w-full">
-                    <div className="w-7 h-7 rounded-full bg-[#1DA1F2] flex items-center justify-center text-white shadow-lg flex-shrink-0">
-                      <Twitter className="w-4 h-4" />
+                    <div className="w-7 h-7 rounded-full bg-[#000000] flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                      <img
+                        src="/social_logo/x_logo.svg"
+                        alt="X"
+                        className="w-4 h-4"
+                      />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="font-bold text-xs">X：@TweeTeaFOX223</div>
+                      <div className="font-bold text-xs">X:@TweeTeaFOX223</div>
                       <div className="text-[10px] text-muted-foreground">
-                        開発関連の話題だけ扱う・高浮上
+                        開発関連の話題に超特化
                       </div>
                     </div>
                   </div>
@@ -149,12 +156,12 @@ export default function BaseProfile() {
                 >
                   <div className="flex items-center gap-2">
                     <div className="w-7 h-7 rounded-full bg-[#00BFFF] flex items-center justify-center text-white shadow-lg flex-shrink-0">
-                      <BookOpen className="w-4 h-4" />
+                      <Twitter className="w-4 h-4" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="font-bold text-xs">Twilog</div>
                       <div className="text-[10px] text-muted-foreground mt-1">
-                        ログ保存
+                        Xログ検索
                       </div>
                     </div>
                   </div>
@@ -178,7 +185,7 @@ export default function BaseProfile() {
                         GitHub：@TweeTeaFOX223
                       </div>
                       <div className="text-[10px] text-muted-foreground">
-                        アプリの公開先/配布先。説明書完備
+                        作業場。アプリの公開先/配布先。READMEに説明書完備
                       </div>
                     </div>
                   </div>
@@ -195,14 +202,18 @@ export default function BaseProfile() {
                 >
                   <div className="flex items-center gap-2 w-full">
                     <div className="w-7 h-7 rounded-full bg-[#5865F2] flex items-center justify-center text-white shadow-lg flex-shrink-0">
-                      <MessageCircle className="w-4 h-4" />
+                      <img
+                        src="/social_logo/Discord-Symbol-White.svg"
+                        alt="Discord"
+                        className="w-4 h-4"
+                      />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="font-bold text-xs">
                         Discord：@tweetea_the_fox
                       </div>
                       <div className="text-[10px] text-muted-foreground">
-                        開発関係のチーム作業/連絡に使用
+                        主要な連絡手段。開発関係のチーム作業の主力ツール
                       </div>
                     </div>
                   </div>
@@ -217,13 +228,15 @@ export default function BaseProfile() {
                     href="https://note.com/tweeteafox300"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center h-full py-4 px-2"
+                    className="flex items-center justify-center h-full py-3 px-2"
                   >
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-[#41C9B4] flex items-center justify-center text-white shadow-lg flex-shrink-0">
-                        <FileText className="w-3 h-3" />
+                    <div className="flex flex-col items-center gap-1 text-center">
+                      <div className="flex items-center gap-2">
+                        <div className="font-bold text-xs">note</div>
                       </div>
-                      <div className="font-bold text-xs">note</div>
+                      <div className="text-[8px] text-muted-foreground font-semibold">
+                        @tweeteafox300
+                      </div>
                     </div>
                   </a>
                 </div>
@@ -234,13 +247,15 @@ export default function BaseProfile() {
                     href="https://zenn.dev/tweeteafox300"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center h-full py-4 px-2"
+                    className="flex items-center justify-center h-full py-3 px-2"
                   >
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-[#3EA8FF] flex items-center justify-center text-white shadow-lg font-bold text-[10px] flex-shrink-0">
-                        Z
+                    <div className="flex flex-col items-center gap-1 text-center">
+                      <div className="flex items-center gap-2">
+                        <div className="font-bold text-xs">Zenn</div>
                       </div>
-                      <div className="font-bold text-xs">Zenn</div>
+                      <div className="text-[8px] text-muted-foreground font-semibold">
+                        @tweeteafox300
+                      </div>
                     </div>
                   </a>
                 </div>
@@ -251,13 +266,15 @@ export default function BaseProfile() {
                     href="https://qiita.com/tweeteafox300"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center h-full py-4 px-2"
+                    className="flex items-center justify-center h-full py-3 px-2"
                   >
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-[#55C500] flex items-center justify-center text-white shadow-lg font-bold text-[10px] flex-shrink-0">
-                        Q
+                    <div className="flex flex-col items-center gap-1 text-center">
+                      <div className="flex items-center gap-2">
+                        <div className="font-bold text-xs">Qiita</div>
                       </div>
-                      <div className="font-bold text-xs">Qiita</div>
+                      <div className="text-[8px] text-muted-foreground font-semibold">
+                        @tweeteafox300
+                      </div>
                     </div>
                   </a>
                 </div>
@@ -268,13 +285,15 @@ export default function BaseProfile() {
                     href="https://gist.github.com/TweeTeaFOX223"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center h-full py-4 px-2"
+                    className="flex items-center justify-center h-full py-3 px-2"
                   >
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-[#6e5494] flex items-center justify-center text-white shadow-lg font-bold text-[10px] flex-shrink-0">
-                        G
+                    <div className="flex flex-col items-center gap-1 text-center">
+                      <div className="flex items-center gap-2">
+                        <div className="font-bold text-xs">Gist</div>
                       </div>
-                      <div className="font-bold text-xs">Gist</div>
+                      <div className="text-[8px] text-muted-foreground font-semibold">
+                        @TweeTeaFOX223
+                      </div>
                     </div>
                   </a>
                 </div>
