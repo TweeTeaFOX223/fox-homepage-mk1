@@ -22,7 +22,7 @@ export default function BaseProfile() {
             プロフィール
           </h1>
           <p className="text-muted-foreground flex items-center justify-center mt-4">
-            名刺的な簡易自己紹介です。活動場所のリンクが集結。
+            名刺的な簡易自己紹介です。ネット活動場所のリンクが集結。
           </p>
         </div>
 
