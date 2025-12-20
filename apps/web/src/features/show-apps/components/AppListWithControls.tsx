@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { AppItem } from "../config/apps";
+import type { AppItem, DeploymentType } from "../config/apps";
 import AppCard from "./AppCard";
 import AppListRow from "./AppListRow";
 import type { SortOrder, ViewMode } from "@/components/ListControls";
@@ -17,18 +17,18 @@ const deploymentOrder = [
   "デスクトップアプリ(PCにインストール)",
   "コンソールアプリ(ターミナルで実行)",
   "その他(データや情報集など)",
-];
+] as const satisfies DeploymentType[];
 
 export default function AppListWithControls({
   apps,
 }: AppListWithControlsProps) {
   const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
-  const [typeFilter, setTypeFilter] = useState<string>("all");
+  const [typeFilter, setTypeFilter] = useState<DeploymentType | "all">("all");
   const [isTypeModalOpen, setIsTypeModalOpen] = useState(false);
 
   const typeOptions = useMemo(() => {
-    const available = new Set(apps.map((app) => app.deploymentType));
+    const available = new Set<DeploymentType>(apps.map((app) => app.deploymentType));
     return deploymentOrder.filter((type) => available.has(type));
   }, [apps]);
 
