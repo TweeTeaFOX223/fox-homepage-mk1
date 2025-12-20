@@ -38,7 +38,11 @@ export class GitHubService {
       }
 
       const data = await response.json();
-      const validated = GitHubRepositoryListSchema.parse(data);
+      const normalized = (Array.isArray(data) ? data : []).map((repo) => ({
+        ...repo,
+        fork: Boolean(repo?.fork),
+      }));
+      const validated = GitHubRepositoryListSchema.parse(normalized);
 
       return validated;
     } catch (error) {

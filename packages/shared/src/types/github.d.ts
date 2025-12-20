@@ -5,6 +5,7 @@ export declare const GitHubRepositorySchema: z.ZodObject<{
     full_name: z.ZodOptional<z.ZodString>;
     description: z.ZodNullable<z.ZodString>;
     html_url: z.ZodString;
+    fork: z.ZodBoolean;
     stargazers_count: z.ZodNumber;
     language: z.ZodNullable<z.ZodString>;
     created_at: z.ZodString;
@@ -17,6 +18,7 @@ export declare const GitHubRepositorySchema: z.ZodObject<{
     updated_at: string;
     description: string | null;
     html_url: string;
+    fork: boolean;
     stargazers_count: number;
     language: string | null;
     topics?: string[] | null | undefined;
@@ -28,6 +30,7 @@ export declare const GitHubRepositorySchema: z.ZodObject<{
     updated_at: string;
     description: string | null;
     html_url: string;
+    fork: boolean;
     stargazers_count: number;
     language: string | null;
     topics?: string[] | null | undefined;
@@ -39,6 +42,7 @@ export declare const GitHubRepositoryListSchema: z.ZodArray<z.ZodObject<{
     full_name: z.ZodOptional<z.ZodString>;
     description: z.ZodNullable<z.ZodString>;
     html_url: z.ZodString;
+    fork: z.ZodBoolean;
     stargazers_count: z.ZodNumber;
     language: z.ZodNullable<z.ZodString>;
     created_at: z.ZodString;
@@ -51,6 +55,7 @@ export declare const GitHubRepositoryListSchema: z.ZodArray<z.ZodObject<{
     updated_at: string;
     description: string | null;
     html_url: string;
+    fork: boolean;
     stargazers_count: number;
     language: string | null;
     topics?: string[] | null | undefined;
@@ -62,6 +67,7 @@ export declare const GitHubRepositoryListSchema: z.ZodArray<z.ZodObject<{
     updated_at: string;
     description: string | null;
     html_url: string;
+    fork: boolean;
     stargazers_count: number;
     language: string | null;
     topics?: string[] | null | undefined;

@@ -26,7 +26,7 @@ export default function ListControls({
   viewMode,
 }: ListControlsProps) {
   return (
-    <div className="flex flex-wrap items-center gap-4 p-4 mb-4 bg-gradient-to-r from-foreground/5 to-transparent border-2 border-foreground/10 rounded-lg">
+    <div className="flex flex-col gap-4 p-4 mb-4 bg-gradient-to-r from-foreground/5 to-transparent border-2 border-foreground/10 rounded-lg md:flex-row md:flex-wrap md:items-center">
       {/* ソートフィールド選択 */}
       <div className="flex items-center gap-2">
         <span className="text-sm font-semibold text-muted-foreground">
@@ -80,7 +80,7 @@ export default function ListControls({
       </div>
 
       {/* 表示モード選択 */}
-      <div className="flex items-center gap-2 ml-auto">
+      <div className="flex items-center gap-2 md:ml-auto">
         <span className="text-sm font-semibold text-muted-foreground">
           表示:
         </span>

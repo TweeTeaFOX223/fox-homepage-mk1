@@ -1,26 +1,21 @@
+import appsData from "./apps.json";
+
+export type DeploymentType =
+  | "ウェブアプリ(すぐに使用可能！)"
+  | "デスクトップアプリ(PCにインストール)"
+  | "コンソールアプリ(ターミナルで実行)"
+  | "その他(データや情報集など)";
+
 export interface AppItem {
   id: string;
   name: string;
   description: string;
-  imageUrl: string;
-  detailPath: string;
-  tags: string[];
-  status: "運用中" | "開発中" | "停止中";
+  appUrl: string;
+  displayOrder: number;
+  imageUrls: string[];
+  deploymentType: DeploymentType;
   createdAt: string;
   updatedAt: string;
 }
 
-export const apps: AppItem[] = [
-  {
-    id: "app-1",
-    name: "サンプルアプリ1",
-    description: "これはサンプルアプリの説明文です。",
-    imageUrl: "/apps/app1.png",
-    detailPath: "/apps/app-1",
-    tags: ["TypeScript", "React", "Cloudflare"],
-    status: "運用中",
-    createdAt: "2024-01-01",
-    updatedAt: "2024-03-01",
-  },
-  // 他のアプリをここに追加
-];
+export const apps: AppItem[] = appsData as AppItem[];

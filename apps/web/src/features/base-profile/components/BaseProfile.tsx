@@ -10,7 +10,7 @@ import {
 
 export default function BaseProfile() {
   return (
-    <div className="container mx-auto p-4 max-w-6xl">
+    <div className="w-full">
       {/* 1枚のカードとしてまとめる */}
       <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500/10 via-teal-500/10 to-cyan-500/10 border-2 border-emerald-500/20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.1),transparent_50%)]"></div>
@@ -21,6 +21,9 @@ export default function BaseProfile() {
           <h1 className="text-3xl md:text-4xl font-black text-center bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
             プロフィール
           </h1>
+          <p className="text-muted-foreground flex items-center justify-center mt-4">
+            簡易的な自己紹介です。詳細な情報は他セクションを見てください。
+          </p>
         </div>
 
         {/* メイングリッド - 2カラム構造 */}
@@ -72,7 +75,11 @@ export default function BaseProfile() {
                 <p className="text-xs text-cyan-700 font-bold mb-2">
                   主な活動内容：
                 </p>
-                <ul className="space-y-1 text-[11px] text-foreground  font-bold">
+                <p className="block md:hidden text-[11px] text-foreground font-bold">
+                  PC作業効率化ツール開発 / SNSや電子掲示板の文章分析 /
+                  UnityかUEでゲーム開発(予定)
+                </p>
+                <ul className="space-y-1 text-[11px] text-foreground  font-bold hidden md:block">
                   <li className="flex items-start  text-foreground">
                     <span className="mr-1.5">•</span>
                     <span>PC作業効率化ツール開発</span>
@@ -93,7 +100,11 @@ export default function BaseProfile() {
                 <p className="text-xs text-emerald-700 font-bold mb-2">
                   主な取り扱い技術：
                 </p>
-                <div className="space-y-1 text-[11px] text-foreground  font-bold">
+                <p className="block lg:hidden text-[11px] text-foreground font-bold">
+                  TypeScript・Python・C#(Unity)・Cloudflare(Workers・D1・R2)・GitHub
+                  Actions(ビルド・デプロイ)・
+                </p>
+                <div className="space-y-1 text-[11px] text-foreground  font-bold hidden lg:block">
                   <p>TypeScript・Python・C#(Unity)</p>
                   <p>Cloudflare(Workers・D1・R2)</p>
                   <p>GitHub Actions(ビルド・デプロイ)</p>

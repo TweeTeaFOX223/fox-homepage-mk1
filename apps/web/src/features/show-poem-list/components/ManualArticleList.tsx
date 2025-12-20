@@ -23,7 +23,7 @@ ManualArticleListProps) {
 
   return (
     <div className="w-full space-y-4 p-4">
-      <h2 className="text-2xl font-bold mb-6 flex items-center justify-center">
+      <h2 className="text-2xl font-black mb-6 flex items-center justify-center bg-gradient-to-r from-rose-600 via-orange-600 to-amber-600 bg-clip-text text-transparent">
         雑多な記事
       </h2>
       <p className="text-muted-foreground flex items-center justify-center">

@@ -9,12 +9,14 @@ import ViewAllCard from "@/components/ViewAllCard";
 export default async function RepositoryList({ limit }: { limit?: number } = {}) {
   const repos = await getGitHubRepositories(GITHUB_USERNAME, 30);
 
+  const nonForkRepos = repos.filter((repo) => !repo.fork);
+
   // limit が指定されている場合は制限する
-  const displayRepos = limit ? repos.slice(0, limit) : repos;
-  const showViewAllCard = limit && repos.length > limit;
+  const displayRepos = limit ? nonForkRepos.slice(0, limit) : nonForkRepos;
+  const showViewAllCard = limit && nonForkRepos.length > limit;
 
   // 言語ごとの統計を計算
-  const languageCounts = repos.reduce((acc, repo) => {
+  const languageCounts = nonForkRepos.reduce((acc, repo) => {
     if (repo.language) {
       acc[repo.language] = (acc[repo.language] || 0) + 1;
     }
@@ -29,7 +31,7 @@ export default async function RepositoryList({ limit }: { limit?: number } = {})
 
   return (
     <div className="w-full space-y-4 p-4">
-      <h2 className="text-2xl font-bold mb-6 flex items-center justify-center">
+      <h2 className="text-2xl font-black mb-6 flex items-center justify-center bg-gradient-to-r from-lime-600 via-emerald-600 to-sky-600 bg-clip-text text-transparent">
         制作物(GitHubリポジトリ)
       </h2>
       <p className="text-muted-foreground flex items-center justify-center">
@@ -43,7 +45,7 @@ export default async function RepositoryList({ limit }: { limit?: number } = {})
           <ViewAllCard
             href="/repositories"
             title="全ての制作物を見る"
-            totalCount={repos.length}
+            totalCount={nonForkRepos.length}
             stats={repoStats}
           />
         )}

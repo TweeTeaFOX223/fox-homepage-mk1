@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fde68a"/>
+      <stop offset="50%" stop-color="#fdba74"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg1)"/>
+  <rect x="80" y="80" width="1040" height="515" rx="28" fill="#ffffff" opacity="0.75"/>
+  <text x="120" y="210" font-family="Arial, sans-serif" font-size="52" font-weight="700" fill="#7c2d12">
+    SAMPLE APP IMAGE 01
+  </text>
+  <text x="120" y="280" font-family="Arial, sans-serif" font-size="26" fill="#9a3412">
+    Placeholder preview
+  </text>
+  <circle cx="1010" cy="510" r="70" fill="#f97316" opacity="0.85"/>
+</svg>

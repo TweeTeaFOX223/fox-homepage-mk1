@@ -23,7 +23,7 @@ const TechInterests = () => {
 
   return (
     <div className="w-full space-y-4 p-4">
-      <h2 className="text-2xl font-bold mb-6 flex items-center justify-center">
+      <h2 className="text-2xl font-black mb-6 flex items-center justify-center bg-gradient-to-r from-slate-600 via-gray-600 to-emerald-600 bg-clip-text text-transparent">
         興味がある「技術・ツール等」
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

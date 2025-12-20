@@ -1,11 +1,15 @@
-import { LucideIcon } from "lucide-react";
-
 export type NavBarItem = {
   name: string;
   href: string;
 
-  // Lucid-reactのアイコンの型
-  icon: LucideIcon;
+  // lucide-react icon name
+  iconName:
+    | "CircleUserRound"
+    | "Sparkles"
+    | "Swords"
+    | "Apple"
+    | "BookText"
+    | "AppWindow";
 };
 
 export type NavBarItemConfig = {

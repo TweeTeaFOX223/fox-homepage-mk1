@@ -8,6 +8,7 @@ export const GitHubRepositorySchema = z.object({
   full_name: z.string().optional(),
   description: z.string().nullable(),
   html_url: z.string().url(),
+  fork: z.boolean(),
   stargazers_count: z.number().min(0),
   language: z.string().nullable(),
   created_at: z.string().datetime(),

@@ -1,0 +1,97 @@
+[
+  {
+    "id": "app-1",
+    "name": "コマンド整理ランチャー",
+    "description": "よく使う開発用コマンドをカテゴリ別に整理し、素早く実行できるコンソール向けユーティリティ。",
+    "appUrl": "https://example.com/console-launcher",
+    "displayOrder": 1,
+    "imageUrls": [
+      "/apps/placeholder-1.svg",
+      "/apps/placeholder-2.svg"
+    ],
+    "deploymentType": "コンソールアプリ(ターミナルで実行)",
+    "createdAt": "2024-01-01",
+    "updatedAt": "2024-03-01"
+  },
+  {
+    "id": "app-2",
+    "name": "ログ解析メモ帳",
+    "description": "SNSや掲示板ログを読みやすく整形し、検索・可視化するデスクトップ向けツール。",
+    "appUrl": "https://example.com/log-note",
+    "displayOrder": 2,
+    "imageUrls": [
+      "/apps/placeholder-2.svg",
+      "/apps/placeholder-1.svg"
+    ],
+    "deploymentType": "デスクトップアプリ(PCにインストール)",
+    "createdAt": "2024-02-10",
+    "updatedAt": "2024-03-12"
+  },
+  {
+    "id": "app-3",
+    "name": "研究メモ・リンク集",
+    "description": "技術調査の成果をまとめたリンク集。テーマ別に整理し、すぐ参照できる情報ページ。",
+    "appUrl": "https://example.com/research-links",
+    "displayOrder": 3,
+    "imageUrls": [
+      "/apps/placeholder-1.svg"
+    ],
+    "deploymentType": "その他(データや情報集など)",
+    "createdAt": "2024-01-20",
+    "updatedAt": "2024-03-05"
+  },
+  {
+    "id": "app-4",
+    "name": "小さな作業効率化ツール",
+    "description": "ブラウザで動く軽量ユーティリティ集。日々の作業を少しだけ速くする小さな道具箱。",
+    "appUrl": "https://example.com/tiny-tools",
+    "displayOrder": 4,
+    "imageUrls": [
+      "/apps/placeholder-1.svg",
+      "/apps/placeholder-2.svg"
+    ],
+    "deploymentType": "ウェブアプリ(すぐに使用可能！)",
+    "createdAt": "2024-03-01",
+    "updatedAt": "2024-03-20"
+  },
+  {
+    "id": "app-5",
+    "name": "動画メモ抽出ツール",
+    "description": "動画の見どころだけを短くメモ化して残すウェブツール。視聴ログの整理に使える。",
+    "appUrl": "https://example.com/video-notes",
+    "displayOrder": 5,
+    "imageUrls": [
+      "/apps/placeholder-2.svg"
+    ],
+    "deploymentType": "ウェブアプリ(すぐに使用可能！)",
+    "createdAt": "2024-02-22",
+    "updatedAt": "2024-03-18"
+  },
+  {
+    "id": "app-6",
+    "name": "ファイル名リネーム補助",
+    "description": "大量のファイル名を規則化するデスクトップ補助ツール。置換や一括採番に対応。",
+    "appUrl": "https://example.com/rename-helper",
+    "displayOrder": 6,
+    "imageUrls": [
+      "/apps/placeholder-1.svg",
+      "/apps/placeholder-2.svg"
+    ],
+    "deploymentType": "デスクトップアプリ(PCにインストール)",
+    "createdAt": "2024-01-28",
+    "updatedAt": "2024-02-25"
+  },
+  {
+    "id": "app-7",
+    "name": "データ整理テンプレ集",
+    "description": "分析やログ整理で使えるテンプレートをまとめた配布ページ。用途別にすぐ使える。",
+    "appUrl": "https://example.com/data-templates",
+    "displayOrder": 7,
+    "imageUrls": [
+      "/apps/placeholder-2.svg"
+    ],
+    "deploymentType": "その他(データや情報集など)",
+    "createdAt": "2024-01-05",
+    "updatedAt": "2024-02-14"
+  }
+]

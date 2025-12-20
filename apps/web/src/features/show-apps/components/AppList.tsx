@@ -1,19 +1,45 @@
 import { apps } from "../config/apps";
 import AppCard from "./AppCard";
+import ViewAllCard from "@/components/ViewAllCard";
 
-export default function AppList() {
+type AppListProps = {
+  limit?: number;
+};
+
+export default function AppList({ limit }: AppListProps = {}) {
+  const sortedApps = [...apps].sort(
+    (a, b) => a.displayOrder - b.displayOrder
+  );
+  const displayApps = limit ? sortedApps.slice(0, limit) : sortedApps;
+  const showViewAllCard = Boolean(limit && sortedApps.length > limit);
+
+  const deploymentStats = sortedApps.reduce((acc, app) => {
+    acc[app.deploymentType] = (acc[app.deploymentType] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  const deploymentOrder: string[] = [
+    "ウェブアプリ(すぐに使用可能！)",
+    "デスクトップアプリ(PCにインストール)",
+    "コンソールアプリ(ターミナルで実行)",
+    "その他(データや情報集など)",
+  ];
+
+  const appStats = deploymentOrder
+    .filter((label) => deploymentStats[label])
+    .map((label) => ({
+      label: label.replace(/[（(].*?[）)]/g, "").trim(),
+      count: deploymentStats[label],
+    }));
+
   return (
     <div className="w-full space-y-4 p-4">
-      <div className="relative mb-8 overflow-hidden rounded-xl bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 p-6 border-2 border-cyan-500/20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.1),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.1),transparent_50%)]"></div>
-        <h2 className="relative text-3xl font-black text-center bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-          公開中のアプリ
-        </h2>
-        <p className="relative text-center mt-3 text-base text-muted-foreground font-medium">
-          実際に使えるウェブアプリケーション
-        </p>
-      </div>
+      <h2 className="text-3xl font-black text-center bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
+        公開中のアプリ
+      </h2>
+      <p className="text-center text-base text-muted-foreground font-medium">
+        実際に使えるウェブアプリケーション
+      </p>
 
       {apps.length === 0 ? (
         <div className="text-center py-12">
@@ -26,9 +52,17 @@ export default function AppList() {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {apps.map((app) => (
+          {displayApps.map((app) => (
             <AppCard key={app.id} app={app} />
           ))}
+          {showViewAllCard && (
+            <ViewAllCard
+              href="/apps"
+              title="全てのアプリを見る"
+              totalCount={sortedApps.length}
+              stats={appStats}
+            />
+          )}
         </div>
       )}
     </div>
