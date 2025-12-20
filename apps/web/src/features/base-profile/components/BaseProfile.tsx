@@ -21,7 +21,7 @@ export default function BaseProfile() {
       </div>
 
       {/* メイングリッド - 2カラム構造 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         {/* 左側カラム */}
         <div className="relative overflow-hidden rounded-xl border-2 border-emerald-500/20 bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 p-6">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.1),transparent_50%)]"></div>
@@ -46,16 +46,20 @@ export default function BaseProfile() {
 
             {/* 名前 */}
             <div className="col-span-1 border-2 border-emerald-500/30 rounded-lg p-3 bg-gradient-to-r from-emerald-50/50 to-teal-50/50">
-              <p className="text-xs text-emerald-700 font-bold mb-1">名前：</p>
+              <p className="text-xs text-emerald-700 font-bold mb-1">
+                略式の名前：
+              </p>
               <p className="text-sm font-bold text-foreground">T2フォックス</p>
             </div>
 
             {/* 個人開発活動の開始年 */}
             <div className="col-span-1 border-2 border-teal-500/30 rounded-lg p-3 bg-gradient-to-r from-teal-50/50 to-cyan-50/50">
               <p className="text-xs text-teal-700 font-bold mb-1">
-                個人開発活動の開始年：
+                正式の名前：
               </p>
-              <p className="text-sm font-bold text-foreground">2023年〜</p>
+              <p className="text-xs font-bold text-foreground">
+                ツイーティ・ザ・フォックス
+              </p>
             </div>
 
             {/* 主な活動内容 - 1列 */}
@@ -82,7 +86,7 @@ export default function BaseProfile() {
             {/* 取り扱い可能な技術 - 1列 */}
             <div className="col-span-1 border-2 border-emerald-500/30 rounded-lg p-3 bg-gradient-to-r from-emerald-50/50 to-teal-50/50">
               <p className="text-xs text-emerald-700 font-bold mb-2">
-                取り扱い可能な技術：
+                主な取り扱い技術：
               </p>
               <div className="space-y-1 text-[11px] text-foreground">
                 <p>TypeScript・Python・C#(Unity)</p>

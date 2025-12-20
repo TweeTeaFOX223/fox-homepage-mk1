@@ -35,7 +35,7 @@ export default function RootLayout({
       {/* shadcnのcn関数を使って、フォントのクラスと自分で書いたクラスを混ぜる */}
       <body
         className={cn(
-          "container min-h-screen flex-col antialiased",
+          "min-h-screen flex-col antialiased",
           notoSansJP.className
         )}
       >
