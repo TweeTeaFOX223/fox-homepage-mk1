@@ -6,6 +6,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+
 /* radix UIのdropdown menuでscrollbarを消さないようにする*/
 /* https://qiita.com/keu5/items/9789c3c2560ea89da847 */
 body[data-scroll-locked][data-scroll-locked] {

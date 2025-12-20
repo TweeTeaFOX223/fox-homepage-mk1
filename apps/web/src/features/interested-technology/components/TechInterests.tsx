@@ -23,9 +23,11 @@ const TechInterests = () => {
 
   return (
     <div className="w-full space-y-4 p-4">
-      <h2 className="text-2xl font-black mb-6 flex items-center justify-center bg-gradient-to-r from-slate-600 via-gray-600 to-emerald-600 bg-clip-text text-transparent">
-        興味がある「技術・ツール等」
-      </h2>
+      <div className="relative p-6 pb-4">
+        <h2 className="text-3xl md:text-4xl font-black text-center text-orange-500/95">
+          [興味がある「技術・ツール等」]
+        </h2>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {techConfig.map((category, index) => {
           const CategoryIcon = category.icon;

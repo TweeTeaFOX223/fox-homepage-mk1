@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import BaseProfile from "@/features/base-profile/components/BaseProfile";
-import TechInterests from "@/features/interested-technology/components/TechInterests";
+// import TechInterests from "@/features/interested-technology/components/TechInterests";
 import ArticleList from "@/features/show-article-list/components/ArticleList";
 import RepositoryList from "@/features/show-github-repository/components/RepositoryList";
 import ManualArticleList from "@/features/show-poem-list/components/ManualArticleList";
@@ -58,9 +58,9 @@ export default function Home() {
 
         <section id="apps" className="mt-8 scroll-my-16">
           <SectionCard
-            className="bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 border-cyan-500/20"
-            glowA="bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.1),transparent_50%)]"
-            glowB="bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.1),transparent_50%)]"
+            className="bg-gradient-to-br from-pink-500/10 via-fuchsia-500/10 to-amber-500/10 border-pink-500/20"
+            glowA="bg-[radial-gradient(circle_at_30%_20%,rgba(244,114,182,0.12),transparent_55%)]"
+            glowB="bg-[radial-gradient(circle_at_70%_80%,rgba(251,191,36,0.12),transparent_55%)]"
           >
             <div className="md:hidden">
               <AppList limit={3} />
@@ -94,9 +94,9 @@ export default function Home() {
 
         <section id="tech-articles" className="mt-8 scroll-my-16">
           <SectionCard
-            className="bg-gradient-to-br from-sky-500/10 via-indigo-500/10 to-blue-500/10 border-sky-500/20"
-            glowA="bg-[radial-gradient(circle_at_30%_20%,rgba(56,189,248,0.12),transparent_55%)]"
-            glowB="bg-[radial-gradient(circle_at_70%_80%,rgba(99,102,241,0.12),transparent_55%)]"
+            className="bg-gradient-to-br from-indigo-500/10 via-violet-500/10 to-rose-500/10 border-indigo-500/20"
+            glowA="bg-[radial-gradient(circle_at_30%_20%,rgba(129,140,248,0.12),transparent_55%)]"
+            glowB="bg-[radial-gradient(circle_at_70%_80%,rgba(251,113,133,0.12),transparent_55%)]"
           >
             {/* ここに最新の記事 */}
             <div className="md:hidden">
@@ -110,9 +110,9 @@ export default function Home() {
 
         <section id="products" className="mt-8 scroll-my-16">
           <SectionCard
-            className="bg-gradient-to-br from-lime-500/10 via-emerald-500/10 to-sky-500/10 border-lime-500/20"
-            glowA="bg-[radial-gradient(circle_at_25%_25%,rgba(132,204,22,0.12),transparent_55%)]"
-            glowB="bg-[radial-gradient(circle_at_75%_75%,rgba(14,165,233,0.1),transparent_55%)]"
+            className="bg-gradient-to-br from-emerald-500/10 via-teal-500/10 to-amber-500/10 border-emerald-500/20"
+            glowA="bg-[radial-gradient(circle_at_25%_25%,rgba(16,185,129,0.12),transparent_55%)]"
+            glowB="bg-[radial-gradient(circle_at_75%_75%,rgba(251,191,36,0.12),transparent_55%)]"
           >
             {/* ここに最新にリポジトリ */}
             <div className="md:hidden">

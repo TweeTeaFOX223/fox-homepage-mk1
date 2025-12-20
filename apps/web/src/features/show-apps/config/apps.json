@@ -1,97 +1,83 @@
 [
   {
     "id": "app-1",
-    "name": "コマンド整理ランチャー",
-    "description": "よく使う開発用コマンドをカテゴリ別に整理し、素早く実行できるコンソール向けユーティリティ。",
-    "appUrl": "https://example.com/console-launcher",
+    "name": "World Dev Info Meta Searcher（WDIMS）",
+    "description": "世界の開発技術＋αの情報収集に有用と思われる検索結果URLのリストを表示する軽量メタ検索エンジン。 ",
+    "appUrl": "https://github.com/TweeTeaFOX223/world-dev-info-metasearcher",
     "displayOrder": 1,
     "imageUrls": [
-      "/apps/placeholder-1.svg",
-      "/apps/placeholder-2.svg"
+      "/apps_images/WDIMS/ScreenShot.png",
+      "/apps_images/WDIMS/ScreenShot3.png",
+      "/apps_images/WDIMS/ScreenShot4.png",
+      "/apps_images/WDIMS/ScreenShot5.png"
     ],
-    "deploymentType": "コンソールアプリ(ターミナルで実行)",
-    "createdAt": "2024-01-01",
-    "updatedAt": "2024-03-01"
+    "deploymentType": "ウェブアプリ(すぐに使用可能！)",
+    "tags": ["TypeScript", "Preact", "PWA対応"]
   },
   {
     "id": "app-2",
-    "name": "ログ解析メモ帳",
-    "description": "SNSや掲示板ログを読みやすく整形し、検索・可視化するデスクトップ向けツール。",
-    "appUrl": "https://example.com/log-note",
+    "name": "WDIMS-desktop-by-sea（WDIMS:D-SEA）",
+    "description": "WDIMSのデスクトップ版。設定をファイルで管理。異なるブラウザで同じ設定を使用可能。",
+    "appUrl": "https://github.com/TweeTeaFOX223/WDIMS-desktop-by-sea",
     "displayOrder": 2,
     "imageUrls": [
-      "/apps/placeholder-2.svg",
-      "/apps/placeholder-1.svg"
+      "/apps_images/WDIMS_D_SEA/ScreenShot.png",
+      "/apps_images/WDIMS_D_SEA/ScreenShot2.png",
+      "/apps_images/WDIMS_D_SEA/ScreenShot3.png"
     ],
     "deploymentType": "デスクトップアプリ(PCにインストール)",
-    "createdAt": "2024-02-10",
-    "updatedAt": "2024-03-12"
+    "tags": ["TypeScript", "Preact", "Hono RPC", "Socket.IO", "Node.js SEA"]
   },
   {
     "id": "app-3",
-    "name": "研究メモ・リンク集",
-    "description": "技術調査の成果をまとめたリンク集。テーマ別に整理し、すぐ参照できる情報ページ。",
-    "appUrl": "https://example.com/research-links",
+    "name": "bookmark-analytics-toolkit（BAT）",
+    "description": "WebBrowserBookmarksViewで出力したPCブラウザのブックマークデータを12の方法で分析/可視化。",
+    "appUrl": "https://github.com/TweeTeaFOX223/bookmark-analytics-toolkit",
     "displayOrder": 3,
     "imageUrls": [
-      "/apps/placeholder-1.svg"
+      "/apps_images/BAT/SideBar.png",
+      "/apps_images/BAT/8_Weekday-HourHeatmap.png",
+      "/apps_images/BAT/9_HierarchyTreemap.png"
     ],
-    "deploymentType": "その他(データや情報集など)",
-    "createdAt": "2024-01-20",
-    "updatedAt": "2024-03-05"
+    "deploymentType": "デスクトップアプリ(PCにインストール)",
+    "tags": ["Python/uv", "Streamlit", "Polars", "SudachiPy", "PyInstaller"]
   },
   {
     "id": "app-4",
-    "name": "小さな作業効率化ツール",
-    "description": "ブラウザで動く軽量ユーティリティ集。日々の作業を少しだけ速くする小さな道具箱。",
-    "appUrl": "https://example.com/tiny-tools",
+    "name": "Directory Structure Generator（DSG）",
+    "description": "時間割を入力して学校の授業用フォルダの構造を作成するツール＆指定した範囲の数で連番フォルダ作るだけのツール。",
+    "appUrl": "https://github.com/TweeTeaFOX223/directory-structure-generator",
     "displayOrder": 4,
     "imageUrls": [
-      "/apps/placeholder-1.svg",
-      "/apps/placeholder-2.svg"
+      "/apps_images/DSG/スクリーンショット2.png",
+      "/apps_images/DSG/スクリーンショット1.png"
     ],
     "deploymentType": "ウェブアプリ(すぐに使用可能！)",
-    "createdAt": "2024-03-01",
-    "updatedAt": "2024-03-20"
+    "tags": ["バニラのJavaScript", "学生向け"]
   },
   {
     "id": "app-5",
-    "name": "動画メモ抽出ツール",
-    "description": "動画の見どころだけを短くメモ化して残すウェブツール。視聴ログの整理に使える。",
-    "appUrl": "https://example.com/video-notes",
+    "name": "Mini CSV Analyzer on Client",
+    "description": "ブラウザ上でCSVのデータ分析を行うアプリ。「danfojs@1.1.2」の試用。開発者ツールのコンソールからデータ操作可能。",
+    "appUrl": "https://github.com/TweeTeaFOX223/mini-csv-analyzer-on-client",
     "displayOrder": 5,
     "imageUrls": [
-      "/apps/placeholder-2.svg"
+      "/apps_images/mini-csv-analyzer-on-client/スクリーンショット1.png",
+      "/apps_images/mini-csv-analyzer-on-client/スクリーンショット2.png"
     ],
     "deploymentType": "ウェブアプリ(すぐに使用可能！)",
-    "createdAt": "2024-02-22",
-    "updatedAt": "2024-03-18"
+    "tags": ["バニラのJavaScript", "Danfo.js"]
   },
   {
     "id": "app-6",
-    "name": "ファイル名リネーム補助",
-    "description": "大量のファイル名を規則化するデスクトップ補助ツール。置換や一括採番に対応。",
-    "appUrl": "https://example.com/rename-helper",
+    "name": "cy-experiment-graph-editor",
+    "description": "Cytoscape.jsを利用したグラフの実験的エディタ。ノード/エッジの新規作成と編集、各要素のプロパティ編集等が可能。",
+    "appUrl": "https://github.com/TweeTeaFOX223/cy-experiment-graph-editor",
     "displayOrder": 6,
     "imageUrls": [
-      "/apps/placeholder-1.svg",
-      "/apps/placeholder-2.svg"
+      "/apps_images/cy-experiment-graph-editor/スクリーンショット.png"
     ],
-    "deploymentType": "デスクトップアプリ(PCにインストール)",
-    "createdAt": "2024-01-28",
-    "updatedAt": "2024-02-25"
-  },
-  {
-    "id": "app-7",
-    "name": "データ整理テンプレ集",
-    "description": "分析やログ整理で使えるテンプレートをまとめた配布ページ。用途別にすぐ使える。",
-    "appUrl": "https://example.com/data-templates",
-    "displayOrder": 7,
-    "imageUrls": [
-      "/apps/placeholder-2.svg"
-    ],
-    "deploymentType": "その他(データや情報集など)",
-    "createdAt": "2024-01-05",
-    "updatedAt": "2024-02-14"
+    "deploymentType": "ウェブアプリ(すぐに使用可能！)",
+    "tags": ["バニラのJavaScript", "Cytoscape.js"]
   }
 ]

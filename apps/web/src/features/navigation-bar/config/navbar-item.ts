@@ -8,7 +8,7 @@ export const navBarItems: NavBarItemConfig = {
       iconName: "CircleUserRound",
     },
     {
-      name: "公開中のアプリ",
+      name: "公開中アプリ",
       href: "/#apps",
       iconName: "Sparkles",
     },
@@ -28,7 +28,7 @@ export const navBarItems: NavBarItemConfig = {
       iconName: "BookText",
     },
     {
-      name: "制作アプリ",
+      name: "GitHub Repos",
       href: "/#products",
       iconName: "AppWindow",
     },

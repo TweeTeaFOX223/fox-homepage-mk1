@@ -28,7 +28,7 @@ export default function ViewAllCard({
         </CardHeader>
 
         <CardContent className="flex-grow space-y-3">
-          <div className="text-xl font-bold text-primary">
+          <div className="text-xl font-bold text-orange-600">
             全部で {totalCount} 個あります
           </div>
 
@@ -39,7 +39,7 @@ export default function ViewAllCard({
                 className="flex items-center justify-between px-3 py-2 rounded-md bg-background/50 border border-foreground/10"
               >
                 <span className="text-sm font-medium">{stat.label}</span>
-                <span className="text-sm font-bold text-primary">{stat.count} 個</span>
+                <span className="text-sm font-bold text-orange-600">{stat.count} 個</span>
               </div>
             ))}
           </div>

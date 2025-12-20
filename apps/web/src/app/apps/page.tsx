@@ -27,12 +27,14 @@ export default function AppsPage() {
     <main className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="w-full space-y-4 p-4">
-          <h1 className="text-3xl font-bold mb-6 flex items-center justify-center">
-            公開中のアプリ
-          </h1>
-          <p className="text-muted-foreground flex items-center justify-center mb-6">
-            公開中のアプリ一覧です。
-          </p>
+          <div className="relative p-6 pb-4">
+            <h1 className="text-3xl md:text-4xl font-black text-center text-orange-500/95">
+              [公開中のアプリ]
+            </h1>
+            <p className="text-muted-foreground flex items-center justify-center mt-4">
+              公開中のアプリ一覧です。
+            </p>
+          </div>
           <AppListWithControls apps={apps} />
         </div>
       </div>

@@ -29,12 +29,14 @@ export default async function ArticlesPage() {
     <main className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="w-full space-y-4 p-4">
-          <h1 className="text-3xl font-bold mb-6 flex items-center justify-center">
-            開発技術の記事
-          </h1>
-          <p className="text-muted-foreground flex items-center justify-center mb-6">
-            ZennとQiitaに投稿している、開発技術に関係する記事です。
-          </p>
+          <div className="relative p-6 pb-4">
+            <h1 className="text-3xl md:text-4xl font-black text-center text-orange-500/95">
+              [開発技術の記事]
+            </h1>
+            <p className="text-muted-foreground flex items-center justify-center mt-4">
+              ZennとQiitaに投稿している、開発技術に関係する記事です。
+            </p>
+          </div>
           <ArticleListWithControls articles={articles} />
         </div>
       </div>

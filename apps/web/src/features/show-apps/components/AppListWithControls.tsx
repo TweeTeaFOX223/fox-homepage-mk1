@@ -4,12 +4,9 @@ import { useMemo, useState } from "react";
 import type { AppItem } from "../config/apps";
 import AppCard from "./AppCard";
 import AppListRow from "./AppListRow";
-import ListControls, {
-  SortField,
-  SortOrder,
-  ViewMode,
-} from "@/components/ListControls";
+import type { SortOrder, ViewMode } from "@/components/ListControls";
 import { Button } from "@/components/ui/button";
+import { LayoutGrid, List } from "lucide-react";
 
 interface AppListWithControlsProps {
   apps: AppItem[];
@@ -25,8 +22,7 @@ const deploymentOrder = [
 export default function AppListWithControls({
   apps,
 }: AppListWithControlsProps) {
-  const [sortField, setSortField] = useState<SortField>("created");
-  const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
   const [typeFilter, setTypeFilter] = useState<string>("all");
   const [isTypeModalOpen, setIsTypeModalOpen] = useState(false);
@@ -45,34 +41,82 @@ export default function AppListWithControls({
         : apps.filter((app) => app.deploymentType === typeFilter);
 
     return [...filtered].sort((a, b) => {
-      const dateA = new Date(
-        sortField === "created" ? a.createdAt : a.updatedAt
-      );
-      const dateB = new Date(
-        sortField === "created" ? b.createdAt : b.updatedAt
-      );
-
       if (sortOrder === "desc") {
-        return dateB.getTime() - dateA.getTime();
+        return b.displayOrder - a.displayOrder;
       }
-      return dateA.getTime() - dateB.getTime();
+      return a.displayOrder - b.displayOrder;
     });
-  }, [apps, typeFilter, sortField, sortOrder]);
+  }, [apps, typeFilter, sortOrder]);
+
+  const displayPreview = sortedApps[0]?.imageUrls?.[0];
 
   return (
     <>
-      <div className="flex flex-wrap items-center gap-2 p-4 mb-4 bg-gradient-to-r from-foreground/5 to-transparent border-2 border-foreground/10 rounded-lg">
-        <span className="text-sm font-semibold text-muted-foreground">
-          アプリの種類:
-        </span>
-        <Button
-          variant={isTypeModalOpen ? "default" : "outline"}
-          size="sm"
-          onClick={() => setIsTypeModalOpen(true)}
-          className="text-xs"
-        >
-          種類: {typeLabel}
-        </Button>
+      <div className="flex flex-col gap-3 p-4 mb-4 bg-gradient-to-r from-foreground/5 to-transparent border-2 border-foreground/10 rounded-lg">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-sm font-semibold text-muted-foreground">
+            表示順序:
+          </span>
+          <Button
+            variant={sortOrder === "asc" ? "default" : "outline"}
+            size="sm"
+            onClick={() => setSortOrder("asc")}
+            className="text-xs"
+          >
+            昇順
+          </Button>
+          <Button
+            variant={sortOrder === "desc" ? "default" : "outline"}
+            size="sm"
+            onClick={() => setSortOrder("desc")}
+            className="text-xs"
+          >
+            降順
+          </Button>
+          <span className="text-sm font-semibold text-muted-foreground">
+            アプリの種類:
+          </span>
+          <Button
+            variant={isTypeModalOpen ? "default" : "outline"}
+            size="sm"
+            onClick={() => setIsTypeModalOpen(true)}
+            className="text-xs"
+          >
+            種類: {typeLabel}
+          </Button>
+          <div className="flex items-center gap-2 md:ml-auto">
+            <span className="text-sm font-semibold text-muted-foreground">
+              表示:
+            </span>
+            <Button
+              variant={viewMode === "grid" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setViewMode("grid")}
+              className="text-xs flex items-center gap-1"
+            >
+              <LayoutGrid className="w-3 h-3" />
+              タイル
+            </Button>
+            <Button
+              variant={viewMode === "list" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setViewMode("list")}
+              className="text-xs flex items-center gap-1"
+            >
+              <List className="w-3 h-3" />
+              一覧
+            </Button>
+            {displayPreview && (
+              <div className="ml-2 h-8 w-12 overflow-hidden rounded-md border border-foreground/10 bg-foreground/5">
+                <img
+                  src={displayPreview}
+                  alt="アプリのサムネイル"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            )}
+          </div>
+        </div>
       </div>
       {isTypeModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -127,15 +171,6 @@ export default function AppListWithControls({
           </div>
         </div>
       )}
-      <ListControls
-        sortField={sortField}
-        sortOrder={sortOrder}
-        viewMode={viewMode}
-        onSortFieldChange={setSortField}
-        onSortOrderChange={setSortOrder}
-        onViewModeChange={setViewMode}
-      />
-
       {viewMode === "grid" ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {sortedApps.map((app) => (

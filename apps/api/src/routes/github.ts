@@ -19,7 +19,7 @@ const github = new Hono<{ Bindings: Bindings }>().get(
   zValidator(
     "query",
     z.object({
-      per_page: z.coerce.number().min(1).max(100).optional().default(30),
+      per_page: z.coerce.number().min(1).max(100).optional().default(100),
     })
   ),
   async (c) => {

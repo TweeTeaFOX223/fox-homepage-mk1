@@ -1,28 +1,22 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  Twitter,
-  BookOpen,
-  Github,
-  FileText,
-  MessageCircle,
-} from "lucide-react";
+import { Twitter, Github } from "lucide-react";
 
 export default function BaseProfile() {
   return (
     <div className="w-full">
       {/* 1枚のカードとしてまとめる */}
-      <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500/10 via-teal-500/10 to-cyan-500/10 border-2 border-emerald-500/20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.1),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(20,184,166,0.1),transparent_50%)]"></div>
+      <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-amber-500/10 via-lime-500/10 to-teal-500/10 border-2 border-amber-500/20">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(252,211,77,0.14),transparent_55%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(45,212,191,0.12),transparent_55%)]"></div>
 
         {/* ヘッダー */}
         <div className="relative p-6 pb-4">
-          <h1 className="text-3xl md:text-4xl font-black text-center bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
-            プロフィール
+          <h1 className="text-3xl md:text-4xl font-black text-center text-orange-500/95">
+            [プロフィール]
           </h1>
           <p className="text-muted-foreground flex items-center justify-center mt-4">
-            名刺的な簡易自己紹介です。ネット活動場所のリンクが集結。
+            名刺的な簡易自己紹介です。
           </p>
         </div>
 
@@ -58,13 +52,19 @@ export default function BaseProfile() {
                 <p className="text-[10px] font-bold text-foreground mt-0 leading-tight">
                   ツイーティ・ザ・フォックス
                 </p>
-                <p className="text-xs text-teal-700 font-bold mt-6 mb-0 leading-tight">
+                <p className="text-xs text-teal-700 font-bold mt-1 mb-0 leading-tight">
                   略式の名前：
                 </p>
                 <p className="text-xs font-bold text-foreground mt-0 leading-tight">
                   T2フォックス／T2-FOX
                 </p>
-                <p className="text-xs text-teal-700 font-bold mt-6 mb-0 leading-tight">
+                <p className="text-xs text-teal-700 font-bold mt-3 mb-0 leading-tight">
+                  ホームページ：
+                </p>
+                <p className="text-[10px] font-bold text-foreground mt-0 leading-tight">
+                  home.t2fox.workers.dev
+                </p>
+                <p className="text-xs text-teal-700 font-bold mt-3 mb-0 leading-tight">
                   開発で重視すること：
                 </p>
                 <p className="text-xs font-bold text-foreground mt-0 leading-tight">
@@ -212,7 +212,7 @@ export default function BaseProfile() {
                       <div className="font-bold text-xs">
                         Discord：@tweetea_the_fox
                       </div>
-                      <div className="text-[10px] text-muted-foreground">
+                      <div className="text-[9px] text-muted-foreground">
                         主要な連絡手段。開発関係のチーム作業の主力ツール
                       </div>
                     </div>
@@ -234,7 +234,7 @@ export default function BaseProfile() {
                       <div className="flex items-center gap-2">
                         <div className="font-bold text-xs">note</div>
                       </div>
-                      <div className="text-[8px] text-muted-foreground font-semibold">
+                      <div className="text-[9px] font-bold  text-foreground">
                         @tweeteafox300
                       </div>
                     </div>
@@ -253,7 +253,7 @@ export default function BaseProfile() {
                       <div className="flex items-center gap-2">
                         <div className="font-bold text-xs">Zenn</div>
                       </div>
-                      <div className="text-[8px] text-muted-foreground font-semibold">
+                      <div className="text-[9px] font-bold  text-foreground">
                         @tweeteafox300
                       </div>
                     </div>
@@ -272,7 +272,7 @@ export default function BaseProfile() {
                       <div className="flex items-center gap-2">
                         <div className="font-bold text-xs">Qiita</div>
                       </div>
-                      <div className="text-[8px] text-muted-foreground font-semibold">
+                      <div className="text-[9px] font-bold  text-foreground">
                         @tweeteafox300
                       </div>
                     </div>
@@ -291,7 +291,7 @@ export default function BaseProfile() {
                       <div className="flex items-center gap-2">
                         <div className="font-bold text-xs">Gist</div>
                       </div>
-                      <div className="text-[8px] text-muted-foreground font-semibold">
+                      <div className="text-[9px] font-bold  text-foreground">
                         @TweeTeaFOX223
                       </div>
                     </div>

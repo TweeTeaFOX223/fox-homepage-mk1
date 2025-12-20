@@ -14,8 +14,7 @@ export interface AppItem {
   displayOrder: number;
   imageUrls: string[];
   deploymentType: DeploymentType;
-  createdAt: string;
-  updatedAt: string;
+  tags: string[];
 }
 
 export const apps: AppItem[] = appsData as AppItem[];

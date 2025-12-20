@@ -9,7 +9,7 @@ import ViewAllCard from "@/components/ViewAllCard";
 export default async function RepositoryList({
   limit,
 }: { limit?: number } = {}) {
-  const repos = await getGitHubRepositories(GITHUB_USERNAME, 30);
+  const repos = await getGitHubRepositories(GITHUB_USERNAME, 100);
 
   const nonForkRepos = repos.filter((repo) => !repo.fork);
 
@@ -31,14 +31,23 @@ export default async function RepositoryList({
     .slice(0, 5)
     .map(([label, count]) => ({ label, count }));
 
+  const showTruncationWarning = repos.length >= 100;
+
   return (
     <div className="w-full space-y-4 p-4">
-      <h2 className="text-2xl font-black mb-6 flex items-center justify-center bg-gradient-to-r from-lime-600 via-emerald-600 to-sky-600 bg-clip-text text-transparent">
-        GitHubリポジトリ
-      </h2>
-      <p className="text-muted-foreground flex items-center justify-center">
-        自分のGitHubのリポジトリの一覧です。全部見るページでフィルタ/ソートできます。
-      </p>
+      <div className="relative p-6 pb-4">
+        <h2 className="text-3xl md:text-4xl font-black text-center text-orange-500/95">
+          [GitHubリポジトリ]
+        </h2>
+        <p className="text-muted-foreground flex items-center justify-center mt-4">
+          自分のGitHubのリポジトリの一覧です。全部見るページでフィルタ/ソートできます。
+        </p>
+        {showTruncationWarning && (
+          <p className="mt-4 text-center text-sm font-semibold text-amber-600">
+            100件以上のリポジトリがあり取得漏れが起きたようです。コードを修正してください。
+          </p>
+        )}
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {displayRepos.map((repo: GitHubRepository) => (
           <RepositoryCard key={repo.id} repo={repo} />

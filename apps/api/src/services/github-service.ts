@@ -15,7 +15,7 @@ export class GitHubService {
     this.token = env.GITHUB_TOKEN;
   }
 
-  async getUserRepositories(username: string, perPage: number = 30): Promise<GitHubRepository[]> {
+  async getUserRepositories(username: string, perPage: number = 100): Promise<GitHubRepository[]> {
     if (!this.token) {
       throw new Error("GITHUB_TOKEN is not configured");
     }
