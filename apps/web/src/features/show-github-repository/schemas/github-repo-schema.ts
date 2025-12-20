@@ -11,6 +11,7 @@ export const RepoCardItemSchema = z.object({
   language: z.string().nullable(),
   updated_at: z.string().datetime(),
   created_at: z.string().datetime(),
+  fork: z.boolean(),
   topics: z.array(z.string()).nullable().optional(),
 });
 

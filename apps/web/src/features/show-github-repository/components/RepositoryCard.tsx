@@ -58,7 +58,7 @@ export const RepositoryCard = ({ repo }: { repo: RepoCardItem }) => {
           </div>
 
           <div className="text-xs text-muted-foreground">
-            最終更新: {formatDateJP(repo.created_at)}
+            最終更新: {formatDateJP(repo.updated_at)}
           </div>
 
           {/* <div className="flex items-center gap-1">
