@@ -14,7 +14,7 @@ export default function ArticleListRow({
       className="flex items-center justify-between p-4 bg-white border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover:bg-foreground/5"
     >
       <div className="flex-1 min-w-0 pr-4">
-        <h3 className="text-base font-semibold text-foreground hover:underline truncate">
+        <h3 className="text-base font-semibold text-foreground hover:underline whitespace-pre-wrap break-words">
           {article.title}
         </h3>
         <div className="flex items-center gap-3 mt-1 text-xs text-muted-foreground">

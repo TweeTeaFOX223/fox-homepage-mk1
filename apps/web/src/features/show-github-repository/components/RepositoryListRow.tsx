@@ -17,7 +17,7 @@ export default function RepositoryListRow({
         <h3 className="text-base font-semibold text-foreground hover:underline truncate">
           {repo.name}
         </h3>
-        <p className="text-sm text-muted-foreground truncate mt-1">
+        <p className="text-sm text-muted-foreground whitespace-pre-wrap break-words mt-1">
           {repo.description || "説明なし"}
         </p>
         <div className="flex items-center gap-2 mt-2">
