@@ -45,7 +45,7 @@ export default function BaseProfile() {
               </div>
 
               {/* 名前 */}
-              <div className="col-span-1 row-span-1 md:row-span-2 border-2 border-emerald-500/30 rounded-lg p-3 lg:pl-8 mb-2 bg-gradient-to-r from-emerald-50/50 to-teal-50/50 flex flex-col gap-0 text-center lg:text-left">
+              <div className="col-span-1 row-span-1 md:row-span-2 border-2 border-emerald-500/30 rounded-lg p-3 lg:pl-8 xl:pl-10 2xl:pl-16 mb-2 bg-gradient-to-r from-emerald-50/50 to-teal-50/50 flex flex-col gap-0 text-center lg:text-left">
                 <p className="text-xs xl:text-base text-emerald-700 font-bold mb-0 leading-tight">
                   正式の名前：
                 </p>
