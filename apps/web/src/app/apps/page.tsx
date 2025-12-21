@@ -29,7 +29,8 @@ export default function AppsPage() {
         <div className="w-full space-y-4 p-4">
           <div className="relative p-6 pb-4">
             <h1 className="text-3xl md:text-4xl font-black text-center text-orange-500/95">
-              [公開中のアプリ]
+              <span className="block sm:inline">公開中の</span>
+              <span className="block sm:inline">アプリ</span>
             </h1>
             <p className="text-muted-foreground flex items-center justify-center mt-4">
               公開中のアプリ一覧です。

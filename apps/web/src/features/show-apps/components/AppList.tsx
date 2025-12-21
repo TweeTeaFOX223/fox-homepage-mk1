@@ -34,10 +34,11 @@ export default function AppList({ limit }: AppListProps = {}) {
     <div className="w-full space-y-4 p-4">
       <div className="relative p-6 pb-4">
         <h2 className="text-3xl md:text-4xl font-black text-center text-orange-500/95">
-          [公開中のアプリ]
+          <span className="block sm:inline">公開中の</span>
+          <span className="block sm:inline">アプリ</span>
         </h2>
         <p className="text-muted-foreground flex items-center justify-center mt-4">
-          実際に使えるウェブアプリケーション
+          実際に使えるアプリケーション。GitHub Reposと重複あり。
         </p>
       </div>
 

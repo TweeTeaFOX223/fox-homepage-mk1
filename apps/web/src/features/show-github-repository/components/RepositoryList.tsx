@@ -37,7 +37,8 @@ export default async function RepositoryList({
     <div className="w-full space-y-4 p-4">
       <div className="relative p-6 pb-4">
         <h2 className="text-3xl md:text-4xl font-black text-center text-orange-500/95">
-          [GitHubリポジトリ]
+          <span className="block sm:inline">GitHub</span>
+          <span className="block sm:inline">リポジトリ</span>
         </h2>
         <p className="text-muted-foreground flex items-center justify-center mt-4">
           自分のGitHubのリポジトリの一覧です。全部見るページでフィルタ/ソートできます。

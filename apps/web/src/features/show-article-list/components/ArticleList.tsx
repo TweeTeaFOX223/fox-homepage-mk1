@@ -29,7 +29,8 @@ export default async function ArticleList({ limit }: { limit?: number } = {}) {
     <div className="w-full space-y-4 p-4">
       <div className="relative p-6 pb-4">
         <h2 className="text-3xl md:text-4xl font-black text-center text-orange-500/95">
-          [開発技術の記事]
+          <span className="block sm:inline">開発技術の</span>
+          <span className="block sm:inline">記事</span>
         </h2>
         <p className="text-muted-foreground flex items-center justify-center mt-4">
           ZennとQiitaに投稿している、開発技術に関係する記事です。
