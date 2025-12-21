@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { AppItem } from "../config/apps";
-import Image from "next/image";
 
 export default function AppCard({ app }: { app: AppItem }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -25,11 +24,11 @@ export default function AppCard({ app }: { app: AppItem }) {
         {/* アプリ画像 */}
         <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 mb-3">
           {activeImage ? (
-            <Image
+            <img
               src={activeImage}
               alt={app.name}
-              fill
-              className="object-contain transition-transform duration-300"
+              className="absolute inset-0 h-full w-full object-contain transition-transform duration-300"
+              loading="lazy"
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center text-xs text-muted-foreground font-semibold">
@@ -102,11 +101,11 @@ export default function AppCard({ app }: { app: AppItem }) {
               <div className="space-y-3">
                 <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 group">
                   {activeImage ? (
-                    <Image
+                    <img
                       src={activeImage}
                       alt={app.name}
-                      fill
-                      className="object-contain"
+                      className="absolute inset-0 h-full w-full object-contain"
+                      loading="lazy"
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center text-sm text-muted-foreground font-semibold">

@@ -1,7 +1,6 @@
 import { apps } from "@/features/show-apps/config/apps";
 import { notFound } from "next/navigation";
 import { NEXT_PUBLIC_BASE_URL } from "../../../../config";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
@@ -74,11 +73,11 @@ export default function AppDetailPage({ params }: { params: { id: string } }) {
 
         {/* メイン画像 */}
         <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 mb-8 shadow-2xl">
-          <Image
+          <img
             src={mainImage}
             alt={app.name}
-            fill
-            className="object-cover"
+            className="absolute inset-0 h-full w-full object-contain"
+            loading="lazy"
           />
         </div>
 
