@@ -67,10 +67,10 @@ export default function BaseProfile() {
                 <p className="text-xs text-teal-700 font-bold mt-3 mb-0 leading-tight">
                   開発で重視すること：
                 </p>
-                <p className="text-xs font-bold text-foreground mt-0 leading-tight">
-                  <p>所属団体 or 自分自身の</p>
-                  <p> 「目標達成・任務完遂」</p>
-                </p>
+                <div className="text-xs font-bold text-foreground mt-0 leading-tight">
+                  <div>所属団体 or 自分自身の</div>
+                  <div> 「目標達成・任務完遂」</div>
+                </div>
               </div>
 
               {/* 主な活動内容 - 1列 */}
