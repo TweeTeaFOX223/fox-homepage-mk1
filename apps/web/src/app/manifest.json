@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "T2フォックスのホームページ",
+  "short_name": "T2フォックス",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#6ee7b7",
+  "background_color": "#6ee7b7",
   "display": "standalone"
 }
