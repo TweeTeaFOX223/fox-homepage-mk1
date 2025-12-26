@@ -1,36 +1,40 @@
-# Portfolio Homepage
+# fox-homepage-mk1
 
-私のポートフォリオサイトのソースコードです。BFF（Backend for Frontend）アーキテクチャを採用し、Cloudflare Workersにデプロイしています。
 
-## 🏗️ アーキテクチャ概要
-
-### システム構成図
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Cloudflare Edge Network                   │
-├─────────────────────────────────────────────────────────────┤
-│                                                               │
-│  ┌────────────────────────┐      ┌──────────────────────┐  │
-│  │   Web Worker (home)    │      │  API Worker          │  │
-│  │   Next.js 16 + OpenNext│◄────►│  (portfolio-api)     │  │
-│  │                        │      │  Hono.js             │  │
-│  └────────────────────────┘      └──────────────────────┘  │
-│           │                                │                 │
-│           │                                │                 │
-│           ▼                                ▼                 │
-│  ┌────────────────────────┐      ┌──────────────────────┐  │
-│  │  R2 Bucket             │      │  External APIs       │  │
-│  │  (ISR Cache)           │      │  - GitHub API        │  │
-│  │  next-cache-bucket     │      │  - Qiita API         │  │
-│  └────────────────────────┘      │  - Zenn API          │  │
-│                                   └──────────────────────┘  │
-│                                                               │
-└─────────────────────────────────────────────────────────────┘
-         ▲
-         │
-    User Access
-```
+私のホームページのソースコードです。
+  
+## 目次
+- [fox-homepage-mk1](#fox-homepage-mk1)
+  - [目次](#目次)
+    - [通信フロー](#通信フロー)
+    - [技術スタック](#技術スタック)
+      - [**モノレポ管理**](#モノレポ管理)
+      - [**Backend (API Worker)**](#backend-api-worker)
+      - [**Frontend (Web Worker)**](#frontend-web-worker)
+      - [**共有パッケージ**](#共有パッケージ)
+      - [**インフラ・デプロイ**](#インフラデプロイ)
+    - [主要機能](#主要機能)
+      - [**ISR (Incremental Static Regeneration)**](#isr-incremental-static-regeneration)
+      - [**Service Binding (Worker間通信)**](#service-binding-worker間通信)
+      - [**BFF (Backend for Frontend)**](#bff-backend-for-frontend)
+  - [📁 プロジェクト構造](#-プロジェクト構造)
+  - [デプロイ\&ビルド(CI/CD) の注意点](#デプロイビルドcicd-の注意点)
+    - [Wrangler OpenNext 誤検出の回避](#wrangler-opennext-誤検出の回避)
+    - [ビルド時の API 呼び出しエラーの回避](#ビルド時の-api-呼び出しエラーの回避)
+  - [環境変数の設定](#環境変数の設定)
+    - [1. GitHub Actions (Repository secrets)](#1-github-actions-repository-secrets)
+      - [CLOUDFLARE\_API\_TOKEN の作成手順（Workersへのデプロイ用）](#cloudflare_api_token-の作成手順workersへのデプロイ用)
+      - [R2 API トークン（S3互換 / ISRキャッシュ削除用）](#r2-api-トークンs3互換--isrキャッシュ削除用)
+    - [2. Cloudflare Workers 環境変数](#2-cloudflare-workers-環境変数)
+      - [API Worker (`portfolio-api`)](#api-worker-portfolio-api)
+      - [Web Worker (OpenNext)](#web-worker-opennext)
+  - [🚀 デプロイ](#-デプロイ)
+    - [自動デプロイ (GitHub Actions)](#自動デプロイ-github-actions)
+  - [🛠️ ローカル開発](#️-ローカル開発)
+    - [前提条件](#前提条件)
+    - [セットアップ](#セットアップ)
+    - [開発サーバーの起動](#開発サーバーの起動)
+    - [手動デプロイ](#手動デプロイ)
 
 ### 通信フロー
 
@@ -84,22 +88,22 @@
 - **キャッシュ期間**: 1時間（3600秒）
 - **ストレージ**: Cloudflare R2バケット
 - **対象データ**:
-  - Qiita/Zenn記事一覧
-  - GitHub リポジトリ一覧
+  - Qiita/Zenn記事一覧  
+  - GitHub リポジトリ一覧  
 
 #### **Service Binding (Worker間通信)**
 - **認証方式**: `X-Internal-API-Key` ヘッダー
 - **メリット**:
-  - パブリックインターネットを経由しない高速通信
-  - レイテンシー削減
-  - セキュリティ向上
+  - Cloudflareのリクエスト数を節約
+  - セキュリティ的に安全＆高速通信
 
-#### **BFF (Backend for Frontend)**
-- **役割**:
-  - 複数の外部APIを集約
-  - データの整形・フィルタリング
-  - 認証情報の隠蔽
-
+#### **BFF (Backend for Frontend)**  
+- Next.js(フロントエンドサーバー)では、シークレットの環境変数(各種APIのトークン)を一切扱わない。  
+- 機密性の高い処理は全てHono.js(バックエンドサーバー)の方で行う。  
+- RSCのサーバー/クライアントの境界線に関するミスをしても安全(フールプルーフ的な)。  
+- **BFFの考え方**: フロントエンド専用のバックエンドを用意し、UIに必要なデータ取得や集約を担当させることで、フロントの実装を簡潔にする設計。  
+- **本プロジェクトの構成**: Web Worker は画面描画に専念し、API Worker が外部API連携・認証・データ整形を担うため、BFFに近い構成。  
+  
 ## 📁 プロジェクト構造
 
 ```
@@ -145,11 +149,11 @@
 └── package.json                # ルートpackage.json
 ```
 
-## CI/CD の注意点
+## デプロイ&ビルド(CI/CD) の注意点
 
 ### Wrangler OpenNext 誤検出の回避
 
-モノレポ環境では、Wrangler が `node_modules/@opennextjs/cloudflare` の存在を検出して、すべてのWorkerをOpenNextプロジェクトとして扱おうとする問題があります。
+モノレポ環境では、GitHub ActionsのWrangler が `node_modules/@opennextjs/cloudflare` の存在を検出して、すべてのWorkerをOpenNextプロジェクトとして扱おうとする問題があります。公式ドキュメントを見ても原因わからなかったので、手動で色々と検証した結果、以下の方法で解決できると判明しました。
 
 **問題**:
 - `apps/api` は純粋な Hono Worker ですが、ルートの `node_modules/@opennextjs` を参照して OpenNext として誤検出される
@@ -172,11 +176,6 @@
       mv node_modules/@opennextjs-hidden node_modules/@opennextjs
     fi
 ```
-
-**参考情報**:
-- [Cloudflare Workers SDK](https://github.com/cloudflare/workers-sdk)
-- [OpenNext Cloudflare](https://opennext.js.org/cloudflare)
-- Wrangler の検出ロジックに関する公式ドキュメントは存在しないため、パッケージの存在で判定していると推測
 
 ### ビルド時の API 呼び出しエラーの回避
 
@@ -218,18 +217,13 @@ export function createApiClient(env: Env): ReturnType<typeof hc<AppType>> {
 3. **環境変数のデフォルト値設定**:
 ```typescript
 // config/index.ts
-export const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://t2fox.pages.dev';
+export const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://home.t2fox.workers.dev/';
 ```
 
 **動作**:
 - **ローカルビルド時**: 空のデータでビルドが成功し、静的HTMLが生成される（ダミークライアントは実際には呼ばれない）
 - **本番環境**: `INTERNAL_API_KEY` が設定されているため、正常にAPIを呼び出す
 - **ISR**: デプロイ後、初回アクセス時に実データを取得してキャッシュ（`revalidate: 3600`）
-
-**参考情報**:
-- [Next.js ISR Guide](https://nextjs.org/docs/app/guides/incremental-static-regeneration)
-- [Next.js unstable_cache](https://nextjs.org/docs/app/api-reference/functions/unstable_cache)
-- この問題に関する公式ドキュメントは見つかっていないため、独自の解決策を実装
 
 ## 環境変数の設定
 
@@ -242,6 +236,48 @@ export const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https:/
 | `CLOUDFLARE_ACCOUNT_ID` | Cloudflare アカウント ID |
 | `R2_ACCESS_KEY_ID` | R2 API Access Key ID |
 | `R2_SECRET_ACCESS_KEY` | R2 API Secret Access Key |
+
+#### CLOUDFLARE_API_TOKEN の作成手順（Workersへのデプロイ用）
+1. Cloudflare Dashboard にログイン  
+2. 右上の **My Profile → API Tokens** を開く  
+3. **Create Token** → **Edit Cloudflare Workers**（または同等のWorkerデプロイ権限）を選択  
+4. 対象のアカウント（Account）と必要な権限を指定  
+5. 生成されたトークンを `CLOUDFLARE_API_TOKEN` として登録  
+
+**CLOUDFLARE_ACCOUNT_ID の確認方法**  
+- Cloudflare Dashboard のURL内にある **アカウントID** を使用  
+  例: `https://dash.cloudflare.com/0123456789abcdef/` の `0123456789abcdef`  
+
+#### R2 API トークン（S3互換 / ISRキャッシュ削除用）
+GitHub Actions で R2 のオブジェクト削除を行うため、**R2のS3互換APIトークン**が必要です。
+
+ **R2 API Token 作成手順（S3互換**）
+1. **Cloudflare Dashboard** にログイン  
+   左サイドバーから **R2 → Overview** をクリック
+2. **API Token 管理画面**を開く  
+   右上の「Account Details」セクションにある **API Tokens** の **Manage** をクリック  
+   （直接リンク: `https://dash.cloudflare.com/?to=/:account/r2/api-tokens`）
+3. **Create API Token** をクリック  
+   - **Create Account API token（推奨）**: アカウント全体で使用可能、手動で無効化するまで有効  
+   - Create User API token: 個人ユーザーに紐付き、ユーザー削除で無効化
+4. **Permissions** を設定  
+   **Admin Read & Write** を選択（GitHub Actionsで削除操作を行うため必須）
+5. **Bucket scope（任意）**  
+   「Apply to specific buckets only」を選び、`next-cache-bucket` を指定することも可能  
+   （全バケットにアクセスするならスキップでOK）
+6. **トークン名**を設定  
+   例: `github-actions-r2-cache-clear`
+7. **Create API Token** をクリック
+8. **認証情報をコピー**  
+   ⚠️ **この画面は一度しか表示されません**  
+   - Access Key ID  
+   - Secret Access Key  
+   Secret Access Key は再表示できないので必ず保存
+9. **GitHub Secrets に追加**  
+   `Settings → Secrets and variables → Actions → New repository secret`
+   - `R2_ACCESS_KEY_ID` = Access Key ID  
+   - `R2_SECRET_ACCESS_KEY` = Secret Access Key
+
 
 ### 2. Cloudflare Workers 環境変数
 
@@ -269,44 +305,7 @@ export const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https:/
 - `Secret` はマスクされ、`Variable` は平文で表示されます
 - ビルド時は環境変数がなくてもデフォルト値で動作します（`config/index.ts` でフォールバック設定済み）
 
-### R2 API トークン（S3互換 / ISRキャッシュ削除用）
-GitHub Actions で R2 のオブジェクト削除を行うため、**R2のS3互換APIトークン**が必要です。
 
-#### R2 API Token 作成手順（S3互換）
-1. **Cloudflare Dashboard** にログイン  
-   左サイドバーから **R2 → Overview** をクリック
-2. **API Token 管理画面**を開く  
-   右上の「Account Details」セクションにある **API Tokens** の **Manage** をクリック  
-   （直接リンク: `https://dash.cloudflare.com/?to=/:account/r2/api-tokens`）
-3. **Create API Token** をクリック  
-   - **Create Account API token（推奨）**: アカウント全体で使用可能、手動で無効化するまで有効  
-   - Create User API token: 個人ユーザーに紐付き、ユーザー削除で無効化
-4. **Permissions** を設定  
-   **Admin Read & Write** を選択（GitHub Actionsで削除操作を行うため必須）
-5. **Bucket scope（任意）**  
-   「Apply to specific buckets only」を選び、`next-cache-bucket` を指定することも可能  
-   （全バケットにアクセスするならスキップでOK）
-6. **トークン名**を設定  
-   例: `github-actions-r2-cache-clear`
-7. **Create API Token** をクリック
-8. **認証情報をコピー**  
-   ⚠️ **この画面は一度しか表示されません**  
-   - Access Key ID  
-   - Secret Access Key  
-   Secret Access Key は再表示できないので必ず保存
-9. **GitHub Secrets に追加**  
-   `Settings → Secrets and variables → Actions → New repository secret`
-   - `R2_ACCESS_KEY_ID` = Access Key ID  
-   - `R2_SECRET_ACCESS_KEY` = Secret Access Key
-
-#### S3互換エンドポイント
-`https://<ACCOUNT_ID>.r2.cloudflarestorage.com`
-
-`ACCOUNT_ID` は Cloudflare Dashboard のURLに含まれます（例: `https://dash.cloudflare.com/0123456789abcdef/r2` の場合 `0123456789abcdef`）。
-
-**追加するSecrets:**
-- `R2_ACCESS_KEY_ID`
-- `R2_SECRET_ACCESS_KEY`
 
 ## 🚀 デプロイ
 
@@ -317,22 +316,15 @@ GitHub Actions で R2 のオブジェクト削除を行うため、**R2のS3互�
 **デプロイフロー**:
 1. **Turborepoキャッシュの復元** - 高速ビルド
 2. **npm依存関係のインストール** - `npm ci`
-3. **R2バケットのクリア** - ISRキャッシュリセット（S3 API経由）
-4. **Backend Workerのビルド・デプロイ** - `portfolio-api`
-5. **Frontend Workerのビルド・デプロイ** - `home`
+3. **Backend Workerのビルド・デプロイ** - `portfolio-api`
+4. **Frontend Workerのビルド・デプロイ** - `home`
+5. **R2バケットのクリア（デプロイ後）** - ISRキャッシュリセット（S3 API経由）
 
-### 手動デプロイ
+**重要**:
+OpenNext はデプロイ時にR2へISRキャッシュを自動作成するため、**デプロイ完了後にR2のISRキャッシュをクリアしないと反映が不安定**になります。  
+そのため、キャッシュ削除は **デプロイ後** に実行する必要があります。  
 
-```bash
-# Backend
-cd apps/api
-npm run deploy
 
-# Frontend
-cd apps/web
-npm run build:worker
-npm run deploy
-```
 
 ## 🛠️ ローカル開発
 
@@ -364,45 +356,13 @@ cd ../web
 ### 開発サーバーの起動
 
 ```bash
-# Backend (ターミナル1)
-cd apps/api
+#  フロントとバックが自動で立ち上がります
 npm run dev
-# → http://localhost:8787
-
-# Frontend (ターミナル2)
-cd apps/web
-npm run dev
-# → http://localhost:3000
 ```
 
-### ビルド
+### 手動デプロイ
 
 ```bash
-# Backend
-npm run build --workspace=@my-portfolio/api
-
-# Frontend
-npm run build:worker --workspace=@my-portfolio/web
+# フロントとバックが両方デプロイされます
+npm run deploy
 ```
-
-## 📊 パフォーマンス
-
-- **First Contentful Paint**: < 1.5s
-- **Time to Interactive**: < 3.0s
-- **Lighthouse Score**: 95+
-
-**最適化施策**:
-- Cloudflare Edge Network によるグローバル配信
-- ISRによる静的コンテンツキャッシュ
-- Service Bindingによる低レイテンシー通信
-- Turborepoによる高速ビルド
-
-## 📝 ライセンス
-
-このプロジェクトのソースコードはMITライセンスの下で公開されています。
-
----
-
-**開発者**: TweeTeaFOX223
-**技術スタック**: Next.js 16 + Hono.js + Cloudflare Workers
-**アーキテクチャ**: BFF + ISR + Turborepo
