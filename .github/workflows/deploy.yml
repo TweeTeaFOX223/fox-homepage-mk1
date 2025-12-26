@@ -346,124 +346,6 @@ jobs:
       # 手動でキャッシュクリアが必要な場合は:
       #   Cloudflare Dashboard → R2 → next-cache-bucket → Delete all
       # ----------------------------------------------------------
-      - name: Clear R2 ISR Cache
-        working-directory: ./apps/web
-        run: |
-          echo "🗑️  Clearing R2 ISR cache: next-cache-bucket/incremental-cache/"
-          echo "📋 Installing AWS SDK..."
-          npm install --no-save @aws-sdk/client-s3
-
-          node << 'SCRIPT'
-          const { S3Client, ListObjectsV2Command, DeleteObjectsCommand } = require('@aws-sdk/client-s3');
-
-          console.log('🔧 Initializing S3 Client...');
-          console.log('Account ID:', process.env.CLOUDFLARE_ACCOUNT_ID ? '✓ Set' : '❌ Missing');
-          console.log('Access Key ID:', process.env.R2_ACCESS_KEY_ID ? '✓ Set' : '❌ Missing');
-          console.log('Secret Access Key:', process.env.R2_SECRET_ACCESS_KEY ? '✓ Set' : '❌ Missing');
-
-          const client = new S3Client({
-            region: 'auto',
-            endpoint: `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`,
-            credentials: {
-              accessKeyId: process.env.R2_ACCESS_KEY_ID,
-              secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
-            },
-          });
-
-          async function deleteAllObjects() {
-            const bucketName = 'next-cache-bucket';
-            const prefix = 'incremental-cache/'; // ISRキャッシュのディレクトリ
-
-            console.log(`\n📦 Bucket: ${bucketName}`);
-            console.log(`📁 Prefix: ${prefix}`);
-            console.log(`🌐 Endpoint: https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com\n`);
-
-            let continuationToken = undefined;
-            let totalDeleted = 0;
-            let iteration = 0;
-
-            do {
-              iteration++;
-              console.log(`\n--- Iteration ${iteration} ---`);
-
-              try {
-                console.log('📋 Listing objects...');
-                const listCommand = new ListObjectsV2Command({
-                  Bucket: bucketName,
-                  Prefix: prefix, // ← 追加：ISRキャッシュのみを対象
-                  ContinuationToken: continuationToken,
-                  MaxKeys: 1000,
-                });
-
-                const listResponse = await client.send(listCommand);
-                console.log(`Found: ${listResponse.Contents?.length || 0} objects`);
-                console.log(`Truncated: ${listResponse.IsTruncated || false}`);
-
-                if (!listResponse.Contents || listResponse.Contents.length === 0) {
-                  if (totalDeleted === 0) {
-                    console.log('⚠️  No ISR cache objects found');
-                  } else {
-                    console.log('✅ All cache objects processed');
-                  }
-                  break;
-                }
-
-                // 最初の5個のキーを表示
-                console.log('Sample keys:', listResponse.Contents.slice(0, 5).map(obj => obj.Key).join(', '));
-
-                console.log('🗑️  Deleting objects...');
-                const deleteCommand = new DeleteObjectsCommand({
-                  Bucket: bucketName,
-                  Delete: {
-                    Objects: listResponse.Contents.map(obj => ({ Key: obj.Key })),
-                  },
-                });
-
-                const deleteResponse = await client.send(deleteCommand);
-                const deletedCount = deleteResponse.Deleted?.length || 0;
-                const errorCount = deleteResponse.Errors?.length || 0;
-
-                totalDeleted += deletedCount;
-                console.log(`✓ Deleted: ${deletedCount} objects`);
-
-                if (errorCount > 0) {
-                  console.log(`❌ Errors: ${errorCount}`);
-                  deleteResponse.Errors.forEach((err, idx) => {
-                    console.log(`  [${idx + 1}] ${err.Key}: ${err.Code} - ${err.Message}`);
-                  });
-                }
-
-                console.log(`📊 Total deleted so far: ${totalDeleted}`);
-
-                continuationToken = listResponse.IsTruncated ? listResponse.NextContinuationToken : undefined;
-
-              } catch (error) {
-                console.error('\n❌ Error occurred:');
-                console.error('Error name:', error.name);
-                console.error('Error message:', error.message);
-                if (error.$metadata) {
-                  console.error('HTTP Status:', error.$metadata.httpStatusCode);
-                  console.error('Request ID:', error.$metadata.requestId);
-                }
-                if (error.Code) console.error('Error Code:', error.Code);
-                throw error;
-              }
-            } while (continuationToken);
-
-            console.log(`\n✅ ISR cache cleared successfully!`);
-            console.log(`📊 Total cache objects deleted: ${totalDeleted}`);
-          }
-
-          deleteAllObjects().catch(error => {
-            console.error('\n💥 Failed to clear ISR cache');
-            console.error(error);
-            process.exit(1);
-          });
-          SCRIPT
-        env:
-          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       # ----------------------------------------------------------
       # ステップ7: Web Workerのビルド
       # ----------------------------------------------------------
@@ -539,6 +421,93 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
+      # ----------------------------------------------------------
+      # ステップ9: R2バケットのISRキャッシュクリア（デプロイ後）
+      # ----------------------------------------------------------
+      # 目的: デプロイ後に古いISRキャッシュを完全クリア
+      #
+      # なぜデプロイ後か：
+      # - OpenNextはデプロイ時に自動的にキャッシュをpopulateする
+      # - デプロイ前にクリアしても、デプロイ時に再作成される
+      # - デプロイ後にクリアすることで、次回アクセス時に
+      #   新しいコンテンツが生成される
+      # ----------------------------------------------------------
+      - name: Clear R2 ISR Cache (Post-Deploy)
+        working-directory: ./apps/web
+        run: |
+          echo "🗑️  Clearing R2 ISR cache: next-cache-bucket/incremental-cache/"
+          echo "📋 Installing AWS SDK..."
+          npm install --no-save @aws-sdk/client-s3
+
+          node << 'SCRIPT'
+          const { S3Client, ListObjectsV2Command, DeleteObjectsCommand } = require('@aws-sdk/client-s3');
+
+          console.log('🔧 Initializing S3 Client...');
+
+          const client = new S3Client({
+            region: 'auto',
+            endpoint: `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+            credentials: {
+              accessKeyId: process.env.R2_ACCESS_KEY_ID,
+              secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
+            },
+          });
+
+          async function deleteAllObjects() {
+            const bucketName = 'next-cache-bucket';
+            const prefix = 'incremental-cache/';
+
+            console.log(`\n📦 Bucket: ${bucketName}`);
+            console.log(`📁 Prefix: ${prefix}`);
+
+            let continuationToken = undefined;
+            let totalDeleted = 0;
+
+            do {
+              try {
+                const listCommand = new ListObjectsV2Command({
+                  Bucket: bucketName,
+                  Prefix: prefix,
+                  ContinuationToken: continuationToken,
+                  MaxKeys: 1000,
+                });
+
+                const listResponse = await client.send(listCommand);
+
+                if (!listResponse.Contents || listResponse.Contents.length === 0) {
+                  break;
+                }
+
+                const deleteCommand = new DeleteObjectsCommand({
+                  Bucket: bucketName,
+                  Delete: {
+                    Objects: listResponse.Contents.map(obj => ({ Key: obj.Key })),
+                  },
+                });
+
+                const deleteResponse = await client.send(deleteCommand);
+                totalDeleted += (deleteResponse.Deleted?.length || 0);
+
+                continuationToken = listResponse.IsTruncated ? listResponse.NextContinuationToken : undefined;
+
+              } catch (error) {
+                console.error('❌ Error:', error.message);
+                throw error;
+              }
+            } while (continuationToken);
+
+            console.log(`\n✅ ISR cache cleared! Deleted ${totalDeleted} objects`);
+          }
+
+          deleteAllObjects().catch(error => {
+            console.error('💥 Failed:', error);
+            process.exit(1);
+          });
+          SCRIPT
+        env:
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 # ============================================================
 # 必要なGitHub Secrets設定
 # ============================================================
