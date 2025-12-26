@@ -48,7 +48,6 @@ export default function AppListWithControls({
     });
   }, [apps, typeFilter, sortOrder]);
 
-  const displayPreview = sortedApps[0]?.imageUrls?.[0];
 
   return (
     <>
@@ -106,15 +105,6 @@ export default function AppListWithControls({
               <List className="w-3 h-3" />
               一覧
             </Button>
-            {displayPreview && (
-              <div className="ml-2 h-8 w-12 overflow-hidden rounded-md border border-foreground/10 bg-foreground/5">
-                <img
-                  src={displayPreview}
-                  alt="アプリのサムネイル"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            )}
           </div>
         </div>
       </div>
