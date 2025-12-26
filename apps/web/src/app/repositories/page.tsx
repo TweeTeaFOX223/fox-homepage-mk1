@@ -32,10 +32,10 @@ export default async function RepositoriesPage() {
         <div className="w-full space-y-4 p-4">
           <div className="relative p-6 pb-4">
             <h1 className="text-3xl md:text-4xl font-black text-center text-orange-500/95">
-              [制作物(GitHubリポジトリ)]
+              GitHubリポジトリ
             </h1>
             <p className="text-muted-foreground flex items-center justify-center mt-4">
-              GitHub上で公開している制作物の一覧です。大半はウェブ上で使用可能なものとなっています。
+              自分のGitHubのリポジトリの一覧です。公開中アプリと重複あり。
             </p>
             {showTruncationWarning && (
               <p className="mt-4 text-center text-sm font-semibold text-amber-600">

@@ -24,31 +24,48 @@ export default function RepositoryListWithControls({
   const [filterMode, setFilterMode] = useState<"mine" | "forks" | "all">(
     "mine"
   );
-  const [languageFilter, setLanguageFilter] = useState<string>("all");
+  const [languageMode, setLanguageMode] = useState<"all" | "specific">("all");
+  const [languageFilter, setLanguageFilter] = useState<Set<string>>(new Set());
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
-  const languageLabel = languageFilter === "all" ? "全て" : languageFilter;
-
-  const languageOptions = useMemo(() => {
-    const languages = repos
-      .map((repo) => repo.language)
-      .filter((language): language is string => Boolean(language));
-    return Array.from(new Set(languages)).sort((a, b) =>
-      a.localeCompare(b, "ja")
-    );
-  }, [repos]);
-
-  // フィルタ後にソートされたリポジトリリスト
-  const sortedRepos = useMemo(() => {
-    const filtered = repos.filter((repo) => {
+  const typeFilteredRepos = useMemo(() => {
+    return repos.filter((repo) => {
       if (filterMode === "mine") return !repo.fork;
       if (filterMode === "forks") return repo.fork;
       return true;
     });
+  }, [repos, filterMode]);
 
+  const languageCounts = useMemo(() => {
+    return typeFilteredRepos.reduce<Record<string, number>>((acc, repo) => {
+      if (repo.language) {
+        acc[repo.language] = (acc[repo.language] || 0) + 1;
+      }
+      return acc;
+    }, {});
+  }, [typeFilteredRepos]);
+
+  const languageOptions = useMemo(() => {
+    return Object.entries(languageCounts)
+      .sort(([, a], [, b]) => b - a)
+      .map(([language, count]) => ({
+        language,
+        count,
+      }));
+  }, [languageCounts]);
+
+  const languageLabel =
+    languageMode === "all"
+      ? "全て"
+      : languageFilter.size > 0
+      ? `選択中: ${languageFilter.size}件`
+      : "特定の言語";
+
+  // フィルタ後にソートされたリポジトリリスト
+  const sortedRepos = useMemo(() => {
     const languageFiltered =
-      languageFilter === "all"
-        ? filtered
-        : filtered.filter((repo) => repo.language === languageFilter);
+      languageMode === "specific" && languageFilter.size > 0
+        ? typeFilteredRepos.filter((repo) => repo.language && languageFilter.has(repo.language))
+        : typeFilteredRepos;
 
     return [...languageFiltered].sort((a, b) => {
       const dateA = new Date(
@@ -64,7 +81,7 @@ export default function RepositoryListWithControls({
         return dateA.getTime() - dateB.getTime();
       }
     });
-  }, [repos, sortField, sortOrder, filterMode, languageFilter]);
+  }, [typeFilteredRepos, sortField, sortOrder, languageMode, languageFilter]);
 
   return (
     <>
@@ -133,30 +150,56 @@ export default function RepositoryListWithControls({
               <label className="flex items-center gap-3 text-sm font-medium py-1">
                 <input
                   type="radio"
-                  name="language-filter"
+                  name="language-filter-mode"
                   value="all"
-                  checked={languageFilter === "all"}
-                  onChange={() => setLanguageFilter("all")}
+                  checked={languageMode === "all"}
+                  onChange={() => setLanguageMode("all")}
                   className="h-5 w-5"
                 />
                 全て
               </label>
-              {languageOptions.map((language) => (
-                <label
-                  key={language}
-                  className="flex items-center gap-3 text-sm font-medium py-1"
-                >
-                  <input
-                    type="radio"
-                    name="language-filter"
-                    value={language}
-                    checked={languageFilter === language}
-                    onChange={() => setLanguageFilter(language)}
-                    className="h-5 w-5"
-                  />
-                  {language}
-                </label>
-              ))}
+              <label className="flex items-center gap-3 text-sm font-medium py-1">
+                <input
+                  type="radio"
+                  name="language-filter-mode"
+                  value="specific"
+                  checked={languageMode === "specific"}
+                  onChange={() => setLanguageMode("specific")}
+                  className="h-5 w-5"
+                />
+                特定の言語
+              </label>
+              <div className="pt-2">
+                <div className="space-y-2 rounded-lg border border-foreground/15 bg-foreground/5 p-3">
+                  {languageOptions.map(({ language, count }) => (
+                    <label
+                      key={language}
+                      className="flex items-center gap-3 text-sm font-medium py-1"
+                    >
+                      <input
+                        type="checkbox"
+                        name="language-filter"
+                        value={language}
+                        checked={languageFilter.has(language)}
+                        onChange={(event) => {
+                          setLanguageFilter((prev) => {
+                            const next = new Set(prev);
+                            if (event.target.checked) {
+                              next.add(language);
+                            } else {
+                              next.delete(language);
+                            }
+                            return next;
+                          });
+                        }}
+                        className="h-5 w-5"
+                        disabled={languageMode !== "specific"}
+                      />
+                      {language} ({count})
+                    </label>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
