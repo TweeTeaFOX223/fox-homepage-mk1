@@ -374,11 +374,9 @@ jobs:
             const bucketName = 'next-cache-bucket';
             const prefix = 'incremental-cache/'; // ISRキャッシュのディレクトリ
 
-            console.log(`
-📦 Bucket: ${bucketName}`);
+            console.log(`\n📦 Bucket: ${bucketName}`);
             console.log(`📁 Prefix: ${prefix}`);
-            console.log(`🌐 Endpoint: https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
-`);
+            console.log(`🌐 Endpoint: https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com\n`);
 
             let continuationToken = undefined;
             let totalDeleted = 0;
@@ -386,8 +384,7 @@ jobs:
 
             do {
               iteration++;
-              console.log(`
---- Iteration ${iteration} ---`);
+              console.log(`\n--- Iteration ${iteration} ---`);
 
               try {
                 console.log('📋 Listing objects...');
@@ -441,8 +438,7 @@ jobs:
                 continuationToken = listResponse.IsTruncated ? listResponse.NextContinuationToken : undefined;
 
               } catch (error) {
-                console.error('
-❌ Error occurred:');
+                console.error('\n❌ Error occurred:');
                 console.error('Error name:', error.name);
                 console.error('Error message:', error.message);
                 if (error.$metadata) {
@@ -454,14 +450,12 @@ jobs:
               }
             } while (continuationToken);
 
-            console.log(`
-✅ ISR cache cleared successfully!`);
+            console.log(`\n✅ ISR cache cleared successfully!`);
             console.log(`📊 Total cache objects deleted: ${totalDeleted}`);
           }
 
           deleteAllObjects().catch(error => {
-            console.error('
-💥 Failed to clear ISR cache');
+            console.error('\n💥 Failed to clear ISR cache');
             console.error(error);
             process.exit(1);
           });
@@ -554,6 +548,8 @@ jobs:
 # - CLOUDFLARE_API_TOKEN: CloudflareダッシュボードでAPI Tokenを生成
 #   - Edit Cloudflare Workers権限が必要
 # - CLOUDFLARE_ACCOUNT_ID: CloudflareダッシュボードのAccount IDをコピー
+# - R2_ACCESS_KEY_ID: R2 API TokenのAccess Key ID
+# - R2_SECRET_ACCESS_KEY: R2 API TokenのSecret Access Key
 #
 # 設定方法:
 # 1. Cloudflareダッシュボード → My Profile → API Tokens → Create Token
