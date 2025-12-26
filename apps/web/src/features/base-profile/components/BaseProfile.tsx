@@ -31,14 +31,17 @@ export default function BaseProfile() {
               <div className="col-span-1 row-span-1 md:row-span-2 border-2 border-transparent rounded-lg p-2 bg-transparent flex items-center justify-center overflow-visible">
                 <div className="relative w-40 h-40 md:w-44 md:h-44 xl:w-60 xl:h-60 flex-shrink-0">
                   <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 rounded-full blur-2xl opacity-50"></div>
-                  <Avatar className="relative w-full h-full border-4 border-amber-200/70 ring-2 ring-amber-400/50 shadow-[0_0_0_rgba(0,0,0,0)] transition-shadow duration-300 hover:shadow-[0_0_48px_rgba(251,191,36,0.7)]">
+                  <Avatar className="relative w-full h-full border-4 border-amber-200/70 ring-2 ring-amber-400/50 shadow-[0_0_0_rgba(0,0,0,0)] transition-shadow duration-300 hover:shadow-[0_0_96px_rgba(251,191,36,0.85)]">
                     <AvatarImage
                       src="/icon/my-icon.png"
                       alt="T2フォックスのアイコン"
                       className="object-cover"
                     />
-                    <AvatarFallback className="text-2xl xl:text-4xl font-bold bg-gradient-to-br from-emerald-100 to-teal-100">
-                      T2
+                    <AvatarFallback className="avatar-fallback-fx bg-gradient-to-br from-emerald-50 via-emerald-100 to-teal-100">
+                      <span className="sr-only">T2</span>
+                      <span className="avatar-fallback-blob avatar-fallback-blob--emerald -left-6 -top-6 h-20 w-20" />
+                      <span className="avatar-fallback-blob avatar-fallback-blob--orange left-6 top-2 h-24 w-24" />
+                      <span className="avatar-fallback-blob avatar-fallback-blob--emerald -right-8 bottom-0 h-20 w-20" />
                     </AvatarFallback>
                   </Avatar>
                 </div>
@@ -68,7 +71,7 @@ export default function BaseProfile() {
                   開発で重視すること：
                 </p>
                 <div className="text-xs xl:text-base font-bold text-foreground mt-0 leading-tight">
-                  <div>所属団体 or 自分自身の</div>
+                  <div>所属勢力 or 自分自身の</div>
                   <div> 「目標達成・任務完遂」</div>
                 </div>
               </div>
