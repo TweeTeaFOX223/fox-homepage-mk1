@@ -12,6 +12,11 @@ export const navBarItems: NavBarItemConfig = {
       href: "/#apps",
       iconName: "Sparkles",
     },
+    {
+      name: "開発方針＆振り返り",
+      href: "/#dev-reflection",
+      iconName: "Compass",
+    },
     // {
     //   name: "興味ある技術",
     //   href: "/#interest-tech",
@@ -28,7 +33,7 @@ export const navBarItems: NavBarItemConfig = {
       iconName: "BookText",
     },
     {
-      name: "GitHub Repos",
+      name: "GitHubリポ",
       href: "/#products",
       iconName: "AppWindow",
     },

@@ -8,6 +8,7 @@ import {
   AppWindow,
   BookText,
   CircleUserRound,
+  Compass,
   Sparkles,
   Swords,
 } from "lucide-react";
@@ -28,6 +29,7 @@ export default function HorizontalNavButton({ config }: HorizontalNavBarProps) {
     Apple,
     BookText,
     AppWindow,
+    Compass,
   };
 
   const sectionIds = useMemo(

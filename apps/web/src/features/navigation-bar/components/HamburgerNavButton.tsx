@@ -14,6 +14,7 @@ import {
   AppWindow,
   BookText,
   CircleUserRound,
+  Compass,
   Menu,
   Sparkles,
   Swords,
@@ -38,6 +39,7 @@ export default function HamburgerNavButton({ config }: HamburgerNavProps) {
     Apple,
     BookText,
     AppWindow,
+    Compass,
   };
 
   const sectionIds = useMemo(

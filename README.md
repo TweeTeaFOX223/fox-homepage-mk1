@@ -240,6 +240,8 @@ export const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https:/
 |--------|------|
 | `CLOUDFLARE_API_TOKEN` | Cloudflare API トークン |
 | `CLOUDFLARE_ACCOUNT_ID` | Cloudflare アカウント ID |
+| `R2_ACCESS_KEY_ID` | R2 API Access Key ID |
+| `R2_SECRET_ACCESS_KEY` | R2 API Secret Access Key |
 
 ### 2. Cloudflare Workers 環境変数
 
@@ -267,6 +269,45 @@ export const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https:/
 - `Secret` はマスクされ、`Variable` は平文で表示されます
 - ビルド時は環境変数がなくてもデフォルト値で動作します（`config/index.ts` でフォールバック設定済み）
 
+### R2 API トークン（S3互換 / ISRキャッシュ削除用）
+GitHub Actions で R2 のオブジェクト削除を行うため、**R2のS3互換APIトークン**が必要です。
+
+#### R2 API Token 作成手順（S3互換）
+1. **Cloudflare Dashboard** にログイン  
+   左サイドバーから **R2 → Overview** をクリック
+2. **API Token 管理画面**を開く  
+   右上の「Account Details」セクションにある **API Tokens** の **Manage** をクリック  
+   （直接リンク: `https://dash.cloudflare.com/?to=/:account/r2/api-tokens`）
+3. **Create API Token** をクリック  
+   - **Create Account API token（推奨）**: アカウント全体で使用可能、手動で無効化するまで有効  
+   - Create User API token: 個人ユーザーに紐付き、ユーザー削除で無効化
+4. **Permissions** を設定  
+   **Admin Read & Write** を選択（GitHub Actionsで削除操作を行うため必須）
+5. **Bucket scope（任意）**  
+   「Apply to specific buckets only」を選び、`next-cache-bucket` を指定することも可能  
+   （全バケットにアクセスするならスキップでOK）
+6. **トークン名**を設定  
+   例: `github-actions-r2-cache-clear`
+7. **Create API Token** をクリック
+8. **認証情報をコピー**  
+   ⚠️ **この画面は一度しか表示されません**  
+   - Access Key ID  
+   - Secret Access Key  
+   Secret Access Key は再表示できないので必ず保存
+9. **GitHub Secrets に追加**  
+   `Settings → Secrets and variables → Actions → New repository secret`
+   - `R2_ACCESS_KEY_ID` = Access Key ID  
+   - `R2_SECRET_ACCESS_KEY` = Secret Access Key
+
+#### S3互換エンドポイント
+`https://<ACCOUNT_ID>.r2.cloudflarestorage.com`
+
+`ACCOUNT_ID` は Cloudflare Dashboard のURLに含まれます（例: `https://dash.cloudflare.com/0123456789abcdef/r2` の場合 `0123456789abcdef`）。
+
+**追加するSecrets:**
+- `R2_ACCESS_KEY_ID`
+- `R2_SECRET_ACCESS_KEY`
+
 ## 🚀 デプロイ
 
 ### 自動デプロイ (GitHub Actions)
@@ -276,7 +317,7 @@ export const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https:/
 **デプロイフロー**:
 1. **Turborepoキャッシュの復元** - 高速ビルド
 2. **npm依存関係のインストール** - `npm ci`
-3. **R2バケットのクリア** - ISRキャッシュリセット
+3. **R2バケットのクリア** - ISRキャッシュリセット（S3 API経由）
 4. **Backend Workerのビルド・デプロイ** - `portfolio-api`
 5. **Frontend Workerのビルド・デプロイ** - `home`
 

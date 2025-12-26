@@ -27,25 +27,25 @@ export default function TopNavBar() {
                   window.history.pushState(null, "", "/");
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
-                className="font-black text-lg md:text-xl text-amber-50 bg-orange-500 border-2 border-orange-700 px-3 py-1 rounded-sm shadow-[0_2px_0_rgba(0,0,0,0.35)] hover:scale-105 transition-transform duration-300"
+                className="font-black text-[clamp(0.95rem,1.3vw,1.25rem)] whitespace-nowrap text-amber-50 bg-orange-500 border-2 border-orange-700 px-3 py-1 rounded-sm shadow-[0_2px_0_rgba(0,0,0,0.35)] hover:scale-105 transition-transform duration-300"
               >
                 T2-FOX
               </a>
             ) : (
               <Link
                 href="/"
-                className="font-black text-lg md:text-xl text-amber-50 bg-orange-500 border-2 border-orange-700 px-3 py-1 rounded-sm shadow-[0_2px_0_rgba(0,0,0,0.35)] hover:scale-105 transition-transform duration-300"
+                className="font-black text-[clamp(0.95rem,1.3vw,1.25rem)] whitespace-nowrap text-amber-50 bg-orange-500 border-2 border-orange-700 px-3 py-1 rounded-sm shadow-[0_2px_0_rgba(0,0,0,0.35)] hover:scale-105 transition-transform duration-300"
               >
                 T2-FOX
               </Link>
             )}
           </div>
 
-          <div className="hidden md:inline-block">
+          <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2">
             <HorizontalNavButton config={navBarItems} />
           </div>
 
-          <div className="visible sm:invisible flex items-center">
+          <div className="flex items-center lg:hidden">
             <HamburgerNavButton config={navBarItems} />
           </div>
         </div>

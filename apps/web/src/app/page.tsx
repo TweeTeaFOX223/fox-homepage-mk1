@@ -5,6 +5,7 @@ import ArticleList from "@/features/show-article-list/components/ArticleList";
 import RepositoryList from "@/features/show-github-repository/components/RepositoryList";
 import ManualArticleList from "@/features/show-poem-list/components/ManualArticleList";
 import AppList from "@/features/show-apps/components/AppList";
+import DevReflectionList from "@/features/show-dev-reflection/components/DevReflectionList";
 import { NEXT_PUBLIC_BASE_URL } from "../../config";
 
 export const metadata = {
@@ -92,6 +93,18 @@ export default function Home() {
             <TechInterests />
           </SectionCard>
         </section> */}
+
+        <SectionSeparator />
+
+        <section id="dev-reflection" className="scroll-my-16">
+          <SectionCard
+            className="bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 border-amber-500/20"
+            glowA="bg-[radial-gradient(circle_at_25%_25%,rgba(251,191,36,0.12),transparent_55%)]"
+            glowB="bg-[radial-gradient(circle_at_75%_75%,rgba(244,63,94,0.12),transparent_55%)]"
+          >
+            <DevReflectionList />
+          </SectionCard>
+        </section>
 
         <SectionSeparator />
 

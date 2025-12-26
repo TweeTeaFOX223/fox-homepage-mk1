@@ -9,7 +9,8 @@ export type NavBarItem = {
     | "Swords"
     | "Apple"
     | "BookText"
-    | "AppWindow";
+    | "AppWindow"
+    | "Compass";
 };
 
 export type NavBarItemConfig = {
