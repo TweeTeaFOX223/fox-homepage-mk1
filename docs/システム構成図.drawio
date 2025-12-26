@@ -1,9 +1,12 @@
 <mxfile host="65bd71144e">
     <diagram id="KB43W-IPWn18DfY1q_4r" name="ページ1">
-        <mxGraphModel dx="1079" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1777" dy="2463" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
+                <mxCell id="5" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-50" y="-10" width="890" height="730" as="geometry"/>
+                </mxCell>
                 <mxCell id="main-container" value="Cloudflareのエッジネットワーク" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontSize=16;fontStyle=1;align=center;spacingTop=10;" parent="1" vertex="1">
                     <mxGeometry x="20" y="60" width="750" height="460" as="geometry"/>
                 </mxCell>
