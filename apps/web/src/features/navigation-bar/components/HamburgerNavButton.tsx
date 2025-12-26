@@ -21,6 +21,7 @@ import {
 import { NavBarItem, NavBarItemConfig } from "../types/navbar-type";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 
 interface HamburgerNavProps {
   config: NavBarItemConfig;
@@ -29,6 +30,7 @@ interface HamburgerNavProps {
 export default function HamburgerNavButton({ config }: HamburgerNavProps) {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const iconMap = {
     CircleUserRound,
     Sparkles,
@@ -37,6 +39,41 @@ export default function HamburgerNavButton({ config }: HamburgerNavProps) {
     BookText,
     AppWindow,
   };
+
+  const sectionIds = useMemo(
+    () =>
+      config.navBarItem
+        .map((item) => item.href)
+        .filter((href) => href.includes("#"))
+        .map((href) => href.split("#")[1]),
+    [config.navBarItem]
+  );
+
+  useEffect(() => {
+    if (!isHome) return;
+    const elements = sectionIds
+      .map((id) => (id ? document.getElementById(id) : null))
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]?.target?.id) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      {
+        rootMargin: "-50% 0px -50% 0px",
+        threshold: [0, 0.01],
+      }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [isHome, sectionIds]);
 
   return (
     <DropdownMenu>
@@ -51,19 +88,26 @@ export default function HamburgerNavButton({ config }: HamburgerNavProps) {
             ? item.href.replace("/#", "#")
             : item.href;
           const shouldUseAnchor = isHome && href.startsWith("#");
+          const sectionId = href.includes("#") ? href.split("#")[1] : null;
+          const isActive = isHome
+            ? sectionId !== null && sectionId === activeSection
+            : pathname === item.href;
+          const activeClass = isActive
+            ? "bg-emerald-200/60 text-emerald-900 underline decoration-emerald-600 underline-offset-4"
+            : "text-emerald-900";
 
           return (
             <DropdownMenuItem
               key={item.href}
-              className="focus:bg-emerald-100 hover:bg-emerald-100"
+              className={`focus:bg-emerald-100 hover:bg-emerald-100 ${activeClass}`}
             >
               {shouldUseAnchor ? (
                 <a
                   href={href}
                   className="flex items-center w-full py-2 px-1 rounded-md transition-colors duration-200"
                 >
-                  <Icon className="w-5 h-5 mr-3 text-emerald-600" />
-                  <span className="font-bold text-emerald-900">
+                 <Icon className="w-5 h-5 mr-3 text-emerald-600" />
+                  <span className="font-bold">
                     {item.name}
                   </span>
                 </a>
@@ -73,7 +117,7 @@ export default function HamburgerNavButton({ config }: HamburgerNavProps) {
                   className="flex items-center w-full py-2 px-1 rounded-md transition-colors duration-200"
                 >
                   <Icon className="w-5 h-5 mr-3 text-emerald-600" />
-                  <span className="font-bold text-emerald-900">
+                  <span className="font-bold">
                     {item.name}
                   </span>
                 </Link>

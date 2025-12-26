@@ -46,6 +46,14 @@ function SectionCard({ children, className, glowA, glowB }: SectionCardProps) {
   );
 }
 
+function SectionSeparator() {
+  return (
+    <div className="my-8 md:my-12 lg:my-16">
+      <div className="h-3 w-full rounded-full bg-[repeating-linear-gradient(90deg,rgba(0,0,0,0.25)_0px,rgba(0,0,0,0.25)_22px,transparent_22px,transparent_32px)]" />
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main id="top" className="min-h-screen bg-background">
@@ -58,7 +66,9 @@ export default function Home() {
           <BaseProfile />
         </section>
 
-        <section id="apps" className="mt-8 scroll-my-16">
+        <SectionSeparator />
+
+        <section id="apps" className="scroll-my-16">
           <SectionCard
             className="bg-gradient-to-br from-pink-500/10 via-fuchsia-500/10 to-amber-500/10 border-pink-500/20"
             glowA="bg-[radial-gradient(circle_at_30%_20%,rgba(244,114,182,0.12),transparent_55%)]"
@@ -83,7 +93,9 @@ export default function Home() {
           </SectionCard>
         </section> */}
 
-        <section id="poem-articles" className="mt-8 scroll-my-16">
+        <SectionSeparator />
+
+        <section id="poem-articles" className="scroll-my-16">
           <SectionCard
             className="bg-gradient-to-br from-rose-500/10 via-orange-500/10 to-amber-500/10 border-rose-500/20"
             glowA="bg-[radial-gradient(circle_at_20%_30%,rgba(244,63,94,0.12),transparent_55%)]"
@@ -94,7 +106,9 @@ export default function Home() {
           </SectionCard>
         </section>
 
-        <section id="tech-articles" className="mt-8 scroll-my-16">
+        <SectionSeparator />
+
+        <section id="tech-articles" className="scroll-my-16">
           <SectionCard
             className="bg-gradient-to-br from-indigo-500/10 via-violet-500/10 to-rose-500/10 border-indigo-500/20"
             glowA="bg-[radial-gradient(circle_at_30%_20%,rgba(129,140,248,0.12),transparent_55%)]"
@@ -110,7 +124,9 @@ export default function Home() {
           </SectionCard>
         </section>
 
-        <section id="products" className="mt-8 scroll-my-16">
+        <SectionSeparator />
+
+        <section id="products" className="scroll-my-16">
           <SectionCard
             className="bg-gradient-to-br from-emerald-500/10 via-teal-500/10 to-amber-500/10 border-emerald-500/20"
             glowA="bg-[radial-gradient(circle_at_25%_25%,rgba(16,185,129,0.12),transparent_55%)]"

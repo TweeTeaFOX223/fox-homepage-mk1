@@ -132,11 +132,11 @@ export default function BaseProfile() {
                   className="flex items-center h-full p-4"
                 >
                   <div className="flex items-center gap-2 w-full">
-                    <div className="w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-12 xl:h-12 rounded-full bg-[#000000] flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                    <div className="w-7 h-7 md:w-[34px] md:h-[34px] lg:w-9 lg:h-9 xl:w-12 xl:h-12 rounded-full bg-[#000000] flex items-center justify-center text-white shadow-lg flex-shrink-0">
                       <img
                         src="/social_logo/x_logo.svg"
                         alt="X"
-                        className="w-4 h-4 md:w-[18px] md:h-[18px] lg:w-5 lg:h-5 xl:w-7 xl:h-7"
+                        className="w-4 h-4 md:w-[19px] md:h-[19px] lg:w-5 lg:h-5 xl:w-7 xl:h-7"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -160,8 +160,8 @@ export default function BaseProfile() {
                   className="flex flex-col items-start justify-center h-full p-4"
                 >
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-12 xl:h-12 rounded-full bg-[#00BFFF] flex items-center justify-center text-white shadow-lg flex-shrink-0">
-                      <Twitter className="w-4 h-4 md:w-[18px] md:h-[18px] lg:w-5 lg:h-5 xl:w-7 xl:h-7" />
+                    <div className="w-7 h-7 md:w-[34px] md:h-[34px] lg:w-9 lg:h-9 xl:w-12 xl:h-12 rounded-full bg-[#00BFFF] flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                      <Twitter className="w-4 h-4 md:w-[19px] md:h-[19px] lg:w-5 lg:h-5 xl:w-7 xl:h-7" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="font-bold text-xs xl:text-base">
@@ -184,8 +184,8 @@ export default function BaseProfile() {
                   className="flex items-center h-full p-4"
                 >
                   <div className="flex items-center gap-2 w-full">
-                    <div className="w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-12 xl:h-12 rounded-full bg-[#333333] flex items-center justify-center text-white shadow-lg flex-shrink-0">
-                      <Github className="w-4 h-4 md:w-[18px] md:h-[18px] lg:w-5 lg:h-5 xl:w-7 xl:h-7" />
+                    <div className="w-7 h-7 md:w-[34px] md:h-[34px] lg:w-9 lg:h-9 xl:w-12 xl:h-12 rounded-full bg-[#333333] flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                      <Github className="w-4 h-4 md:w-[19px] md:h-[19px] lg:w-5 lg:h-5 xl:w-7 xl:h-7" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="font-bold text-xs xl:text-base">
@@ -208,11 +208,11 @@ export default function BaseProfile() {
                   className="flex items-center h-full p-4"
                 >
                   <div className="flex items-center gap-2 w-full">
-                    <div className="w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-12 xl:h-12 rounded-full bg-[#5865F2] flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                    <div className="w-7 h-7 md:w-[34px] md:h-[34px] lg:w-9 lg:h-9 xl:w-12 xl:h-12 rounded-full bg-[#5865F2] flex items-center justify-center text-white shadow-lg flex-shrink-0">
                       <img
                         src="/social_logo/Discord-Symbol-White.svg"
                         alt="Discord"
-                        className="w-4 h-4 md:w-[18px] md:h-[18px] lg:w-5 lg:h-5 xl:w-7 xl:h-7"
+                        className="w-4 h-4 md:w-[19px] md:h-[19px] lg:w-5 lg:h-5 xl:w-7 xl:h-7"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
