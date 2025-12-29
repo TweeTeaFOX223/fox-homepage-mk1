@@ -11,6 +11,20 @@ body {
   overflow: hidden;
 }
 
+.avatar-load-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: #fbbf24;
+  transform: translateY(0%);
+  transition: transform 1800ms ease, opacity 1800ms ease;
+  pointer-events: none;
+}
+
+[data-loaded="true"] .avatar-load-cover {
+  transform: translateY(-100%);
+}
+
 .avatar-fallback-blob {
   position: absolute;
   border-radius: 9999px;
