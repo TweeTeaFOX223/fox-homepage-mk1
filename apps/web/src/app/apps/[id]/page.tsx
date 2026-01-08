@@ -10,8 +10,13 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const app = apps.find((a) => a.id === params.id);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const app = apps.find((a) => a.id === id);
 
   if (!app) {
     return {
@@ -39,8 +44,13 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   };
 }
 
-export default function AppDetailPage({ params }: { params: { id: string } }) {
-  const app = apps.find((a) => a.id === params.id);
+export default async function AppDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const app = apps.find((a) => a.id === id);
 
   if (!app) {
     notFound();
