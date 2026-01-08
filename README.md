@@ -79,9 +79,9 @@
 #### **Frontend (Web Worker)**
 | 技術 | バージョン | 用途 |
 |------|-----------|------|
-| **Next.js** | 16.x | Reactフレームワーク（App Router） |
+| **Next.js** | 15.5.9 | Reactフレームワーク（App Router） |
 | **React** | 19.x | UIライブラリ |
-| **OpenNext** | 1.x | Next.js → Cloudflare Workers変換 |
+| **OpenNext** | 1.14.8 | Next.js → Cloudflare Workers変換 |
 | **Hono Client** | 4.x | 型安全なRPCクライアント |
 | **TailwindCSS** | 3.x | ユーティリティファーストCSS |
 | **Radix UI** | - | アクセシブルなUIコンポーネント |
