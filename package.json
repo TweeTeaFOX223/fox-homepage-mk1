@@ -1,21 +1,17 @@
 {
   "name": "fox-homepage-mk1",
   "private": true,
-  "packageManager": "npm@11.7.0",
+  "packageManager": "pnpm@10.27.0",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "deploy": "npm run deploy:api && npm run deploy:web",
-    "deploy:api": "cd apps/api && npm run deploy",
-    "deploy:web": "cd apps/web && npm run deploy",
+    "deploy": "pnpm run deploy:api && pnpm run deploy:web",
+    "deploy:api": "pnpm -C apps/api run deploy",
+    "deploy:web": "pnpm -C apps/web run deploy",
     "lint": "turbo lint",
     "type-check": "turbo type-check"
   },
   "devDependencies": {
     "turbo": "^2.0.0"
-  },
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+  }
 }
