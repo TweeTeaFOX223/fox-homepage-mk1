@@ -459,7 +459,6 @@ jobs:
         run: |
           echo "🗑️  Clearing R2 ISR cache: next-cache-bucket/incremental-cache/"
           echo "📋 Installing AWS SDK..."
-          pnpm add --no-save @aws-sdk/client-s3
 
           node << 'SCRIPT'
           const { S3Client, ListObjectsV2Command, DeleteObjectsCommand } = require('@aws-sdk/client-s3');
