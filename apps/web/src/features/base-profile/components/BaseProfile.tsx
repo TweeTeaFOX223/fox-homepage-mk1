@@ -26,7 +26,7 @@ export default function BaseProfile() {
         </div>
 
         {/* メイングリッド - 2カラム構造 */}
-        <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 pt-0">
+        <div className="relative grid grid-cols-1 xl:grid-cols-2 gap-6 p-6 pt-0">
           {/* 左側カラム */}
           <div className="relative overflow-hidden rounded-xl border-2 border-emerald-500/20 bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 p-4">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.1),transparent_50%)]"></div>
@@ -34,7 +34,7 @@ export default function BaseProfile() {
             <div className="relative grid grid-cols-1 md:grid-cols-2 gap-3 content-start h-full">
               {/* アイコン - 2行2列 */}
               <div className="col-span-1 row-span-1 md:row-span-2 border-2 border-transparent rounded-lg p-2 bg-transparent flex items-center justify-center overflow-visible">
-                <div className="relative w-40 h-40 md:w-44 md:h-44 xl:w-60 xl:h-60 flex-shrink-0">
+                <div className="relative w-48 h-48 sm:w-60 sm:h-60 flex-shrink-0">
                   <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 rounded-full blur-2xl opacity-50"></div>
                   <Avatar
                     data-loaded={isAvatarLoaded}
@@ -57,69 +57,69 @@ export default function BaseProfile() {
               </div>
 
               {/* 名前 */}
-              <div className="col-span-1 row-span-1 md:row-span-2 border-2 border-emerald-500/30 rounded-lg p-3 lg:pl-8 xl:pl-10 2xl:pl-16 mb-2 bg-gradient-to-r from-emerald-50/50 to-teal-50/50 flex flex-col gap-0 text-center lg:text-left">
-                <p className="text-xs xl:text-base text-emerald-700 font-bold mb-0 leading-tight">
+              <div className="col-span-1 row-span-1 md:row-span-2 border-2 border-emerald-500/30 rounded-lg p-2 sm:p-3  mb-2 bg-gradient-to-r from-emerald-50/50 to-teal-50/50 flex flex-col gap-0 text-center">
+                <p className="text-base text-emerald-700 font-bold mb-0 leading-tight">
                   正式の名前：
                 </p>
-                <p className="text-[10px] xl:text-sm font-bold text-foreground mt-0 leading-tight">
+                <p className="text-sm font-bold text-foreground mt-0 leading-tight">
                   ツイーティ・ザ・フォックス
                 </p>
-                <p className="text-xs xl:text-base text-teal-700 font-bold mt-1 mb-0 leading-tight">
+                <p className="text-base text-teal-700 font-bold mt-1 mb-0 leading-tight">
                   略式の名前：
                 </p>
-                <p className="text-xs xl:text-base font-bold text-foreground mt-0 leading-tight">
+                <p className="text-base font-bold text-foreground mt-0 leading-tight">
                   T2フォックス／T2-FOX
                 </p>
-                <p className="text-xs xl:text-base text-teal-700 font-bold mt-3 mb-0 leading-tight">
+                <p className="text-base text-teal-700 font-bold mt-3 mb-0 leading-tight">
                   ホームページ：
                 </p>
-                <p className="text-[10px] xl:text-sm font-bold text-foreground mt-0 leading-tight">
+                <p className="text-sm font-bold text-foreground mt-0 leading-tight">
                   home.t2fox.workers.dev
                 </p>
-                <p className="text-xs xl:text-base text-teal-700 font-bold mt-3 mb-0 leading-tight">
+                <p className="text-base text-teal-700 font-bold mt-3 mb-0 leading-tight">
                   開発で重視すること：
                 </p>
-                <div className="text-xs xl:text-base font-bold text-foreground mt-0 leading-tight">
+                <div className="text-base font-bold text-foreground mt-0 leading-tight">
                   <div>所属勢力 or 自分自身の</div>
                   <div> 「目標達成・任務完遂」</div>
                 </div>
               </div>
 
               {/* 主な活動内容 - 1列 */}
-              <div className="col-span-1 border-2 border-cyan-500/30 rounded-lg p-3 bg-gradient-to-r from-cyan-50/50 to-emerald-50/50 md:text-center lg:text-left">
-                <p className="text-xs xl:text-base text-cyan-700 font-bold mb-2">
+              <div className="col-span-1 border-2 border-cyan-500/30 rounded-lg p-3 bg-gradient-to-r from-cyan-50/50 to-emerald-50/50 md:text-center">
+                <p className="text-center text-base text-cyan-700 font-bold mb-2">
                   主な活動内容：
                 </p>
-                <p className="block md:hidden text-[11px] xl:text-sm text-foreground font-bold">
+                <p className="block md:hidden text-sm text-foreground font-bold">
                   PC作業効率化ツール開発 / SNSや電子掲示板の文章分析 /
                   UnityかUEでゲーム開発(予定)
                 </p>
-                <ul className="space-y-1 text-[11px] xl:text-sm text-foreground font-bold hidden md:block">
-                  <li className="flex items-start md:justify-center lg:justify-start text-foreground">
-                    <span className="mr-1.5 md:hidden lg:inline">•</span>
+                <ul className="space-y-1 text-sm text-foreground font-bold hidden md:block">
+                  <li className="flex items-start md:justify-center text-foreground">
+                    <span className="mr-1.5 md:hidden">•</span>
                     <span>PC作業効率化ツール開発</span>
                   </li>
-                  <li className="flex items-start md:justify-center lg:justify-start text-foreground">
-                    <span className="mr-1.5 md:hidden lg:inline">•</span>
+                  <li className="flex items-start md:justify-center text-foreground">
+                    <span className="mr-1.5 md:hidden">•</span>
                     <span>SNSや電子掲示板の文章分析</span>
                   </li>
-                  <li className="flex items-start md:justify-center lg:justify-start text-foreground">
-                    <span className="mr-1.5 md:hidden lg:inline">•</span>
+                  <li className="flex items-start md:justify-center text-foreground">
+                    <span className="mr-1.5 md:hidden">•</span>
                     <span>UnityかUEでゲーム開発(予定)</span>
                   </li>
                 </ul>
               </div>
 
               {/* 取り扱い可能な技術 - 1列 */}
-              <div className="col-span-1 border-2 border-emerald-500/30 rounded-lg p-3 bg-gradient-to-r from-emerald-50/50 to-teal-50/50 md:text-center lg:text-left">
-                <p className="text-xs xl:text-base text-emerald-700 font-bold mb-2">
+              <div className="col-span-1 border-2 border-emerald-500/30 rounded-lg p-3 bg-gradient-to-r from-emerald-50/50 to-teal-50/50 md:text-center">
+                <p className="text-center text-base text-emerald-700 font-bold mb-2">
                   主な取り扱い技術：
                 </p>
-                <p className="block md:hidden text-[11px] xl:text-sm text-foreground font-bold break-all">
+                <p className="block md:hidden text-sm text-foreground font-bold break-all">
                   TypeScript・Python・C#(Unity)・Cloudflare(Workers・D1・R2)・GitHub
                   Actions(ビルド・デプロイ)
                 </p>
-                <div className="space-y-1 text-[11px] xl:text-sm text-foreground font-bold hidden md:block">
+                <div className="space-y-1 text-sm text-foreground font-bold hidden md:block">
                   <p className="break-all">TypeScript・Python・C#(Unity)</p>
                   <p className="break-all">Cloudflare(Workers・D1・R2)</p>
                   <p className="break-all">GitHub Actions(ビルド/デプロイ)</p>
@@ -131,7 +131,7 @@ export default function BaseProfile() {
           {/* 右側カラム - SNSリンク */}
           <div className="relative overflow-hidden rounded-xl border-2 border-emerald-500/20 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 p-4">
             <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl -translate-y-32 translate-x-32"></div>
-            <div className="relative grid grid-cols-1 md:grid-cols-10 gap-[15px] lg:gap-[14px] xl:gap-[12px] content-start h-full">
+            <div className="relative grid grid-cols-1 md:grid-cols-10 gap-[15px] xl:gap-[12px] content-start h-full">
               {/* X(Twitter) - 6列 */}
               <div className="col-span-1 md:col-span-6 border-2 border-[#1DA1F2]/30 rounded-lg bg-gradient-to-r from-[#1DA1F2]/5 to-[#1DA1F2]/10 hover:from-[#1DA1F2]/20 hover:to-[#1DA1F2]/30 hover:border-[#1DA1F2]/60 transition-all duration-300 hover:shadow-lg hover:shadow-[#1DA1F2]/20 hover:-translate-y-1 xl:min-h-[96px]">
                 <a
@@ -141,18 +141,18 @@ export default function BaseProfile() {
                   className="flex items-center h-full p-4"
                 >
                   <div className="flex items-center gap-2 w-full">
-                    <div className="w-7 h-7 md:w-[34px] md:h-[34px] lg:w-9 lg:h-9 xl:w-12 xl:h-12 rounded-full bg-[#000000] flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                    <div className="w-12 h-12 xl:w-12 xl:h-12 rounded-full bg-[#000000] flex items-center justify-center text-white shadow-lg flex-shrink-0">
                       <img
                         src="/social_logo/x_logo.svg"
                         alt="X"
-                        className="w-4 h-4 md:w-[19px] md:h-[19px] lg:w-5 lg:h-5 xl:w-7 xl:h-7"
+                        className="w-7 h-7 xl:w-7 xl:h-7"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="font-bold text-xs xl:text-base">
+                      <div className="font-bold text-xs sm:text-base">
                         X:@TweeTeaFOX223
                       </div>
-                      <div className="text-[10px] xl:text-sm text-muted-foreground">
+                      <div className="text-xs text-muted-foreground break-all">
                         開発関連の話題に超特化
                       </div>
                     </div>
@@ -169,14 +169,14 @@ export default function BaseProfile() {
                   className="flex flex-col items-start justify-center h-full p-4"
                 >
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 md:w-[34px] md:h-[34px] lg:w-9 lg:h-9 xl:w-12 xl:h-12 rounded-full bg-[#00BFFF] flex items-center justify-center text-white shadow-lg flex-shrink-0">
-                      <Twitter className="w-4 h-4 md:w-[19px] md:h-[19px] lg:w-5 lg:h-5 xl:w-7 xl:h-7" />
+                    <div className="w-12 h-12 xl:w-12 xl:h-12 rounded-full bg-[#00BFFF] flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                      <Twitter className="w-7 h-7 xl:w-7 xl:h-7" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="font-bold text-xs xl:text-base">
+                      <div className="font-bold text-xs sm:text-base">
                         Twilog
                       </div>
-                      <div className="text-[10px] xl:text-sm text-muted-foreground mt-1">
+                      <div className="text-xs text-muted-foreground mt-1 break-all">
                         Xログ検索
                       </div>
                     </div>
@@ -193,14 +193,14 @@ export default function BaseProfile() {
                   className="flex items-center h-full p-4"
                 >
                   <div className="flex items-center gap-2 w-full">
-                    <div className="w-7 h-7 md:w-[34px] md:h-[34px] lg:w-9 lg:h-9 xl:w-12 xl:h-12 rounded-full bg-[#333333] flex items-center justify-center text-white shadow-lg flex-shrink-0">
-                      <Github className="w-4 h-4 md:w-[19px] md:h-[19px] lg:w-5 lg:h-5 xl:w-7 xl:h-7" />
+                    <div className="w-12 h-12 xl:w-12 xl:h-12 rounded-full bg-[#333333] flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                      <Github className="w-7 h-7 xl:w-7 xl:h-7" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="font-bold text-xs xl:text-base">
+                      <div className="font-bold text-xs sm:text-base">
                         GitHub：@TweeTeaFOX223
                       </div>
-                      <div className="text-[10px] xl:text-sm text-muted-foreground">
+                      <div className="text-xs text-muted-foreground break-all">
                         作業場。アプリの公開先/配布先。READMEに説明書完備
                       </div>
                     </div>
@@ -217,18 +217,18 @@ export default function BaseProfile() {
                   className="flex items-center h-full p-4"
                 >
                   <div className="flex items-center gap-2 w-full">
-                    <div className="w-7 h-7 md:w-[34px] md:h-[34px] lg:w-9 lg:h-9 xl:w-12 xl:h-12 rounded-full bg-[#5865F2] flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                    <div className="w-12 h-12 xl:w-12 xl:h-12 rounded-full bg-[#5865F2] flex items-center justify-center text-white shadow-lg flex-shrink-0">
                       <img
                         src="/social_logo/Discord-Symbol-White.svg"
                         alt="Discord"
-                        className="w-4 h-4 md:w-[19px] md:h-[19px] lg:w-5 lg:h-5 xl:w-7 xl:h-7"
+                        className="w-7 h-7 xl:w-7 xl:h-7"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="font-bold text-xs xl:text-base">
+                      <div className="font-bold text-xs sm:text-base">
                         Discord：@tweetea_the_fox
                       </div>
-                      <div className="text-[9px] xl:text-xs text-muted-foreground">
+                      <div className="text-xs text-muted-foreground break-all">
                         主要な連絡手段。開発関係のチーム作業の主力ツール
                       </div>
                     </div>
@@ -248,11 +248,11 @@ export default function BaseProfile() {
                   >
                     <div className="flex flex-col items-center gap-1 text-center">
                       <div className="flex items-center gap-2">
-                        <div className="font-bold text-xs xl:text-base">
+                        <div className="font-bold text-xs sm:text-base">
                           note
                         </div>
                       </div>
-                      <div className="text-[9px] xl:text-xs font-bold  text-foreground">
+                      <div className="text-[10px] sm:text-xs font-bold  text-foreground">
                         @tweeteafox300
                       </div>
                     </div>
@@ -269,11 +269,11 @@ export default function BaseProfile() {
                   >
                     <div className="flex flex-col items-center gap-1 text-center">
                       <div className="flex items-center gap-2">
-                        <div className="font-bold text-xs xl:text-base">
+                        <div className="font-bold text-xs sm:text-base">
                           Zenn
                         </div>
                       </div>
-                      <div className="text-[9px] xl:text-xs font-bold  text-foreground">
+                      <div className="text-[10px] sm:text-xs font-bold  text-foreground">
                         @tweeteafox300
                       </div>
                     </div>
@@ -290,11 +290,11 @@ export default function BaseProfile() {
                   >
                     <div className="flex flex-col items-center gap-1 text-center">
                       <div className="flex items-center gap-2">
-                        <div className="font-bold text-xs xl:text-base">
+                        <div className="font-bold text-xs sm:text-base">
                           Qiita
                         </div>
                       </div>
-                      <div className="text-[9px] xl:text-xs font-bold  text-foreground">
+                      <div className="text-[10px] sm:text-xs font-bold  text-foreground">
                         @tweeteafox300
                       </div>
                     </div>
@@ -311,11 +311,11 @@ export default function BaseProfile() {
                   >
                     <div className="flex flex-col items-center gap-1 text-center">
                       <div className="flex items-center gap-2">
-                        <div className="font-bold text-xs xl:text-base">
+                        <div className="font-bold text-xs sm:text-base">
                           Gist
                         </div>
                       </div>
-                      <div className="text-[9px] xl:text-xs font-bold  text-foreground">
+                      <div className="text-[10px] sm:text-xs font-bold  text-foreground">
                         @TweeTeaFOX223
                       </div>
                     </div>
