@@ -6,6 +6,18 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@media (min-width: 640px) and (max-width: 1023.98px) {
+  .nav-scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    touch-action: pan-x;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-scroll::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .avatar-fallback-fx {
   position: relative;
   overflow: hidden;
