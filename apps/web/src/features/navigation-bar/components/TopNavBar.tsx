@@ -17,7 +17,7 @@ export default function TopNavBar() {
         <div className="absolute inset-0 bg-emerald-500/95"></div>
         <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-600/60 shadow-sm"></div>
 
-        <div className="relative w-full px-4 sm:px-3 py-2 flex items-center gap-3 sm:gap-2 overflow-x-hidden">
+        <div className="relative w-full px-4 py-2 flex items-center gap-3 overflow-x-hidden">
           <div className="flex items-center shrink-0">
             {isHome ? (
               <a

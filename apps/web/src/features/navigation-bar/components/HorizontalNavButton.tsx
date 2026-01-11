@@ -145,10 +145,10 @@ export default function HorizontalNavButton({ config }: HorizontalNavBarProps) {
   }, []);
 
   return (
-    <div className="flex items-center h-14 justify-center w-full min-w-0 lg:w-auto">
+    <div className="flex items-center h-12 justify-center w-full min-w-0 lg:w-auto">
       <div
         ref={scrollRef}
-        className="nav-scroll flex items-center space-x-1 lg:space-x-2 overflow-x-auto whitespace-nowrap w-full min-w-0 sm:pb-1 md:pb-1 lg:pb-0 lg:overflow-visible lg:w-auto"
+        className="nav-scroll flex items-center space-x-1 lg:space-x-2 overflow-x-auto whitespace-nowrap w-full min-w-0"
       >
         <div className="inline-flex items-center space-x-1 lg:space-x-2 w-max">
           {config.navBarItem.map((item: NavBarItem) => {
@@ -178,7 +178,7 @@ export default function HorizontalNavButton({ config }: HorizontalNavBarProps) {
                   event.stopPropagation();
                 }
               }}
-              className={`group relative flex items-center gap-1.5 px-2 sm:px-1.5 lg:px-3 py-2 sm:py-1.5 rounded-lg font-bold text-sm lg:text-sm ${activeClass} drop-shadow-[0_2px_0_rgba(0,0,0,0.45)] transition-all duration-300 hover:bg-white/30 hover:shadow-lg hover:-translate-y-0.5`}
+              className={`group relative flex items-center gap-1.5 px-2 lg:px-3 py-2 rounded-lg font-bold text-sm lg:text-sm ${activeClass} drop-shadow-[0_2px_0_rgba(0,0,0,0.45)] transition-all duration-300 hover:bg-white/30 hover:shadow-lg hover:-translate-y-0.5`}
             >
               <Icon className="w-3.5 h-3.5 lg:w-4 lg:h-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
               <span className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)] whitespace-nowrap">
@@ -198,7 +198,7 @@ export default function HorizontalNavButton({ config }: HorizontalNavBarProps) {
                   event.stopPropagation();
                 }
               }}
-              className={`group relative flex items-center gap-1.5 px-2 sm:px-1.5 lg:px-3 py-2 sm:py-1.5 rounded-lg font-bold text-sm lg:text-sm ${activeClass} drop-shadow-[0_2px_0_rgba(0,0,0,0.45)] transition-all duration-300 hover:bg-white/30 hover:shadow-lg hover:-translate-y-0.5`}
+              className={`group relative flex items-center gap-1.5 px-2 lg:px-3 py-2 rounded-lg font-bold text-sm lg:text-sm ${activeClass} drop-shadow-[0_2px_0_rgba(0,0,0,0.45)] transition-all duration-300 hover:bg-white/30 hover:shadow-lg hover:-translate-y-0.5`}
             >
               <Icon className="w-3.5 h-3.5 lg:w-4 lg:h-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
               <span className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)] whitespace-nowrap">
