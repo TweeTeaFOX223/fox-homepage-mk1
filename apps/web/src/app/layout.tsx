@@ -27,10 +27,12 @@ export const metadata: Metadata = {
     default: "T2フォックスのホームページ",
     template: "%s - T2フォックスのホームページ",
   },
-  description: "T2フォックス(開発者)の活動内容をまとめたホームページです。",
+  description:
+    "T2フォックスのホームページです。「プロフィール・公開中のアプリ・開発方針&振り返り・雑多な記事・技術の記事・GitHubリポジトリ検索」",
   openGraph: {
     title: "T2フォックスのホームページ",
-    description: "T2フォックス(開発者)の活動内容をまとめたホームページです。",
+    description:
+      "T2フォックスのホームページです。「プロフィール・公開中のアプリ・開発方針&振り返り・雑多な記事・技術の記事・GitHubリポジトリ検索」",
     type: "website",
     url: "/",
     images: [
@@ -61,7 +63,7 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen flex-col antialiased",
-          notoSansJP.className
+          notoSansJP.className,
         )}
       >
         <TopNavBar />
