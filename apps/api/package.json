@@ -11,7 +11,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "hono": "^4.0.0",
+    "hono": "^4.11.10",
     "@hono/zod-validator": "^0.2.0",
     "zod": "^3.23.0"
   },
