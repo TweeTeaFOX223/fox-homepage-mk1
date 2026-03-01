@@ -29,6 +29,16 @@
     "tags": ["TypeScript", "Preact", "Hono RPC", "Socket.IO", "Node.js SEA"]
   },
   {
+    "id": "app-22",
+    "name": "twilog-csv-analytics-toolkit",
+    "description": "X(旧Twitter)のツイート保存サービス「Twilog」から出力した自分のポストデータを分析。自分のTwitter歴の振り返りに有用。",
+    "appUrl": "https://github.com/TweeTeaFOX223/twilog-csv-analytics-toolkit",
+    "displayOrder": 3,
+    "imageUrls": ["/apps_images/twilog-csv-analytics-toolkit/app1.png"],
+    "deploymentType": "デスクトップアプリ(PCにインストール)",
+    "tags": ["Python/uv", "FastAPI", "jinja2", "htmx", "Polars", "SudachiPy"]
+  },
+  {
     "id": "app-3",
     "name": "bookmark-analytics-toolkit（BAT）",
     "description": "WebBrowserBookmarksViewで出力したPCブラウザのブックマークデータを12の方法で分析/可視化。",
