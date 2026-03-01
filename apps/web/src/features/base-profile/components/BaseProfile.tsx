@@ -57,8 +57,8 @@ export default function BaseProfile() {
               </div>
 
               {/* 名前 */}
-              <div className="col-span-1 row-span-1 md:row-span-2 border-2 border-emerald-500/30 rounded-lg p-2 sm:p-3  mb-2 bg-gradient-to-r from-emerald-50/50 to-teal-50/50 flex flex-col gap-0 text-center">
-                <p className="text-base text-emerald-700 font-bold mb-0 leading-tight">
+              <div className="col-span-1 row-span-1 md:row-span-2 border-2 border-emerald-500/30 rounded-lg  p-3 mb-2 bg-gradient-to-r from-emerald-50/50 to-teal-50/50 flex flex-col gap-0 text-center">
+                <p className="text-base text-emerald-700 font-bold mt-2 mb-0 leading-tight">
                   正式の名前：
                 </p>
                 <p className="text-sm font-bold text-foreground mt-0 leading-tight">
@@ -77,7 +77,7 @@ export default function BaseProfile() {
                   home.t2fox.workers.dev
                 </p>
                 <p className="text-base text-teal-700 font-bold mt-3 mb-0 leading-tight">
-                  開発で重視すること：
+                  活動全般で重視：
                 </p>
                 <div className="text-base font-bold text-foreground mt-0 leading-tight">
                   <div>所属勢力 or 自分自身の</div>
