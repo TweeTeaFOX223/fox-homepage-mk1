@@ -2,15 +2,19 @@ import { DevReflectionItem } from "../types/dev-reflection-type";
 
 export const devReflections: DevReflectionItem[] = [
   {
-    title: "開発関係の方針や考え等",
+    url: "https://note.com/tweeteafox300/n/n0e387bddc56c",
+    title: "開発活動/他作業等における方針",
     description:
-      "開発で大切にしている方針や、判断基準、優先順位の付け方についてまとめた記事です。",
+      "IT関連の開発/コーディング、他一般作業、SNS/ブログ運用に関する方針の個人的メモです。",
+    imageUrl: "/poem/compass.png",
     updated_at: "2025-02-24",
   },
   {
-    title: "開発プロジェクトの振り返り",
+    url: "https://home.t2fox.workers.dev/apps",
+    title: "開発物振り返り(GitHubのREADME)",
     description:
-      "個人開発物や参加プロジェクトの振り返りや、うまくいった点・改善点を整理した記事です。",
+      "個人開発物については、リポジトリのREADMEに簡単な振り返りが書いてあります。",
+    imageUrl: "/ogp/OGP2.png",
     updated_at: "2025-02-28",
   },
 ];

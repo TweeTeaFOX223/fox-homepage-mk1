@@ -13,7 +13,7 @@ export const manualArticles: ManualArticleItem[] = [
     url: "https://note.com/tweeteafox300/n/n173e7bc1b169",
     title: "新しく触れる分野の情報収集を始める際、最初に必ず実行していること",
     description:
-      "私が、新しく触れる分野の情報収集を始める際、最初の段階で必ず実行していること＝「Wikipediaのカテゴリとナビゲーションテンプレート・各SNSサイト・はてなブックマーク・動画サイト・電子掲示板・人気書籍・論文検索サイト・チャットアプリのコミュニティ…等」の確認について、ポイントやテクニックをまとめた記事です。",
+      "私が新しく触れる分野の情報収集を始める際、最初の段階で必ず実行していること＝「Wikipediaのカテゴリとナビゲーションテンプレート・各SNSサイト・はてなブックマーク・動画サイト・電子掲示板・人気書籍・論文検索サイト・チャットアプリのコミュニティ・生成AIのWeb検索結果…等」の確認について、ポイントやテクニックをまとめた記事です。",
     imageUrl: "/poem/blog2A.PNG",
     created_at: "2025-02-23",
   },
@@ -21,7 +21,7 @@ export const manualArticles: ManualArticleItem[] = [
     url: "https://note.com/tweeteafox300/n/n093607d9f3b4",
     title: "チーム作業での情報共有に使ってるツール(Discord等)のマニュアル集",
     description:
-      "私があらゆることで、チーム作業を行う際に、情報共有で使用しているツール「Discord・Googleスプレッドシート・draw.io(diagrams.net)・Obsidian・Notion」の仕様や使用方法について、色々と書いた記事です。",
+      "チーム内の情報共有に関する個人的意見と、私が情報共有でよく使用するツール「Discord・Googleスプレッドシート・draw.io(diagrams.net)・Obsidian・Notion」の仕様や使用方法について、色々と書いた記事です。",
     imageUrl: "/poem/blog3A.PNG",
     created_at: "2025-02-26",
   },

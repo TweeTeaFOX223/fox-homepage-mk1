@@ -16,10 +16,40 @@ type DevReflectionCardProps = {
 
 export default function DevReflectionCard({ article }: DevReflectionCardProps) {
   return (
-    <Card className="flex flex-col h-full p-2 bg-white border rounded-lg shadow-sm transition-all duration-200">
+    <Card className="flex flex-col h-full p-2 bg-white border rounded-lg shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden">
+      <a
+        href={article.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group block relative w-full aspect-video rounded-lg overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200"
+      >
+        {article.imageUrl ? (
+          <img
+            src={article.imageUrl}
+            alt={article.title}
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center text-xs text-muted-foreground font-semibold">
+            NO IMAGE
+          </div>
+        )}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-black/0 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <div className="pointer-events-none absolute bottom-2 right-2 rounded-full bg-white/90 px-2 py-1 text-[10px] font-bold text-foreground opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          記事を開く
+        </div>
+      </a>
+
       <CardHeader className="pb-2">
-        <CardTitle className="text-lg font-bold">
-          <span className="text-foreground">{article.title}</span>
+        <CardTitle className="text-base sm:text-sm">
+          <a
+            href={article.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline"
+          >
+            {article.title}
+          </a>
         </CardTitle>
         <CardDescription>
           <div className="flex flex-row justify-start space-x-2">
