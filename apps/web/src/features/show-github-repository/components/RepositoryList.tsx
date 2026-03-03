@@ -12,9 +12,16 @@ export default async function RepositoryList({
   const repos = await getGitHubRepositories(GITHUB_USERNAME, 100);
 
   const nonForkRepos = repos.filter((repo) => !repo.fork);
+  const sortedNonForkRepos = [...nonForkRepos].sort((a, b) => {
+    const createdAtA = new Date(a.created_at).getTime();
+    const createdAtB = new Date(b.created_at).getTime();
+    return createdAtB - createdAtA;
+  });
 
   // limit が指定されている場合は制限する
-  const displayRepos = limit ? nonForkRepos.slice(0, limit) : nonForkRepos;
+  const displayRepos = limit
+    ? sortedNonForkRepos.slice(0, limit)
+    : sortedNonForkRepos;
   const showViewAllCard = limit && nonForkRepos.length > limit;
 
   // 言語ごとの統計を計算
