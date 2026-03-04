@@ -19,10 +19,10 @@ importers:
     dependencies:
       '@hono/zod-validator':
         specifier: ^0.2.0
-        version: 0.2.2(hono@4.11.10)(zod@3.25.76)
+        version: 0.2.2(hono@4.12.4)(zod@3.25.76)
       hono:
-        specifier: ^4.11.10
-        version: 4.11.10
+        specifier: ^4.12.4
+        version: 4.12.4
       zod:
         specifier: ^3.23.0
         version: 3.25.76
@@ -61,8 +61,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       hono:
-        specifier: ^4.11.10
-        version: 4.11.10
+        specifier: ^4.12.4
+        version: 4.12.4
       lucide-react:
         specifier: ^0.475.0
         version: 0.475.0(react@19.2.3)
@@ -3041,8 +3041,8 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  hono@4.11.10:
-    resolution: {integrity: sha512-kyWP5PAiMooEvGrA9jcD3IXF7ATu8+o7B3KCbPXid5se52NPqnOpM/r9qeW2heMnOekF4kqR1fXJqCYeCLKrZg==}
+  hono@4.12.4:
+    resolution: {integrity: sha512-ooiZW1Xy8rQ4oELQ++otI2T9DsKpV0M6c6cO6JGx4RTfav9poFFLlet9UMXHZnoM1yG0HWGlQLswBGX3RZmHtg==}
     engines: {node: '>=16.9.0'}
 
   http-errors@2.0.1:
@@ -6005,9 +6005,9 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@hono/zod-validator@0.2.2(hono@4.11.10)(zod@3.25.76)':
+  '@hono/zod-validator@0.2.2(hono@4.12.4)(zod@3.25.76)':
     dependencies:
-      hono: 4.11.10
+      hono: 4.12.4
       zod: 3.25.76
 
   '@humanfs/core@0.19.1': {}
@@ -8353,7 +8353,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  hono@4.11.10: {}
+  hono@4.12.4: {}
 
   http-errors@2.0.1:
     dependencies:
