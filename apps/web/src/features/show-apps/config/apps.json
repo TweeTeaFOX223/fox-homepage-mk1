@@ -12,42 +12,50 @@
       "/apps_images/WDIMS/ScreenShot5.png"
     ],
     "deploymentType": "ウェブアプリ(すぐに使用可能！)",
-    "tags": ["TypeScript", "Preact", "PWA対応"]
+    "tags": ["手動のWeb検索を高速化", "TypeScript", "Preact", "PWA対応"]
   },
-  {
-    "id": "app-2",
-    "name": "WDIMS-desktop-by-sea（WDIMS:D-SEA）",
-    "description": "WDIMSのデスクトップ版。設定をファイルで管理。異なるブラウザで同じ設定を使用可能。",
-    "appUrl": "https://github.com/TweeTeaFOX223/WDIMS-desktop-by-sea",
-    "displayOrder": 2,
-    "imageUrls": [
-      "/apps_images/WDIMS_D_SEA/ScreenShot.png",
-      "/apps_images/WDIMS_D_SEA/ScreenShot2.png",
-      "/apps_images/WDIMS_D_SEA/ScreenShot3.png"
-    ],
-    "deploymentType": "デスクトップアプリ(PCにインストール)",
-    "tags": ["TypeScript", "Preact", "Hono RPC", "Socket.IO", "Node.js SEA"]
-  },
+
   {
     "id": "app-22",
     "name": "twilog-csv-analytics-toolkit",
     "description": "X(旧Twitter)のツイート保存サービス「Twilog」から出力した自分のポストデータを分析。自分のTwitter歴の振り返りに有用。",
     "appUrl": "https://github.com/TweeTeaFOX223/twilog-csv-analytics-toolkit",
-    "displayOrder": 3,
+    "displayOrder": 2,
     "imageUrls": ["/apps_images/twilog-csv-analytics-toolkit/app1.png"],
     "deploymentType": "デスクトップアプリ(PCにインストール)",
     "tags": ["Python/uv", "FastAPI", "jinja2", "htmx", "Polars", "SudachiPy"]
+  },
+  {
+    "id": "app-23",
+    "name": "【共作・学術研究】類似貢献度に基づく文書検索結果の可視化分析ツール",
+    "description": "クエリ文書の類似文書を検索し、ネットワーク図として可視化するアプリケーション。「どの単語がどれくらいクエリとの類似に貢献しているか」を単語ごとに数値化した「類似貢献度ベクトル」をグラフ化する新手法を使用。メイン開発者：o-zack-0390、自分はUI/UX部分を担当。",
+    "appUrl": "https://github.com/o-zack-0390/DocumentsNetwork",
+    "displayOrder": 3,
+    "imageUrls": [
+      "/apps_images/DocumentsNetwork/app_image1.png",
+      "/apps_images/DocumentsNetwork/app_image2.png",
+      "/apps_images/DocumentsNetwork/app_image3.png"
+    ],
+    "deploymentType": "デスクトップアプリ(PCにインストール)",
+    "tags": [
+      "共作",
+      "学術研究",
+      "文章検索結果の可視化",
+      "ネットワークグラフ",
+      "C言語",
+      "Docker"
+    ]
   },
   {
     "id": "app-3",
     "name": "bookmark-analytics-toolkit（BAT）",
     "description": "WebBrowserBookmarksViewで出力したPCブラウザのブックマークデータを12の方法で分析/可視化。",
     "appUrl": "https://github.com/TweeTeaFOX223/bookmark-analytics-toolkit",
-    "displayOrder": 3,
+    "displayOrder": 4,
     "imageUrls": [
+      "/apps_images/BAT/9_HierarchyTreemap.png",
       "/apps_images/BAT/SideBar.png",
-      "/apps_images/BAT/8_Weekday-HourHeatmap.png",
-      "/apps_images/BAT/9_HierarchyTreemap.png"
+      "/apps_images/BAT/8_Weekday-HourHeatmap.png"
     ],
     "deploymentType": "デスクトップアプリ(PCにインストール)",
     "tags": ["Python/uv", "Streamlit", "Polars", "SudachiPy", "PyInstaller"]
@@ -66,11 +74,25 @@
     "tags": ["バニラのJavaScript", "学生向け"]
   },
   {
+    "id": "app-42",
+    "name": "WDIMS-desktop-by-sea（WDIMS:D-SEA）",
+    "description": "WDIMSのデスクトップ版。設定をファイルで管理。異なるブラウザで同じ設定を使用可能。プライバシー的に安全",
+    "appUrl": "https://github.com/TweeTeaFOX223/WDIMS-desktop-by-sea",
+    "displayOrder": 5,
+    "imageUrls": [
+      "/apps_images/WDIMS_D_SEA/ScreenShot.png",
+      "/apps_images/WDIMS_D_SEA/ScreenShot2.png",
+      "/apps_images/WDIMS_D_SEA/ScreenShot3.png"
+    ],
+    "deploymentType": "デスクトップアプリ(PCにインストール)",
+    "tags": ["TypeScript", "Preact", "Hono RPC", "Socket.IO", "Node.js SEA"]
+  },
+  {
     "id": "app-5",
     "name": "Mini CSV Analyzer on Client",
     "description": "ブラウザ上でCSVのデータ分析を行うアプリ。「danfojs@1.1.2」の試用。開発者ツールのコンソールからデータ操作可能。",
     "appUrl": "https://github.com/TweeTeaFOX223/mini-csv-analyzer-on-client",
-    "displayOrder": 5,
+    "displayOrder": 6,
     "imageUrls": [
       "/apps_images/mini-csv-analyzer-on-client/スクリーンショット1.png",
       "/apps_images/mini-csv-analyzer-on-client/スクリーンショット2.png"
@@ -83,7 +105,7 @@
     "name": "cy-experiment-graph-editor",
     "description": "Cytoscape.jsを利用したグラフの実験的エディタ。ノード/エッジの新規作成と編集、各要素のプロパティ編集等が可能。",
     "appUrl": "https://github.com/TweeTeaFOX223/cy-experiment-graph-editor",
-    "displayOrder": 6,
+    "displayOrder": 7,
     "imageUrls": [
       "/apps_images/cy-experiment-graph-editor/スクリーンショット.png"
     ],
